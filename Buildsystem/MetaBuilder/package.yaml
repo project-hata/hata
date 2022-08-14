@@ -41,7 +41,6 @@ library:
     - attoparsec
     - parsec
     - split
-    - Agda
   default-extensions:
     - DuplicateRecordFields
     - DeriveGeneric

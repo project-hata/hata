@@ -8,14 +8,12 @@ import MetaBuilder.Core
 import MetaBuilder.Project.Environment
 import MetaBuilder.Project.Type.Haskell
 import MetaBuilder.Project.Type.Agda
-import MetaBuilder.Project.Type.AgdaPublish
 
 import qualified Data.Yaml
 
 data Collection = Collection
   { globalConfig         :: GlobalConfig
   , agdaProjects          :: [AgdaProjectConfig]
-  , agdaPublishProjects  :: [AgdaPublishProjectConfig]
   , haskellStackProjects :: [HaskellStackProjectConfig]
   } deriving (Generic)
 instance FromJSON Collection
@@ -23,7 +21,6 @@ instance FromJSON Collection
 data ExtraCollection = ExtraCollection
   { extraGlobalConfig         :: ExtraGlobalConfig
   , extraAgdaProjects          :: [ExtraAgdaProjectConfig]
-  , extraAgdaPublishProjects   :: [ExtraAgdaPublishProjectConfig]
   , extraHaskellStackProjects :: [ExtraHaskellStackProjectConfig]
   }
   deriving (Show)
@@ -42,7 +39,6 @@ makeCollectionRules :: ExtraCollection -> Rules ()
 makeCollectionRules col = do
   mapM (makeRules (col.>extraGlobalConfig)) (col.>extraHaskellStackProjects)
   mapM (makeRules (col.>extraGlobalConfig)) (col.>extraAgdaProjects)
-  mapM (makeRules (col.>extraGlobalConfig)) (col.>extraAgdaPublishProjects)
   makeCleanRules (col.>extraGlobalConfig)
   return ()
 
@@ -59,12 +55,10 @@ deriveExtraCollection :: ProjectEnv -> Collection -> IO ExtraCollection
 deriveExtraCollection env c = do
   extraGlobalConfig <- deriveExtraProjectConfig_Global (env.>projectRootFile) (c.>globalConfig)
   let extraAgdaProjects  = deriveExtraProjectConfig_Agda extraGlobalConfig <$> (c.>agdaProjects)
-  let extraAgdaPublishProjects  = deriveExtraProjectConfig_AgdaPublish extraGlobalConfig <$> (c.>agdaPublishProjects)
   let extraHaskellStackProjects = deriveExtraConfig extraGlobalConfig <$> (c.>haskellStackProjects)
   return ExtraCollection
      { extraGlobalConfig         = extraGlobalConfig
      , extraAgdaProjects          = extraAgdaProjects
-     , extraAgdaPublishProjects   = extraAgdaPublishProjects
      , extraHaskellStackProjects = extraHaskellStackProjects
      }
 

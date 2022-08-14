@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3b32a9906cbc8b8a17ab60ab6cafa0174306095eac2f50ac2203ea66e5d82225
+-- hash: 73326077f4e9032ca85e1224dc3cd1959d0b415b9622624cd8fde04a4913a00f
 
 name:           MetaBuilder
 version:        0.1.0.0
@@ -58,8 +58,7 @@ library
       TypeFamilies
       GeneralizedNewtypeDeriving
   build-depends:
-      Agda
-    , aeson
+      aeson
     , attoparsec
     , base >=4.7 && <5
     , directory
