@@ -13,7 +13,7 @@ agdaProjects:
   #   sourceOverwrite_RelDir: UnsafeOverwrite
   #   mainRelFile: Verification/Application/Main.agda
   #   agdaBin_RelFile: hata
-  #   haskellStackTemplateRelDir: Runtime
+  #   haskellStackTemplateRelDir: Template/AgdaUI/Runtime
   #   agdaAutobuild: false
   #   libraryDefinitions_Filename: hata.agda-lib
 
