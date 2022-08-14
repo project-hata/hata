@@ -21,8 +21,7 @@
 # resolver:
 #   url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/17/5.yaml
 
-resolver: nightly-2021-06-19
-compiler: ghc-9.0.1
+resolver: lts-18.28
 # compiler-check: match-exact
 
 # User packages to be built.
@@ -40,9 +39,9 @@ packages:
 ghc-options:
   "$locals": -fwarn-incomplete-patterns
 
-extra-deps:
-- git: https://github.com/MxmUrw/agda.git
-  commit: 57494bdc9f48785eed5da64571f05689444fd091
+# extra-deps:
+# - git: https://github.com/MxmUrw/agda.git
+#   commit: 57494bdc9f48785eed5da64571f05689444fd091
 
 nix:
   pure: false

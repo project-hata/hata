@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.34.7.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 710aafd053162faa4cf9db82490ae535c33461a1f94475160f739ccb2987bd8e
+-- hash: 3b32a9906cbc8b8a17ab60ab6cafa0174306095eac2f50ac2203ea66e5d82225
 
 name:           MetaBuilder
 version:        0.1.0.0
@@ -44,14 +44,6 @@ library
       MetaBuilder.Project.Collection
       MetaBuilder.Project.Environment
       MetaBuilder.Project.Type.Agda
-      MetaBuilder.Project.Type.AgdaPublish
-      MetaBuilder.Project.Type.AgdaPublish.Common
-      MetaBuilder.Project.Type.AgdaPublish.DocumentDescription
-      MetaBuilder.Project.Type.AgdaPublish.Highlevel
-      MetaBuilder.Project.Type.AgdaPublish.Lowlevel
-      MetaBuilder.Project.Type.AgdaPublish.Midlevel
-      MetaBuilder.Project.Type.AgdaPublish.MidlevelCode
-      MetaBuilder.Project.Type.AgdaPublish.Persistent
       MetaBuilder.Project.Type.Haskell
   other-modules:
       Paths_MetaBuilder
