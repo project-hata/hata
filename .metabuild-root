@@ -21,7 +21,7 @@ agdaProjects:
     sourceOverwrite_RelDir: UnsafeOverwrite
     mainRelFile: Verification/Application/CompGen/Languages/CubeLang/Definition.agda
     agdaBin_RelFile: cubec
-    haskellStackTemplateRelDir: Template/Haskell/GeneratorTemplate
+    haskellStackTemplateRelDir: Template/CompGen/Haskell/GeneratorTemplate
     agdaAutobuild: false
     libraryDefinitions_Filename: hata.agda-lib
 
