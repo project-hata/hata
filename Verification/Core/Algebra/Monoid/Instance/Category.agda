@@ -49,4 +49,8 @@ instance
   isCategory.assoc-r-◆ isCategory:Monoid = incl refl
   isCategory._◈_ isCategory:Monoid = λ p q -> {!!}
 
+macro
+  𝐌𝐨𝐧 : ∀ 𝑖 -> _
+  𝐌𝐨𝐧 𝑖 = #structureOn (Monoid 𝑖)
+
 
