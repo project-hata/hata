@@ -21,6 +21,8 @@ record isModule {𝑗 𝑖} (R : Ring 𝑖) (A : Abelian 𝑗) : 𝒰 (𝑖 ､ 
     distr-l-↷ : ∀{r s a} -> (r ⋆ s) ↷ a ∼ r ↷ a ⋆ s ↷ a
     distr-r-↷ : ∀{r a b} -> r ↷ (a ⋆ b) ∼ r ↷ a ⋆ r ↷ b
 
+open isModule {{...}} public
+
 Module : Ring 𝑖 -> ∀ 𝑗 -> 𝒰 _
 Module R 𝑗 = _ :& isModule {𝑗} R
 
