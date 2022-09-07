@@ -36,6 +36,11 @@ Vec A n = List[ i ∈ n ] A
 -- #Notation/Rewrite# ⋆List = {}^{⋆}List
 
 
+module _ {A : 𝒰 𝑖} {B : A -> 𝒰 𝑗} where
+  data _∍♮ᵈ_ : {as : List A} (bs : Listᴰ B as) -> ∑ B -> 𝒰 (𝑖 ､ 𝑗) where
+    take : ∀{a as} {b : B a} {bs : Listᴰ B as} -> (b ∷ bs) ∍♮ᵈ (a , b)
+    skip : ∀{a as v} {b : B a} {w : B v} {bs : Listᴰ B as} -> bs ∍♮ᵈ (v , w) -> (b ∷ bs) ∍♮ᵈ (v , w)
+
 
 
 
