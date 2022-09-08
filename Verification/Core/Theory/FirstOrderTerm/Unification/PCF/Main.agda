@@ -1,6 +1,6 @@
 
 {-# OPTIONS --experimental-lossy-unification #-}
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Main where
+module Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Main where
 
 open import Verification.Conventions hiding (ℕ)
 
@@ -58,16 +58,16 @@ open import Verification.Core.Data.Substitution.Variant.Base.Definition
 
 open import Verification.Core.Theory.Std.Generic.FormalSystem.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
 
 
 open import Verification.Core.Computation.Unification.Categorical.PrincipalFamilyCat
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Base
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Size
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.DirectFail
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Base
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Size
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.DirectFail
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
 
 module _ {Σ : FOSignature 𝑖} where
 

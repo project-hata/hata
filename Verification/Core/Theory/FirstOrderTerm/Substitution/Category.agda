@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Category where
+module Verification.Core.Theory.FirstOrderTerm.Substitution.Category where
 
 open import Verification.Conventions hiding (_⊔_)
 
@@ -18,9 +18,9 @@ open import Verification.Core.Data.List.Variant.Binary.Element.Definition
 open import Verification.Core.Data.List.VariantTranslation.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
 
 
 -- | Let |Σ_FO| be a signature. The category of terms over |Σ_FO| and substitutions, is

@@ -16,8 +16,8 @@ open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Unty
 open import Verification.Core.Data.Language.HindleyMilner.Helpers
 open import Verification.Core.Category.Std.RelativeMonad.KleisliCategory.Definition
 open import Verification.Core.Category.Std.RelativeMonad.KleisliCategory.Instance.FiniteCoproductCategory
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.hasEpiMonoFactorization
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm.Instance.hasEpiMonoFactorization
 
 
 infixr 30 _⇒₃_

@@ -27,11 +27,11 @@ open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Definition
 open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Instance.Functor
 open import Verification.Core.Computation.Unification.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Functor
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Instance.Functor
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm.Unification
 
 open import Verification.Core.Data.Language.HindleyMilner.Helpers
 

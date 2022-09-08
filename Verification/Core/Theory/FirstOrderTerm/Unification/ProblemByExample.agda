@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.ProblemByExample where
+module Verification.Core.Theory.FirstOrderTerm.Unification.ProblemByExample where
 
 open import Verification.Conventions hiding (_⊔_ ; ℕ)
 
@@ -19,9 +19,9 @@ open import Verification.Core.Data.List.Variant.Binary.Element.Definition
 open import Verification.Core.Data.List.VariantTranslation.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
 open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.FirstOrderTerm.Signature
 open import Verification.Core.Data.Language.HindleyMilner.Type.VariantTranslation.Definition
 open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.Direct.Definition

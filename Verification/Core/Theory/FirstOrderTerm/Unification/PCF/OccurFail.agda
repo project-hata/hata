@@ -1,6 +1,6 @@
 
 {-# OPTIONS --experimental-lossy-unification #-}
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.OccurFail where
+module Verification.Core.Theory.FirstOrderTerm.Unification.PCF.OccurFail where
 
 open import Verification.Conventions hiding (Structure ; ℕ)
 
@@ -65,14 +65,14 @@ open import Verification.Core.Data.FiniteIndexed.Property.Merge
 
 -- open import Verification.Core.Theory.Std.Generic.FormalSystem.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Element
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm.Element
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
 
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Occur
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Occur
 
 
 -- TODO: abstract these statements into general structures on orders

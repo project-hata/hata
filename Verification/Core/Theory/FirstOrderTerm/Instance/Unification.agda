@@ -1,6 +1,6 @@
 
 {-# OPTIONS --experimental-lossy-unification #-}
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Unification where
+module Verification.Core.Theory.FirstOrderTerm.Instance.Unification where
 
 open import Verification.Conventions hiding (_⊔_)
 
@@ -20,13 +20,13 @@ open import Verification.Core.Data.List.Variant.Binary.Element.Definition
 open import Verification.Core.Data.List.VariantTranslation.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Base
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Main
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Size
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Base
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Main
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Size
 
 open import Verification.Core.Computation.Unification.Categorical.PrincipalFamilyCat
 

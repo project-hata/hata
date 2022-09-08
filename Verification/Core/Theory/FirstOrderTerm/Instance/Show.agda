@@ -1,12 +1,12 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Show where
+module Verification.Core.Theory.FirstOrderTerm.Instance.Show where
 
 open import Verification.Conventions
 
 open import Verification.Core.Conventions hiding (Structure)
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
 open import Verification.Core.Data.List.Variant.Binary.Definition
 open import Verification.Core.Data.List.Variant.Binary.Element.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition

@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.Introduction where
+module Verification.Core.Theory.FirstOrderTerm.Unification.Introduction where
 
 -- | Unification of terms is important in many kinds of settings related to
 --   solving of equations. Our motivation is the unification of free first order terms,

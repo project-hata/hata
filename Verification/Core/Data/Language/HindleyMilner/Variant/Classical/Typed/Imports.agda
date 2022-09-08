@@ -35,11 +35,11 @@ open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition publ
 
 -------------
 -- Simple terms
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature public
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition public
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Functor public
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad public
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Unification public
+open import Verification.Core.Theory.FirstOrderTerm.Signature public
+open import Verification.Core.Theory.FirstOrderTerm public
+open import Verification.Core.Theory.FirstOrderTerm.Instance.Functor public
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad public
+open import Verification.Core.Theory.FirstOrderTerm.Instance.Unification public
 
 -------------
 -- Types as simple terms

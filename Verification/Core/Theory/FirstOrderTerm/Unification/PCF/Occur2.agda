@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Occur2 where
+module Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Occur2 where
 
 open import Verification.Conventions hiding (Structure)
 
@@ -58,8 +58,8 @@ open import Verification.Core.Data.FiniteIndexed.Property.Merge
 
 open import Verification.Core.Theory.Std.Generic.FormalSystem.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
 
 
 -- open import Verification.Core.Computation.Unification.Monoidic.PrincipalFamilyCat2

@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature where
+module Verification.Core.Theory.FirstOrderTerm.Signature where
 
 open import Verification.Conventions hiding (_⊔_)
 

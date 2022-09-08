@@ -1,6 +1,6 @@
 
 {-# OPTIONS --experimental-lossy-unification #-}
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.hasEpiMonoFactorization where
+module Verification.Core.Theory.FirstOrderTerm.Instance.hasEpiMonoFactorization where
 
 open import Verification.Conventions hiding (_⊔_)
 
@@ -51,13 +51,13 @@ open import Verification.Core.Data.List.Variant.Binary.ElementSum.Definition
 open import Verification.Core.Data.List.Variant.Binary.ElementSum.Instance.Category
 
 open import Verification.Core.Theory.Std.Generic.FormalSystem.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
--- open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.FormalSystem
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Element
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Occur
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
+-- open import Verification.Core.Theory.FirstOrderTerm.Instance.FormalSystem
+open import Verification.Core.Theory.FirstOrderTerm.Element
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Occur
 
 open import Verification.Core.Category.Std.Factorization.EpiMono.Variant.Split.Definition
 open import Verification.Core.Category.Std.Category.Structured.FiniteCoproductGenerated

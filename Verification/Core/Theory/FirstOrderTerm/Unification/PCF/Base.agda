@@ -1,7 +1,7 @@
 
 {-# OPTIONS --experimental-lossy-unification #-}
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Base where
+module Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Base where
 
 open import Verification.Conventions hiding (Structure)
 
@@ -60,19 +60,19 @@ open import Verification.Core.Data.FiniteIndexed.Property.Merge
 
 open import Verification.Core.Theory.Std.Generic.FormalSystem.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Substitution.Definition
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.RelativeMonad
+open import Verification.Core.Theory.FirstOrderTerm
+open import Verification.Core.Theory.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm.Substitution.Definition
+open import Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad
 
 
 open import Verification.Core.Computation.Unification.Categorical.PrincipalFamilyCat
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Var
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Occur
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.OccurFail
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.DirectFail
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF.Size
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Var
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Occur
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.OccurFail
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.DirectFail
+open import Verification.Core.Theory.FirstOrderTerm.Unification.PCF.Size
 
 
 

@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Introduction where
+module Verification.Core.Theory.FirstOrderTerm.Introduction where
 
 
 -- | In this chapter we define the notion of terms

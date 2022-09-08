@@ -49,7 +49,7 @@ instance
 open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Typed.Example.Simple
 open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.FirstOrderTerm.Signature
 open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Typed.Typecheck.Statement
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Show
+open import Verification.Core.Theory.FirstOrderTerm.Instance.Show
 open import Verification.Core.Data.Substitution.Variant.Base.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition
 

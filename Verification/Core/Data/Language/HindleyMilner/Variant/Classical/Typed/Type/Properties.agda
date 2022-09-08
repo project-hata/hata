@@ -8,7 +8,7 @@ open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Type
 open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Typed.Type.Definition
 open import Verification.Core.Data.Language.HindleyMilner.Helpers
 -- open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.FirstOrderTerm.Signature
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.hasEpiMonoFactorization
+open import Verification.Core.Theory.FirstOrderTerm.Instance.hasEpiMonoFactorization
 open import Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Typed.Signature
 
 

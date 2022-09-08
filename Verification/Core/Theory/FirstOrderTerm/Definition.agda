@@ -1,5 +1,5 @@
 
-module Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition where
+module Verification.Core.Theory.FirstOrderTerm.Definition where
 
 open import Verification.Conventions hiding (_⊔_)
 
@@ -12,16 +12,16 @@ open import Verification.Core.Category.Std.Category.Subcategory.Full
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 -- open import Verification.Core.Data.Product.Definition
--- open import Verification.Core.Data.Indexed.Definition
--- open import Verification.Core.Data.FiniteIndexed.Definition
-open import Verification.Core.Data.Substitution.Variant.Base.Definition
+open import Verification.Core.Data.Indexed.Definition
+open import Verification.Core.Data.FiniteIndexed.Definition
+-- open import Verification.Core.Data.Substitution.Variant.Base.Definition
 
 open import Verification.Core.Data.List.Variant.Binary.Definition
 open import Verification.Core.Data.List.Variant.Binary.Element.Definition
 open import Verification.Core.Data.List.VariantTranslation.Definition
 open import Verification.Core.Data.List.Dependent.Variant.Binary.Definition
 
-open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
+open import Verification.Core.Theory.FirstOrderTerm.Signature
 
 -- | The informal intuition behind terms is as follows:
 --   Every function symbol in |Con αs β| can be considered as
