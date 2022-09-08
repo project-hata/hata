@@ -35,6 +35,15 @@ ghc-options:
 
 library:
   source-dirs: src
+  dependencies:
+    - text
+    - directory
+    - executable-path
+    - filepath
+    - aeson
+  default-extensions:
+    - OverloadedStrings
+    - DeriveGeneric
 
 executables:
   HataSystemInterface-exe:

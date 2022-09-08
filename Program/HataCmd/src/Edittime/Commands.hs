@@ -6,15 +6,16 @@ import Data.Text.IO as TIO
 import qualified Data.Text as T
 import State.Definition
 import Control.Exception (throw)
-import Core.Exception (HataCmdException(ET_FunctionNotRegistered))
+import HataSystemInterface.Exception
+import HataSystemInterface.Reflection
 import System.Command
 import Utility.Echo
 import System.FilePath
 import Edittime.MainGeneration
 
-registerFunction :: Text -> IO ()
+registerFunction :: FQName -> IO ()
 registerFunction name = do
-  echoToDaemon $ "registering: " <> T.unpack name
+  echoToDaemon $ "registering: " <> show name
   state <- readState
   let newListOfFunctions =
         filter (\rf -> qualifiedNameRF rf /= name) (registeredFunctions state)
@@ -24,7 +25,7 @@ registerFunction name = do
   return ()
 
 
-executeFunction :: Text -> IO ()
+executeFunction :: FQName -> IO ()
 executeFunction name = do
   -- get root
   rootDir <- findProjectRootDir
@@ -38,7 +39,7 @@ executeFunction name = do
     [] -> throw (ET_FunctionNotRegistered name)
     [RegisteredFunction _ IsCompiled] -> pure ()
     [RegisteredFunction _ NotCompiled] -> do
-      echoToDaemon $ "Need to recompile for: " <> T.unpack name
+      echoToDaemon $ "Need to recompile for: " <> show name
       compileEdittime rootDir (registeredFunctions state)
     _ -> undefined -- shouldn't happen
 
@@ -46,7 +47,7 @@ executeFunction name = do
 
   -- call edittime
   let edittime = rootDir </> "_build" </> "bin" </> "hata-edittime"
-  (Exit c, Stdout out, Stderr err) <- command [] edittime [T.unpack name]
+  (Exit c, Stdout out, Stderr err) <- command [] edittime [T.unpack $ unFQName $ name]
 
   echoToDaemon "Done calling hata-edittime."
   echoToDaemon out

@@ -25,14 +25,24 @@ source-repository head
 
 library
   exposed-modules:
+      HataSystemInterface.Exception
       HataSystemInterface.Path
+      HataSystemInterface.Reflection
   other-modules:
       Paths_HataSystemInterface
   hs-source-dirs:
       src
+  default-extensions:
+      OverloadedStrings
+      DeriveGeneric
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , directory
+    , executable-path
+    , filepath
+    , text
   default-language: Haskell2010
 
 executable HataSystemInterface-exe

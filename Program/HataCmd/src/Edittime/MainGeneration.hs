@@ -1,12 +1,14 @@
 
-module Edittime.MainGeneration where
+module Edittime.MainGeneration
+  (
+    getMain
+  )
+where
 
 import Data.Text as T
 import State.Definition
 
-
-getModule :: Text -> Text
-getModule fullyqualified = dropEnd 1 $ fst $ breakOnEnd "." fullyqualified
+import HataSystemInterface.Reflection
 
 getMain :: [RegisteredFunction] -> Text
 getMain funs = T.unlines $
@@ -16,12 +18,12 @@ getMain funs = T.unlines $
   , "open import Verification.Impure.IO.Definition"
   , "open import Verification.Conventions"
   ]
-  <> fmap (\s -> "open import " <> s) (getModule <$> qualifiedNameRF <$> funs)
+  <> fmap ("open import " <>) (unFQName <$> getModuleFromFQ <$> qualifiedNameRF <$> funs)
   <>
   [ ""
   , "mymain : String -> IO (⊤-𝒰 {ℓ₀})"
   ]
-  <> fmap (\s -> "mymain \"" <> s <> "\" = " <> s) (qualifiedNameRF <$> funs)
+  <> fmap (\s -> "mymain \"" <> s <> "\" = " <> s) (unFQName <$> qualifiedNameRF <$> funs)
   <>
   [
     "mymain a = putStrLn (\"The input \" <> a <> \" is not a registered function.\")"

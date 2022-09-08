@@ -25,7 +25,6 @@ source-repository head
 
 library
   exposed-modules:
-      Core.Exception
       Edittime.Commands
       Edittime.MainGeneration
       Lib

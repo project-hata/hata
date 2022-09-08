@@ -8,6 +8,8 @@ import Utility.Echo
 import Edittime.Commands
 import Data.Text as T
 
+import HataSystemInterface.Reflection
+
 data Command =
   CommandEcho String
   | Command_ET_RegisterFunction String
@@ -60,7 +62,7 @@ run = execute =<< execParser opts
 
 execute :: Command -> IO ()
 execute (CommandEcho text) = echoToDaemon text
-execute (Command_ET_RegisterFunction name) = registerFunction (T.pack name)
-execute (Command_ET_ExecuteFunction name) = executeFunction (T.pack name)
+execute (Command_ET_RegisterFunction name) = registerFunction (FQName $ T.pack name)
+execute (Command_ET_ExecuteFunction name) = executeFunction (FQName $ T.pack name)
 
 

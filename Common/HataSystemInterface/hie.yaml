@@ -1,0 +1,7 @@
+
+cradle:
+  stack:
+    - path: './src'
+      component: 'HataSystemInterface:lib'
+    - path: './app'
+      component: 'HataSystemInterface:exe:HataSystemInterface-exe'
