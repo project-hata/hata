@@ -5,13 +5,32 @@ module Lib
 import Options.Applicative
 
 import Utility.Echo
+import Edittime.Commands
+import Data.Text as T
 
-data Command = CommandEcho String
+data Command =
+  CommandEcho String
+  | Command_ET_RegisterFunction String
+  | Command_ET_ExecuteFunction String
 
 pCmd :: Parser Command
 pCmd = subparser
-  ( command "echo" (info (CommandEcho <$> strOption (long "text" <> help "the text to echo")) ( progDesc "Echo via the daemon." ))
- <> command "commit" (info undefined ( progDesc "Record changes to the repository" ))
+  ( command "echo"
+    (info (CommandEcho <$> strOption (long "text" <> help "the text to echo"))
+     ( progDesc "Echo via the daemon." ))
+ <> command "edittime:register-function"
+    (info (Command_ET_RegisterFunction
+           <$> strOption (long "name" <> help "function name")
+           -- <*> strOption (long "short" <> help "short name")
+          )
+     (progDesc "Record changes to the repository"))
+
+ <> command "edittime:execute-function"
+    (info (Command_ET_ExecuteFunction
+           <$> strOption (long "name" <> help "function name")
+           -- <*> strOption (long "short" <> help "short name")
+          )
+     (progDesc "Record changes to the repository"))
   )
 
 -- sample :: Parser Sample
@@ -41,11 +60,7 @@ run = execute =<< execParser opts
 
 execute :: Command -> IO ()
 execute (CommandEcho text) = echoToDaemon text
+execute (Command_ET_RegisterFunction name) = registerFunction (T.pack name)
+execute (Command_ET_ExecuteFunction name) = executeFunction (T.pack name)
 
--- greet :: Sample -> IO ()
--- greet (Sample h False n) = putStrLn $ "Hello, " ++ h ++ replicate n '!'
--- greet _ = return ()
-
-
-  
 

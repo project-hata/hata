@@ -25,15 +25,28 @@ source-repository head
 
 library
   exposed-modules:
+      Core.Exception
+      Edittime.Commands
+      Edittime.MainGeneration
       Lib
+      State.Definition
       Utility.Echo
   other-modules:
       Paths_HataCmd
   hs-source-dirs:
       src
+  default-extensions:
+      DeriveGeneric
+      OverloadedStrings
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , command
+    , data-default
+    , directory
+    , executable-path
+    , filepath
     , network-simple
     , optparse-applicative
     , text

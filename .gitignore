@@ -1,4 +1,6 @@
 _build/
+_generated/
+_state/
 *.stackdump
 **/dist-newstyle/cache/
 **/.vscode/
