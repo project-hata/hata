@@ -25,23 +25,23 @@ pattern _⇒₃_ a b = con ⇒₂ᵗ (incl a ⋆-⧜ (incl b ⋆-⧜ ◌-⧜))
 -- pattern ℕ = con ℕᵗ ◌-⧜
 -- pattern 𝔹 = con 𝔹ᵗ ◌-⧜
 
-oneConstant-Sim : {a : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ-Sim)} -> a ⟶ ⊥
+oneConstant-Sim : {a : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ-Sim)} -> a ⟶ ⊥
 oneConstant-Sim {a} = surj-map-ι-⧜𝐒𝐮𝐛𝐬𝐭 (incl (λ {tt x → ℕ}))
 
 
 instance
-  isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term : isℒHMTypeCtx {ℓ₀ , ℓ₀} (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ-Sim))
-  isℒHMTypeCtx.isCategory:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = it
-  isℒHMTypeCtx.hasCoproducts:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = it
-  isℒHMTypeCtx.hasUnification:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = it
-  isℒHMTypeCtx.hasSplitEpiMonoFactorization:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = it
-  isℒHMTypeCtx.∼→≡ isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = ≡-Str→≡
-  isℒHMTypeCtx.μκᵘ isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = incl (incl tt)
-  (isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term isℒHMTypeCtx.⇒ᵘ ⧜subst (incl f)) (⧜subst (incl g)) = ⧜subst (incl $ f ⇒₃ f)
-  isℒHMTypeCtx.oneConstant isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭𝒯⊔Term = oneConstant-Sim
+  isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm : isℒHMTypeCtx {ℓ₀ , ℓ₀} (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ-Sim))
+  isℒHMTypeCtx.isCategory:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = it
+  isℒHMTypeCtx.hasCoproducts:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = it
+  isℒHMTypeCtx.hasUnification:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = it
+  isℒHMTypeCtx.hasSplitEpiMonoFactorization:ℒHMTypeCtx isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = it
+  isℒHMTypeCtx.∼→≡ isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = ≡-Str→≡
+  isℒHMTypeCtx.μκᵘ isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = incl (incl tt)
+  (isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm isℒHMTypeCtx.⇒ᵘ ⧜subst (incl f)) (⧜subst (incl g)) = ⧜subst (incl $ f ⇒₃ f)
+  isℒHMTypeCtx.oneConstant isℒHMTypeCtx:𝐒𝐮𝐛𝐬𝐭FOTerm = oneConstant-Sim
 
 Σ : ℒHMSignature _
-Σ = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ-Sim)
+Σ = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ-Sim)
 
 t-0 : UntypedℒHM 0
 t-0 = slet (lam (var incl)) (app (var incl) (var incl))

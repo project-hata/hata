@@ -122,7 +122,7 @@ abstract
 
   -- [Definition]
   -- | Let ... and a lot of stuff, then substitution is defined by:
-  _⇃[_]⇂ : ∀{μs νs : ℒHMTypes} -> 𝒯⊔Term Σ-Sim ⟨ μs ⟩ tt -> (μs ⟶ νs) -> 𝒯⊔Term Σ-Sim ⟨ νs ⟩ tt
+  _⇃[_]⇂ : ∀{μs νs : ℒHMTypes} -> FOTerm Σ-Sim ⟨ μs ⟩ tt -> (μs ⟶ νs) -> FOTerm Σ-Sim ⟨ νs ⟩ tt
   _⇃[_]⇂ x f = fromArr (asArr x ◆ f)
 
   infixl 80 _⇃[_]⇂
@@ -134,7 +134,7 @@ abstract
   --   definition.
 
   -- the abstraction equality
-  abstract-⇃[]⇂ : ∀{a b : ℒHMTypes} -> {τ : 𝒯⊔Term Σ-Sim ⟨ a ⟩ tt} -> {σ : a ⟶ b}
+  abstract-⇃[]⇂ : ∀{a b : ℒHMTypes} -> {τ : FOTerm Σ-Sim ⟨ a ⟩ tt} -> {σ : a ⟶ b}
                   -> fromArr (asArr τ ◆ σ) ≡ τ ⇃[ σ ]⇂
   abstract-⇃[]⇂ = refl-≡
   -- //

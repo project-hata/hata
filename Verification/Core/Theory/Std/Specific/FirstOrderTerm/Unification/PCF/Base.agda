@@ -77,39 +77,39 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF
 
 
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
+module _ {Σ : FOSignature 𝑖} where
 
 
-  data isBase-𝕋× : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> HomPair x y -> 𝒰 𝑖 where
-    isBase:⊥ : ∀{x : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> {f g : ⊥ ⟶ x} -> isBase-𝕋× (f , g)
-    isBase:sym : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> {f g : x ⟶ y} -> isBase-𝕋× (f , g) -> isBase-𝕋× (g , f)
-    isBase:id : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> {f : x ⟶ y} -> isBase-𝕋× (f , f)
-    isBase:var : ∀{s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (x y : ⟨ Γ ⟩ ∍ s) -> (y ≠-∍ x) -> isBase-𝕋× (⧜subst (incl (var x)) , ⧜subst (incl (var y)))
-    isBase:con-var : ∀{s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)}
-                     -> ∀{αs} -> (c : Con Σ αs s) -> (ts : 𝒯⊔Terms Σ ((ι αs)) (⟨ Γ ⟩)) -> (x : ⟨ Γ ⟩ ∍ s) -> isBase-𝕋× (⧜subst (incl (con c ts)) , ⧜subst (incl (var x)))
-    isBase:con≠con : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)}-> (c : Con Σ αsx α) (d : Con Σ αsy α)
-                     -> (tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
-                     -> (tsy : 𝒯⊔Terms Σ ((ι αsy)) (⟨ Γ ⟩))
+  data isBase-𝕋× : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> HomPair x y -> 𝒰 𝑖 where
+    isBase:⊥ : ∀{x : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> {f g : ⊥ ⟶ x} -> isBase-𝕋× (f , g)
+    isBase:sym : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> {f g : x ⟶ y} -> isBase-𝕋× (f , g) -> isBase-𝕋× (g , f)
+    isBase:id : ∀{x y : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> {f : x ⟶ y} -> isBase-𝕋× (f , f)
+    isBase:var : ∀{s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (x y : ⟨ Γ ⟩ ∍ s) -> (y ≠-∍ x) -> isBase-𝕋× (⧜subst (incl (var x)) , ⧜subst (incl (var y)))
+    isBase:con-var : ∀{s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)}
+                     -> ∀{αs} -> (c : Con Σ αs s) -> (ts : FOTerms Σ ((ι αs)) (⟨ Γ ⟩)) -> (x : ⟨ Γ ⟩ ∍ s) -> isBase-𝕋× (⧜subst (incl (con c ts)) , ⧜subst (incl (var x)))
+    isBase:con≠con : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)}-> (c : Con Σ αsx α) (d : Con Σ αsy α)
+                     -> (tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
+                     -> (tsy : FOTerms Σ ((ι αsy)) (⟨ Γ ⟩))
                      -> ¬ (αsx ≣ αsy)
                      -> isBase-𝕋× (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy)))
 
-    isBase:con≠con₂ : ∀{αsx α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)}-> (c : Con Σ αsx α) (d : Con Σ αsx α)
-                     -> (tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
-                     -> (tsy : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
+    isBase:con≠con₂ : ∀{αsx α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)}-> (c : Con Σ αsx α) (d : Con Σ αsx α)
+                     -> (tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
+                     -> (tsy : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
                      -> ¬ (c ≣ d)
                      -> isBase-𝕋× (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy)))
 
 
   -- postulate
-  --   size-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> Pair a b -> 𝒲-𝕋×
+  --   size-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> Pair a b -> 𝒲-𝕋×
 
-  -- SplitP : IxC (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)) -> IxC (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)) -> 𝒰₀
+  -- SplitP : IxC (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)) -> IxC (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)) -> 𝒰₀
   -- SplitP (_ , _ , i) = (λ (_ , _ , j) -> size-𝕋× j ≪-𝒲-𝕋× size-𝕋× i)
 
 
 
 
-  decide-Base-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> ∀(f g : a ⟶ b) -> isBase-𝕋× (f , g) -> hasSizedCoequalizerDecision (f , g)
+  decide-Base-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> ∀(f g : a ⟶ b) -> isBase-𝕋× (f , g) -> hasSizedCoequalizerDecision (f , g)
   decide-Base-𝕋× f g isBase:⊥ = right (hasSizedCoequalizer:byInitial)
   decide-Base-𝕋× f g (isBase:sym p) with decide-Base-𝕋× g f p
   ... | left ¬p = left $ λ q -> ¬p (hasCoequalizerCandidate:bySym q)

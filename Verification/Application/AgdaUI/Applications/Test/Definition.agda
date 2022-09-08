@@ -58,7 +58,7 @@ doTest _ =
   let x = result-t-0
   in case x of
       (λ _ -> right "error")
-      λ {((_ / _ ⊩ _ , (⧜subst (incl τ)) , _ , _), _) -> right (show {{Show:𝒯⊔Term}} τ)}
+      λ {((_ / _ ⊩ _ , (⧜subst (incl τ)) , _ , _), _) -> right (show {{Show:FOTerm}} τ)}
 
 -- doTest input = do
 --   contentfile <- mapLeft (persistencyError ∘ parseError) (parseContentFile input)

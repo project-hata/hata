@@ -132,29 +132,29 @@ instance
   isWFT0:ℕ : isWFT0 ℕ
   isWFT0:ℕ = record { ⊥-WFT = 0 ; initial-⊥-WFT = lem-1 }
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
+module _ {Σ : FOSignature 𝑖} where
   mutual
-    sizeC-Term : ∀{a} {b} -> (𝒯⊔Term Σ a b) -> ℕ
+    sizeC-Term : ∀{a} {b} -> (FOTerm Σ a b) -> ℕ
     sizeC-Term (var x) = zero
     sizeC-Term (con c x) = suc (sizeC-half (⧜subst x))
 
-    sizeC-half : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> (f : a ⟶ b) -> ℕ
+    sizeC-half : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> (f : a ⟶ b) -> ℕ
     sizeC-half (⧜subst ◌-⧜) = zero
     sizeC-half (⧜subst (incl x)) = sizeC-Term x
     sizeC-half (⧜subst (a ⋆-⧜ b)) = suc (sizeC-half (⧜subst a) ⋆ sizeC-half (⧜subst b))
 
-  sizeC-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> (f : HomPair a b) -> Maybe (ℕᵘ × ℕᵘ)
+  sizeC-𝕋× : ∀{a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> (f : HomPair a b) -> Maybe (ℕᵘ × ℕᵘ)
   sizeC-𝕋× (f , g) = just (sizeC-half f , sizeC-half g)
 
   instance
-    isSizedCategory:𝐂𝐭𝐱-𝕋× : isSizedCategory (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ))
+    isSizedCategory:𝐂𝐭𝐱-𝕋× : isSizedCategory (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ))
     isSizedCategory:𝐂𝐭𝐱-𝕋× = record
       { SizeO = ℕ
       ; sizeO = λ x → 人length ⟨ x ⟩
       }
 
   instance
-    isSizedHomPairCategory:𝐂𝐭𝐱-𝕋× : isSizedHomPairCategory (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ))
+    isSizedHomPairCategory:𝐂𝐭𝐱-𝕋× : isSizedHomPairCategory (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ))
     isSizedHomPairCategory:𝐂𝐭𝐱-𝕋× = record
       { SizeC = ′ Maybe (ℕᵘ ×-𝒰 ℕᵘ) ′
       ; sizeC = sizeC-𝕋×

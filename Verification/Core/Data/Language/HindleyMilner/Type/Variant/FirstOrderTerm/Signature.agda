@@ -90,7 +90,7 @@ instance
 -- //
 
 -- | Finally, we construct the signature [..] by setting [....]
-Σ-Sim : 𝒯FOSignature ℓ₀
+Σ-Sim : FOSignature ℓ₀
 Σ-Sim = record { Sort = Sort-Sim ; Con = Con-Sim }
 
 

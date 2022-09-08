@@ -21,7 +21,7 @@ module Verification.Core.Computation.Unification.Categorical2.Introduction where
 --
 -- | The idea behind the formal treatment of unification in this
 --   thesis begins with the following observation:
---   Let |t s : 𝒯⊔Term Σ 1 αs| be two terms, considered as a pair of parallel arrows.
+--   Let |t s : FOTerm Σ 1 αs| be two terms, considered as a pair of parallel arrows.
 --   Then the unifiers (not necessarily most general) of |t| and |s| are given
 --   by pairs of another object |βs| and an arrow |f : αs ⟶ βs|
 --   such that |t ◆ f ≡ t ◆ g| holds.

@@ -48,7 +48,7 @@ open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.FirstOrde
 -- | Let [..] be a list of sorts.
 module _ {μs : 人ℕ} where
   -- |> Then there is an isomorphism
-  _ : 𝒯⊔Term Σ-Sim μs tt ≅ Ty-Sim μs
+  _ : FOTerm Σ-Sim μs tt ≅ Ty-Sim μs
   -- |> between the two different definitions of simple terms.
 
 -- //
@@ -58,7 +58,7 @@ module _ {μs : 人ℕ} where
   _ = Proof where
 
     -- |> First, define:
-    ϕ : 𝒯⊔Term Σ-Sim μs tt -> Ty-Sim μs
+    ϕ : FOTerm Σ-Sim μs tt -> Ty-Sim μs
     ϕ (var i)       = var i
     ϕ (con ℕᵗ _)    = ℕᵗ
     ϕ (con 𝔹ᵗ _)    = 𝔹ᵗ
@@ -70,7 +70,7 @@ module _ {μs : 人ℕ} where
 
     -- | Next, very similarly, we define a function in
     --   the other direction:
-    ϕ⁻¹ : Ty-Sim μs -> 𝒯⊔Term Σ-Sim μs tt
+    ϕ⁻¹ : Ty-Sim μs -> FOTerm Σ-Sim μs tt
     ϕ⁻¹ ℕᵗ        = con ℕᵗ ◌-⧜
     ϕ⁻¹ 𝔹ᵗ        = con 𝔹ᵗ ◌-⧜
     ϕ⁻¹ (t ⇒ᵗ s)  = con ⇒₂ᵗ ((incl (ϕ⁻¹ t)) ⋆-⧜ (incl (ϕ⁻¹ s) ⋆-⧜ ◌-⧜))
@@ -93,7 +93,7 @@ module _ {μs : 人ℕ} where
     lem-2 i (var x) = var x
 
     -- |> Thus we conclude by defining a value
-    Proof : 𝒯⊔Term Σ-Sim μs tt ≅ Ty-Sim μs
+    Proof : FOTerm Σ-Sim μs tt ≅ Ty-Sim μs
     Proof = ϕ since record { inverse-◆ = ϕ⁻¹ ; inv-r-◆ = lem-1 ; inv-l-◆ = lem-2 }
     -- |> and use this as proof term in the statement
     --    of the lemma.

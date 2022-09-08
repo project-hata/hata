@@ -65,34 +65,34 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Instance.Relati
 
 
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
-  cancel-injective-con : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
-                         {tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩)}
-                         {tsy : 𝒯⊔Terms Σ ((ι αsy)) (⟨ Γ ⟩)}
-                         -> 𝒯⊔Term.con c tsx ≣ con d tsy
+module _ {Σ : FOSignature 𝑖} where
+  cancel-injective-con : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
+                         {tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩)}
+                         {tsy : FOTerms Σ ((ι αsy)) (⟨ Γ ⟩)}
+                         -> FOTerm.con c tsx ≣ con d tsy
                          -> αsx ≣ αsy
   cancel-injective-con refl-≣ = refl-≣
 
-  module _ {αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (c : Con Σ αsx α) (d : Con Σ αsy α)
-                     (tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
-                     (tsy : 𝒯⊔Terms Σ ((ι αsy)) (⟨ Γ ⟩))
+  module _ {αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (c : Con Σ αsx α) (d : Con Σ αsy α)
+                     (tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
+                     (tsy : FOTerms Σ ((ι αsy)) (⟨ Γ ⟩))
                      (¬p : ¬ (αsx ≣ αsy))
            where
 
     private
-      module _ {Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {{_ : isCoequalizerCandidate (map (⧜subst (incl (con c tsx)))) (map (⧜subst (incl (con d tsy)))) (ι Γ')}} where
+      module _ {Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {{_ : isCoequalizerCandidate (map (⧜subst (incl (con c tsx)))) (map (⧜subst (incl (con d tsy)))) (ι Γ')}} where
 
         π' : incl (incl ⟨ Γ ⟩) ⟶ ι Γ'
         π' = π₌?
 
-        lem-1   : con c (reext-𝒯⊔Terms ⟨ π' ⟩ tsx) ≣
-                  con d (reext-𝒯⊔Terms ⟨ π' ⟩ tsy)
+        lem-1   : con c (reext-FOTerms ⟨ π' ⟩ tsx) ≣
+                  con d (reext-FOTerms ⟨ π' ⟩ tsy)
         lem-1 = ≡→≡-Str ((funExt⁻¹ (⟨ equate-π₌? ⟩ _)) incl)
 
         lem-2 : 𝟘-𝒰
         lem-2 = ¬p (cancel-injective-con lem-1)
 
-    hasNoCoequalizerCandidate:byCon : ¬ (hasCoequalizerCandidate {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy))))
+    hasNoCoequalizerCandidate:byCon : ¬ (hasCoequalizerCandidate {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy))))
     hasNoCoequalizerCandidate:byCon P = lem-2 {Γ' = Γ'}
       where
         Γ' = ⟨ P ⟩
@@ -102,22 +102,22 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
 
 
 
-  cancel-injective-con₂ : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
-                         {tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩)}
-                         {tsy : 𝒯⊔Terms Σ ((ι αsy)) (⟨ Γ ⟩)}
+  cancel-injective-con₂ : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
+                         {tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩)}
+                         {tsy : FOTerms Σ ((ι αsy)) (⟨ Γ ⟩)}
                          -> (p : αsx ≣ αsy)
-                         -> 𝒯⊔Term.con c tsx ≣ con d tsy
+                         -> FOTerm.con c tsx ≣ con d tsy
                          -> transport-Str (cong-Str (λ ξ -> Con Σ ξ α) p) c ≣ d
   cancel-injective-con₂ p refl-≣ with isset-Str p refl-≣
   ... | refl-≣ = refl-≣
 
 
-  cancel-injective-con₃ : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
-                         {tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩)}
-                         {tsy : 𝒯⊔Terms Σ ((ι αsy)) (⟨ Γ ⟩)}
+  cancel-injective-con₃ : ∀{αsx αsy α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {c : Con Σ αsx α} {d : Con Σ αsy α}
+                         {tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩)}
+                         {tsy : FOTerms Σ ((ι αsy)) (⟨ Γ ⟩)}
                          -> (p : αsx ≣ αsy)
-                         -> 𝒯⊔Term.con c tsx ≣ con d tsy
-                         -> transport-Str (cong-Str (λ ξ -> 𝒯⊔Terms Σ ((ι ξ)) (⟨ Γ ⟩)) p) tsx ≣ tsy
+                         -> FOTerm.con c tsx ≣ con d tsy
+                         -> transport-Str (cong-Str (λ ξ -> FOTerms Σ ((ι ξ)) (⟨ Γ ⟩)) p) tsx ≣ tsy
   cancel-injective-con₃ p refl-≣ with isset-Str p refl-≣
   ... | refl-≣ = refl-≣
 
@@ -127,25 +127,25 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
   --                          -> f ∼ g
   -- cancel-injective-incl-Terms = {!!}
 
-  module _ {αsx α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (c : Con Σ αsx α) (d : Con Σ αsx α)
-            (tsx : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
-            (tsy : 𝒯⊔Terms Σ ((ι αsx)) (⟨ Γ ⟩))
+  module _ {αsx α} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (c : Con Σ αsx α) (d : Con Σ αsx α)
+            (tsx : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
+            (tsy : FOTerms Σ ((ι αsx)) (⟨ Γ ⟩))
             (¬p : ¬ (c ≣ d)) where
 
     private
-      module _ {Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {{_ : isCoequalizerCandidate (map (⧜subst (incl (con c tsx)))) (map (⧜subst (incl (con d tsy)))) (ι Γ')}} where
+      module _ {Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {{_ : isCoequalizerCandidate (map (⧜subst (incl (con c tsx)))) (map (⧜subst (incl (con d tsy)))) (ι Γ')}} where
 
         π' : incl (incl ⟨ Γ ⟩) ⟶ ι Γ'
         π' = π₌?
 
-        lem-1   : con c (reext-𝒯⊔Terms ⟨ π' ⟩ tsx) ≣
-                  con d (reext-𝒯⊔Terms ⟨ π' ⟩ tsy)
+        lem-1   : con c (reext-FOTerms ⟨ π' ⟩ tsx) ≣
+                  con d (reext-FOTerms ⟨ π' ⟩ tsy)
         lem-1 = ≡→≡-Str ((funExt⁻¹ (⟨ equate-π₌? ⟩ _)) incl)
 
         lem-2 : 𝟘-𝒰
         lem-2 = ¬p (cancel-injective-con₂ refl-≣ lem-1)
 
-    hasNoCoequalizerCandidate:byCon₂ : ¬ (hasCoequalizerCandidate {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy))))
+    hasNoCoequalizerCandidate:byCon₂ : ¬ (hasCoequalizerCandidate {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (⧜subst (incl (con c tsx)) , ⧜subst (incl (con d tsy))))
     hasNoCoequalizerCandidate:byCon₂ P = lem-2 {Γ' = Γ'}
       where
         Γ' = ⟨ P ⟩

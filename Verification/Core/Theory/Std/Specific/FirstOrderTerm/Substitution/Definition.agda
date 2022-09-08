@@ -23,16 +23,16 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Definition
 
 
 -- | Let [..] be a signature in this section.
-module _ (Σ : 𝒯FOSignature 𝑖) where
+module _ (Σ : FOSignature 𝑖) where
   private variable αs βs γs : ⋆List (Sort Σ)
 
-  -- |> Given a term |t : 𝒯⊔Term Σ βs α|, we can
+  -- |> Given a term |t : FOTerm Σ βs α|, we can
   --    substitute the occurences of variables |β ∈ βs|
   --    with terms in a context |γs|, provided their sorts match.
   --    Such a /substitution from/ |βs| /to/ |γs| is encoded by the following type:
 
   𝒯⊔Subst : ⋆List (Sort Σ) -> ⋆List (Sort Σ) -> 𝒰 𝑖
-  𝒯⊔Subst βs γs = ∀ β -> βs ∍ β -> 𝒯⊔Term Σ γs β
+  𝒯⊔Subst βs γs = ∀ β -> βs ∍ β -> FOTerm Σ γs β
 
   -- [Remark]
   -- | One might notice that this is the same concept
@@ -50,27 +50,27 @@ module _ (Σ : 𝒯FOSignature 𝑖) where
   -- //
 
   -- | We explicitly state the list-based formulation,
-  --   denoting it by |𝒯⊔Terms|, since the focus of this version
+  --   denoting it by |FOTerms|, since the focus of this version
   --   is the realization of a substitution by a list of terms.
   --   That is, we define:
 
-  𝒯⊔Terms : ⋆List (Sort Σ) -> ⋆List (Sort Σ) -> 𝒰 𝑖
-  𝒯⊔Terms βs γs = ⋆List[ β ∈ βs ] (𝒯⊔Term Σ γs β)
+  FOTerms : ⋆List (Sort Σ) -> ⋆List (Sort Σ) -> 𝒰 𝑖
+  FOTerms βs γs = ⋆List[ β ∈ βs ] (FOTerm Σ γs β)
 
 -- #Notation/Rewrite# 𝒯⊔Subst = Subst_{FO}
--- #Notation/Rewrite# 𝒯⊔Term = Term_{FO}
--- #Notation/Rewrite# 𝒯⊔Terms = Terms_{FO}
+-- #Notation/Rewrite# FOTerm = Term_{FO}
+-- #Notation/Rewrite# FOTerms = Terms_{FO}
 
   -- | Using this notation, we can define how a substitution
   --   acts on terms.
 
   -- [Definition]
   -- | The action of a substitution |σ : 𝒯⊔Subst αs βs| on
-  --   a term of type |𝒯⊔Term αs τ| is given by the following function:
+  --   a term of type |FOTerm αs τ| is given by the following function:
   mutual
-    subst-𝒯⊔Term : ∀{τ} -> 𝒯⊔Subst αs βs -> 𝒯⊔Term Σ αs τ -> 𝒯⊔Term Σ βs τ
-    subst-𝒯⊔Term σ (var x)     = σ _ x
-    subst-𝒯⊔Term σ (con c ts)  = con c (subst-𝒯⊔Terms σ ts)
+    subst-FOTerm : ∀{τ} -> 𝒯⊔Subst αs βs -> FOTerm Σ αs τ -> FOTerm Σ βs τ
+    subst-FOTerm σ (var x)     = σ _ x
+    subst-FOTerm σ (con c ts)  = con c (subst-FOTerms σ ts)
 
   -- |> It is defined mutually with a second function that applies substitutions
   --   to a list of terms, as this is needed in the recursive call
@@ -78,23 +78,23 @@ module _ (Σ : 𝒯FOSignature 𝑖) where
 
   -- | The version for lists merely applies the first function to all elements.
 
-    subst-𝒯⊔Terms : ∀{αs βs τs} -> 𝒯⊔Subst αs βs -> 𝒯⊔Terms τs αs -> 𝒯⊔Terms τs βs
-    subst-𝒯⊔Terms σ ◌-⧜        = ◌-⧜
-    subst-𝒯⊔Terms σ (incl x)     = incl (subst-𝒯⊔Term σ x)
-    subst-𝒯⊔Terms σ (t ⋆-⧜ s)  = subst-𝒯⊔Terms σ t ⋆-⧜ subst-𝒯⊔Terms σ s
+    subst-FOTerms : ∀{αs βs τs} -> 𝒯⊔Subst αs βs -> FOTerms τs αs -> FOTerms τs βs
+    subst-FOTerms σ ◌-⧜        = ◌-⧜
+    subst-FOTerms σ (incl x)     = incl (subst-FOTerm σ x)
+    subst-FOTerms σ (t ⋆-⧜ s)  = subst-FOTerms σ t ⋆-⧜ subst-FOTerms σ s
 
 -- //
 
 -- [Remark]
 -- | Note how in this definition the order of input sorts and output sorts is reversed
---   between single terms |𝒯⊔Term αs τ| and |𝒯⊔Terms τs αs|. This is because, while
+--   between single terms |FOTerm αs τ| and |FOTerms τs αs|. This is because, while
 --   it is natural to think of terms as functions from input sorts to an output sort,
 --   substitutions are rather thought of as functions which convert terms with input sorts |αs|
---   to terms with input sorts |βs|. The type |𝒯⊔Terms τs αs| follows the convention
+--   to terms with input sorts |βs|. The type |FOTerms τs αs| follows the convention
 --   of substitutions and thus has a reversed order of parameters with respect to terms.
 --   Since in the following parts substitutions play a more prominent role than terms,
 --   we shall drop the previous intuition of terms as functions from now on. Instead,
---   we consider them as special kinds of substitutions. A term |t : 𝒯⊔Term αs τ|
+--   we consider them as special kinds of substitutions. A term |t : FOTerm αs τ|
 --   is now thought of as a substitution |incl τ → αs|, substituting the single
 --   variable |τ| by the value |t| containing variables from |αs|.
 -- | From this point of view, actually applying a substitution |σ : αs → βs| to

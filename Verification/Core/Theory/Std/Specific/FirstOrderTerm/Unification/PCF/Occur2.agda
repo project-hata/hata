@@ -65,7 +65,7 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
 -- open import Verification.Core.Computation.Unification.Monoidic.PrincipalFamilyCat2
 
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
+module _ {Σ : FOSignature 𝑖} where
   mutual
     -- data VarPath-Terms-𝕋× : ∀{Γ Δ} -> (t : Terms-𝕋× Σ Δ Γ) -> {s : Sort Σ} -> (⟨ Γ ⟩ ∍ s) -> 𝒰 𝑖 where
       -- left-Path : ∀{Γ Δ Δ'} -> {t : Terms-𝕋× Σ Δ Γ} -> {t' : Terms-𝕋× Σ Δ' Γ} -> {s : Sort Σ} -> {v : ⟨ Γ ⟩ ∍ s}
@@ -81,11 +81,11 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
       --                   -> ∀{γ} -> (j : ⟨ Δ ⟩ ∍ γ) -> VarPath-Term-𝕋× (f τ x) j
       --                   -> VarPath-Terms-𝕋× (incl-Terms f) j
 
-    -- data VarPath-Terms-𝕋× : ∀{Γ Δ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> (t : Δ ⟶ Γ) -> {s : Sort Σ} -> (⟨ Γ ⟩ ∍ s) -> 𝒰 𝑖 where
-    --   left-Path : ∀{Γ Δ Δ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> {t : Δ ⟶ Γ} -> {t' : Δ' ⟶ Γ} -> {s : Sort Σ} -> {v : ⟨ Γ ⟩ ∍ s}
+    -- data VarPath-Terms-𝕋× : ∀{Γ Δ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> (t : Δ ⟶ Γ) -> {s : Sort Σ} -> (⟨ Γ ⟩ ∍ s) -> 𝒰 𝑖 where
+    --   left-Path : ∀{Γ Δ Δ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> {t : Δ ⟶ Γ} -> {t' : Δ' ⟶ Γ} -> {s : Sort Σ} -> {v : ⟨ Γ ⟩ ∍ s}
     --               -> (p : VarPath-Terms-𝕋× t v) -> VarPath-Terms-𝕋× (t ⋆-⧜ t') v
 
-    --   right-Path : ∀{Γ Δ Δ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> {t : Δ ⟶ Γ} -> {t' : Δ' ⟶ Γ} -> {s : Sort Σ} -> {v : ⟨ Γ ⟩ ∍ s}
+    --   right-Path : ∀{Γ Δ Δ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> {t : Δ ⟶ Γ} -> {t' : Δ' ⟶ Γ} -> {s : Sort Σ} -> {v : ⟨ Γ ⟩ ∍ s}
     --               -> (p : VarPath-Terms-𝕋× t v) -> VarPath-Terms-𝕋× (t' ⋆-⧜ t) v
 
     --   incl : ∀{Γ τ} -> {t : Term₁-𝕋× Σ Γ τ} -> {s : Sort Σ} -> {v : Γ ∍ s}
@@ -103,7 +103,7 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
   private VarPath = VarPath-Term-𝕋×
 
   mutual
-    isFreeVars : ∀{Γ Δ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} -> (t : (Δ) ⟶ Γ) -> {s : Sort Σ} -> (v : ⟨ Γ ⟩ ∍ s) -> isDecidable (VarPath-Terms-𝕋× t v)
+    isFreeVars : ∀{Γ Δ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} -> (t : (Δ) ⟶ Γ) -> {s : Sort Σ} -> (v : ⟨ Γ ⟩ ∍ s) -> isDecidable (VarPath-Terms-𝕋× t v)
     isFreeVars ◌-⧜ v = left λ {()}
     isFreeVars (t ⋆-⧜ s) v with isFreeVars t v | isFreeVars s v
     ... | left ¬l | left ¬r = left λ {(left-Path l) → ¬l l
@@ -164,7 +164,7 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
 
 
     private
-      Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+      Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
       Γ' = incl (Γ \\ v)
 
       t' : Γ' ⊢ τ

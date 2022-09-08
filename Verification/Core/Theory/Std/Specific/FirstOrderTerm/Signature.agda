@@ -20,7 +20,7 @@ open import Verification.Core.Algebra.Monoid.Definition
 -- [Definition]
 -- | A /signature for many sorted terms/,
 --   which we call [..], is given by the following data.
-record 𝒯FOSignature (𝑖 : 𝔏) : 𝒰 (𝑖 ⁺) where
+record FOSignature (𝑖 : 𝔏) : 𝒰 (𝑖 ⁺) where
 
   -- | 1. A type of sorts [..].
   field Sort : 𝒰 𝑖
@@ -36,9 +36,9 @@ record 𝒯FOSignature (𝑖 : 𝔏) : 𝒰 (𝑖 ⁺) where
   field {{isDiscrete:Con}} : ∀{αs α} -> isDiscrete (Con αs α)
   field {{isSet-Str:Sort}} : isSet-Str Sort
 
-open 𝒯FOSignature public
+open FOSignature public
 
--- #Notation/Rewrite# 𝒯FOSignature = Sig_{FO}
+-- #Notation/Rewrite# FOSignature = Sig_{FO}
 -- //
 
 -- [Remark]
@@ -53,13 +53,13 @@ open 𝒯FOSignature public
 
 -- [Hide]
 module _ (𝑖 : 𝔏) where
-  macro 𝕋× = #structureOn (𝒯FOSignature 𝑖)
+  macro 𝕋× = #structureOn (FOSignature 𝑖)
 -- //
 
 -- [Hide]
 -- | We show that the type of sorts of a signature
 --   is a set.
--- module _ {Σ : 𝒯FOSignature 𝑖} where
+-- module _ {Σ : FOSignature 𝑖} where
 --   instance
 --     isSet-Str:Sort : isSet-Str (Sort Σ)
 --     isSet-Str:Sort = {!!}

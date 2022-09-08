@@ -30,7 +30,7 @@ open import Verification.Core.Data.Language.HindleyMilner.Type.Variant.Direct.De
 -- ==* Stating the problem
 -- | We first describe the problem of unification, and describe a typical algorithm.
 --   A standard textbook is for example REF.
---   To be concrete, we use our simple types, given by |𝒯⊔Term Σ-Sim|.
+--   To be concrete, we use our simple types, given by |FOTerm Σ-Sim|.
 -- | Let [][..] be a list of three type variables\footnote{Using Agda's ability to overload natural number constants, and the fact that |⋆List Sort-Sim ≡ 人ℕ|, this is actually valid code.}
 μs : ⋆List Sort-Sim
 μs = 3
@@ -44,7 +44,7 @@ pattern γ = right-∍ (right-∍ (left-∍ incl))
 -- //
 
 -- |> Now assume we are given two terms [..], defined by:
-τ₀ τ₁ : 𝒯⊔Term Σ-Sim μs tt
+τ₀ τ₁ : FOTerm Σ-Sim μs tt
 
 τ₀ = var α ⇒ var β
 τ₁ = var γ ⇒ (var α ⇒ var γ)
@@ -58,8 +58,8 @@ pattern γ = right-∍ (right-∍ (left-∍ incl))
 σ _ γ = ℕ
 
 -- |> Then we have, writing |[ σ ] τ| [][] for substitution:
-_[_] : ∀{αs βs} -> 𝒯⊔Term Σ-Sim αs tt -> 𝒯⊔Subst Σ-Sim αs βs -> 𝒯⊔Term Σ-Sim βs tt
-_[_] = λ τ σ -> subst-𝒯⊔Term Σ-Sim σ τ
+_[_] : ∀{αs βs} -> FOTerm Σ-Sim αs tt -> 𝒯⊔Subst Σ-Sim αs βs -> FOTerm Σ-Sim βs tt
+_[_] = λ τ σ -> subst-FOTerm Σ-Sim σ τ
 
 _ : τ₀ [ σ ] ≡ τ₁ [ σ ]
 _ = refl-≡
@@ -69,7 +69,7 @@ _ = refl-≡
 --   of unifying |τ₀| and |τ₁|, it is not the most general one.
 --   Comparing them, there is no reason at all to introduce the
 --   type constant |ℕ|. The most general solution would be:
-τ₌ : 𝒯⊔Term Σ-Sim 1 tt
+τ₌ : FOTerm Σ-Sim 1 tt
 τ₌ = var α ⇒ (var α ⇒ var α)
 
 -- |> This can be seen by comparing subterms of |τ₀| and |τ₁|.

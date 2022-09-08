@@ -49,14 +49,14 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Signature
 
 -- [Definition]
 -- | Let [..] be a signature.
-module _ (Σ : 𝒯FOSignature 𝑖) where
+module _ (Σ : FOSignature 𝑖) where
   -- |> Then /many sorted terms over/ |Σ| are formalized by the type [..].
-  data 𝒯⊔Term : ⋆List (Sort Σ) -> Sort Σ -> 𝒰 𝑖 where
+  data FOTerm : ⋆List (Sort Σ) -> Sort Σ -> 𝒰 𝑖 where
   -- |> It is defined inductively with two constructors,
   -- | - {} [..]
-    var : ∀{α αs} -> αs ∍ α -> 𝒯⊔Term αs α
+    var : ∀{α αs} -> αs ∍ α -> FOTerm αs α
   -- | - {} [..].
-    con : ∀{γs βs α} -> (f : Con Σ βs α) -> ⋆List[ β ∈ ι βs ] (𝒯⊔Term γs β) -> 𝒯⊔Term γs α
+    con : ∀{γs βs α} -> (f : Con Σ βs α) -> ⋆List[ β ∈ ι βs ] (FOTerm γs β) -> FOTerm γs α
 
   -- |: Here, |var| is the base case, and creates a term containing only a single variable.
   --   Intuitively this can be seen as a projection function onto the component |α| of the
@@ -70,15 +70,15 @@ module _ (Σ : 𝒯FOSignature 𝑖) where
 
 
 -- [Hide]
--- | We also define |𝒯⊔term| as a function |𝐅𝐢𝐧𝐈𝐱 ⟶ 𝐈𝐱|.
+-- | We also define |term-FO| as a function |𝐅𝐢𝐧𝐈𝐱 ⟶ 𝐈𝐱|.
 
   open import Verification.Core.Data.Indexed.Definition
   open import Verification.Core.Data.FiniteIndexed.Definition
 
-  𝒯⊔termᵘ : (𝐅𝐢𝐧𝐈𝐱 (Sort Σ)) -> (𝐈𝐱 (Sort Σ) (𝐔𝐧𝐢𝐯 𝑖))
-  𝒯⊔termᵘ Γ = indexed (λ τ → 𝒯⊔Term ⟨ Γ ⟩ τ)
+  termᵘ-FO : (𝐅𝐢𝐧𝐈𝐱 (Sort Σ)) -> (𝐈𝐱 (Sort Σ) (𝐔𝐧𝐢𝐯 𝑖))
+  termᵘ-FO Γ = indexed (λ τ → FOTerm ⟨ Γ ⟩ τ)
 
-  macro 𝒯⊔term = #structureOn 𝒯⊔termᵘ
+  macro term-FO = #structureOn termᵘ-FO
 
 -- //
 

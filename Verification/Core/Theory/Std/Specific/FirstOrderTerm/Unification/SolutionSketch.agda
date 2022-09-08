@@ -39,13 +39,13 @@ syntax ∑' (λ x -> P) = ∑[ x ] P
 postulate
   here : ∀{A : 𝒰 𝑖} -> Text -> A
 
-_[_] : ∀{αs βs : 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} -> 𝒯⊔Term Σ-Sim ⟨ αs ⟩ tt ->  αs ⟶ βs -> 𝒯⊔Term Σ-Sim ⟨ βs ⟩ tt
+_[_] : ∀{αs βs : 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} -> FOTerm Σ-Sim ⟨ αs ⟩ tt ->  αs ⟶ βs -> FOTerm Σ-Sim ⟨ βs ⟩ tt
 _[_] = λ τ σ -> τ ⇃[ σ ]⇂
 -- //
 
 -- ==* A sketch of a solution
 -- | Based on the problem description above, we present a simplified
---   unification algorithm --- again using terms from |𝒯⊔Term Σ-Sim| for
+--   unification algorithm --- again using terms from |FOTerm Σ-Sim| for
 --   the sake of concreteness. A very similar definition can already be found in
 --   the original paper on categorical unification of \citeauthor{UnifyCat:RydeheardBurstall:1986}.
 --   The same general approach, yet formulated differently, is the one taken
@@ -54,7 +54,7 @@ _[_] = λ τ σ -> τ ⇃[ σ ]⇂
 -- | The algorithm has the following type [...,] We present it using
 --   partially implemented Agda terms.
 {-# TERMINATING #-}
-unify : (t s : 𝒯⊔Term Σ-Sim ⟨ μs ⟩ tt) -> Maybe (∑[ νs ] (μs ⟶ νs))
+unify : (t s : FOTerm Σ-Sim ⟨ μs ⟩ tt) -> Maybe (∑[ νs ] (μs ⟶ νs))
 -- |> taking the terms |t| and |s|, both with variables from |μs| and returning
 --   a new list of variables |νs|, as well as a substitution |μs ⟶ νs|.
 --   The intention is that this substitution should be the most general unifier

@@ -78,44 +78,44 @@ instance
 
 
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
+module _ {Σ : FOSignature 𝑖} where
   instance
-    hasMembership:𝐂𝐭𝐱 : hasMembership (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)) _
+    hasMembership:𝐂𝐭𝐱 : hasMembership (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)) _
     hasMembership:𝐂𝐭𝐱 = hasMembership:byDef (λ a i → ⟨ a ⟩ ∍ i)
 
   instance
-    hasMembership:𝒯⊔Term : ∀{a i j} -> hasMembership (𝒯⊔Term Σ a i) (a ∍ j)
-    hasMembership:𝒯⊔Term = hasMembership:byDef (λ t p → VarPath-Term-𝕋× Σ t p)
+    hasMembership:FOTerm : ∀{a i j} -> hasMembership (FOTerm Σ a i) (a ∍ j)
+    hasMembership:FOTerm = hasMembership:byDef (λ t p → VarPath-Term-𝕋× Σ t p)
 
   instance
-    hasMembership:𝒯⊔Terms : ∀{a b j} -> hasMembership (𝒯⊔Terms Σ a b) (b ∍ j)
-    hasMembership:𝒯⊔Terms = hasMembership:byDef (λ t p → VarPath-𝒯⊔Terms Σ t p)
+    hasMembership:FOTerms : ∀{a b j} -> hasMembership (FOTerms Σ a b) (b ∍ j)
+    hasMembership:FOTerms = hasMembership:byDef (λ t p → VarPath-FOTerms Σ t p)
 
 
   private
-    module _ {a : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {s} where
-      asArr : 𝒯⊔Term Σ ⟨ a ⟩ s -> incl (incl s) ⟶ a
+    module _ {a : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {s} where
+      asArr : FOTerm Σ ⟨ a ⟩ s -> incl (incl s) ⟶ a
       asArr t = ⧜subst (incl t)
 
-  module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {f g : a ⟶ b} where
+  module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {f g : a ⟶ b} where
     lem-001 : (∀{i} (a∍i : ⟨ a ⟩ ∍ i) -> asArr (var a∍i) ◆ f ∼ asArr (var a∍i) ◆ g) -> f ∼ g
     lem-001 = {!!}
 
   -- first, a map/substitution is epi if all variables in the target are somewhere in the terms
   -- of the substitution
-  module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} where
+  module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} where
     isEpi-𝕋× : (f : a ⟶ b) -> 𝒰 _
     isEpi-𝕋× f = ∀{i} -> (p : ⟨ b ⟩ ∍ i) -> ∑ λ j -> ∑ λ (q : ⟨ a ⟩ ∍ j) -> (destruct-⋆Listᴰ ⟨ f ⟩ j q) ∋ p
 
   private
-    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} where
+    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} where
       mutual
-        lem-01s : ∀{x} (t : CtxHom (𝒯⊔Term Σ) x ⟨ a ⟩) (g h : a ⟶ b) -> ((⧜subst t) ◆ g ∼ (⧜subst t) ◆ h) -> ∀{i} (ip : ⟨ a ⟩ ∍ i) -> VarPath-𝒯⊔Terms Σ t ip -> asArr (var ip) ◆ g ∼ asArr (var ip) ◆ h
+        lem-01s : ∀{x} (t : CtxHom (FOTerm Σ) x ⟨ a ⟩) (g h : a ⟶ b) -> ((⧜subst t) ◆ g ∼ (⧜subst t) ◆ h) -> ∀{i} (ip : ⟨ a ⟩ ∍ i) -> VarPath-FOTerms Σ t ip -> asArr (var ip) ◆ g ∼ asArr (var ip) ◆ h
         lem-01s (incl x) g h tg∼th ip (incl p) = lem-01 x g h tg∼th ip p
         lem-01s (t ⋆-⧜ s) g h tg∼th ip (left-Path pat) = lem-01s t g h {!!} ip pat
         lem-01s (t ⋆-⧜ s) g h tg∼th ip (right-Path pat) = lem-01s s g h {!!} ip pat
 
-        lem-01 : ∀{s} (t : 𝒯⊔Term Σ ⟨ a ⟩ s) (g h : a ⟶ b) -> (asArr t ◆ g ∼ asArr t ◆ h) -> ∀{i} (ip : ⟨ a ⟩ ∍ i) -> VarPath-Term-𝕋× Σ t ip -> asArr (var ip) ◆ g ∼ asArr (var ip) ◆ h
+        lem-01 : ∀{s} (t : FOTerm Σ ⟨ a ⟩ s) (g h : a ⟶ b) -> (asArr t ◆ g ∼ asArr t ◆ h) -> ∀{i} (ip : ⟨ a ⟩ ∍ i) -> VarPath-Term-𝕋× Σ t ip -> asArr (var ip) ◆ g ∼ asArr (var ip) ◆ h
         lem-01 (var x) g h tg∼th .x (var .x) = tg∼th
         lem-01 (con c x) g h tg∼th ip (con .c x₁) =
           let
@@ -127,8 +127,8 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
               lem-01c = {!!}
           in lem-01s x g h lem-01c ip x₁
 
-    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} where
-      module _ {f : a ⟶ b} (P : isEpi-𝕋× f) {x : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {g h : b ⟶ x} (fg∼fh : f ◆ g ∼ f ◆ h) where
+    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} where
+      module _ {f : a ⟶ b} (P : isEpi-𝕋× f) {x : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {g h : b ⟶ x} (fg∼fh : f ◆ g ∼ f ◆ h) where
         lem-20 : g ∼ h
         lem-20 = lem-001 λ a∍i →
                  let j , q , pat = P a∍i
@@ -142,8 +142,8 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
     abstract
 
       mutual
-        prop-3s : ∀{a bₐ bₓ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (f : CtxHom (𝒯⊔Term Σ) ⟨ a ⟩ (⟨ bₐ ⟩ ⋆ ⟨ bₓ ⟩))
-                  -> (∀{i} -> (bₓ∍i : ⟨ bₓ ⟩ ∍ i) -> ¬ (VarPath-𝒯⊔Terms Σ f (right-∍ bₓ∍i)))
+        prop-3s : ∀{a bₐ bₓ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (f : CtxHom (FOTerm Σ) ⟨ a ⟩ (⟨ bₐ ⟩ ⋆ ⟨ bₓ ⟩))
+                  -> (∀{i} -> (bₓ∍i : ⟨ bₓ ⟩ ∍ i) -> ¬ (VarPath-FOTerms Σ f (right-∍ bₓ∍i)))
                   -> ∑ λ (f' : a ⟶ bₐ) -> f' ◆ ι₀ ∼ ⧜subst f
         prop-3s ◌-⧜ ¬right = (elim-⊥) , expand-⊥ ∙ expand-⊥ ⁻¹
         prop-3s (incl x) ¬right = let x' , xp = prop-3 x λ bₓ∍i x₁ → ¬right bₓ∍i (incl x₁) in ⧜subst (incl x') , xp
@@ -165,9 +165,9 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
           in ⦗ f' , g' ⦘ , lem-3 ∙ lem-4
 
 
-        prop-3 : ∀{bₐ bₓ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {a} (f : 𝒯⊔Term Σ (⟨ bₐ ⟩ ⋆ ⟨ bₓ ⟩) a)
+        prop-3 : ∀{bₐ bₓ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {a} (f : FOTerm Σ (⟨ bₐ ⟩ ⋆ ⟨ bₓ ⟩) a)
                 -> (∀{i} -> (bₓ∍i : ⟨ bₓ ⟩ ∍ i) -> ¬ (f ∋ right-∍ bₓ∍i))
-                -> ∑ λ (f' : 𝒯⊔Term Σ ⟨ bₐ ⟩ a) -> (asArr f') ◆ ι₀ ∼ asArr f
+                -> ∑ λ (f' : FOTerm Σ ⟨ bₐ ⟩ a) -> (asArr f') ◆ ι₀ ∼ asArr f
         prop-3 (var (right-∍ x)) ¬right = impossible (¬right x (var (right-∍ x)))
         prop-3 (var (left-∍ x)) ¬right = (var x) , abstract-◆-⧜𝐒𝐮𝐛𝐬𝐭 ⁻¹ ∙ cong-Str ⧜subst (cong-Str incl {!!}) -- lem-1
           -- where
@@ -180,11 +180,11 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
 
     optimize-metas = prop-3s
 
-    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} {f : a ⟶ b} where
+    module _ {a b : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} {f : a ⟶ b} where
 
       private
         bs = fcgSize b
-        b'ᵘ : [ bs ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        b'ᵘ : [ bs ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         b'ᵘ = ⟨ fcg b ⟩
         macro b' = #structureOn b'ᵘ
 
@@ -193,12 +193,12 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
         --   β (member v) = isFreeVars ⟨ f ⟩ v
 
         {-
-        b₀f : [ ⟨ b ⟩ ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        b₀f : [ ⟨ b ⟩ ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         b₀f x with β x
         ... | (left _) = incl (incl (getMemberSort x))
         ... | (right _) = ⊥
 
-        b₁f : [ ⟨ b ⟩ ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        b₁f : [ ⟨ b ⟩ ]ᶠ -> ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         b₁f x with β x
         ... | (left _) = ⊥
         ... | (right _) = incl (incl (getMemberSort x))
@@ -218,13 +218,13 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
         ... | left x = elim-⊥
         ... | just x = id
 
-        b₀ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        b₀ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         b₀ = ⨆ᶠ {!b₀f since isFunctor:byDiscrete!} -- (indexed b₀f)
 
-        b₁ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        b₁ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         b₁ = ⨆ᶠ {!!} -- (indexed b₁f)
 
-        bF : 𝐈𝐱 [ ⟨ b ⟩ ]ᶠ (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ))
+        bF : 𝐈𝐱 [ ⟨ b ⟩ ]ᶠ (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ))
         bF = indexed (λ (x : [ ⟨ b ⟩ ]ᶠ) → incl (incl (getMemberSort x)))
         -}
 
@@ -245,7 +245,7 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
         ρ₀ : b ⟶ ⨆ᶠ bF
         ρ₀ = surj-map-ι-⧜𝐒𝐮𝐛𝐬𝐭 (incl (lem-1 {b = ⟨ b ⟩}))
           where
-            lem-1 : ∀{b} -> (i : Sort Σ) → b ∍ i → 𝒯⊔Term Σ ⟨ ⨆ᶠᵘ (indexed (λ (x : [ b ]ᶠ) → incl (incl (fst x)))) ⟩ i
+            lem-1 : ∀{b} -> (i : Sort Σ) → b ∍ i → FOTerm Σ ⟨ ⨆ᶠᵘ (indexed (λ (x : [ b ]ᶠ) → incl (incl (fst x)))) ⟩ i
             lem-1 {incl x₁} i x = var x
             lem-1 {b ⋆-⧜ b₂} i (right-∍ x) = {!!}
             lem-1 {b ⋆-⧜ b₂} i (left-∍ x) = {!!}
@@ -271,9 +271,9 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
 
 
 
-  -- finally, this means that ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ) has epi mono factorization
+  -- finally, this means that ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ) has epi mono factorization
   instance
-    hasSplitEpiMonoFactorization:𝐂𝐭𝐱-𝕋× : hasSplitEpiMonoFactorization (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ))
+    hasSplitEpiMonoFactorization:𝐂𝐭𝐱-𝕋× : hasSplitEpiMonoFactorization (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ))
     hasSplitEpiMonoFactorization:𝐂𝐭𝐱-𝕋× = record { factorize = λ _ -> factorize-𝕋× }
 
 -}

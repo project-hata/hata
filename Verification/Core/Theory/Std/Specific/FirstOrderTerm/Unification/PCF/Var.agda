@@ -65,16 +65,16 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF
 
 
 
-module _ {Σ : 𝒯FOSignature 𝑖} where
-  module _ {s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (x y : ⟨ Γ ⟩ ∍ s) (y≠x : y ≠-∍ x) where
+module _ {Σ : FOSignature 𝑖} where
+  module _ {s : Sort Σ} {Γ : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (x y : ⟨ Γ ⟩ ∍ s) (y≠x : y ≠-∍ x) where
 
-    lem-11 : hasSizedCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (simpleVar x) (simpleVar y)
+    lem-11 : hasSizedCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (simpleVar x) (simpleVar y)
     lem-11 = Γ' since (isCoequalizer:byFullyFaithfull lem-10) , right lem-12
       where
         T : RelativeMonad (𝑓𝑖𝑛 (Sort Σ))
-        T = 𝒯⊔term Σ
+        T = term-FO Σ
 
-        Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)
+        Γ' : ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)
         Γ' = incl (⟨ Γ ⟩ \\ x)
 
         π' : ι Γ ⟶ ι Γ'
@@ -140,11 +140,11 @@ module _ {Σ : 𝒯FOSignature 𝑖} where
 
 
 
-    hasCoequalizer:varvar : hasCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (simpleVar x) (simpleVar y)
+    hasCoequalizer:varvar : hasCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (simpleVar x) (simpleVar y)
     hasCoequalizer:varvar = hasCoequalizer:this lem-11
 
 
-    hasSizedCoequalizer:varvar : hasSizedCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ)} (simpleVar x) (simpleVar y)
+    hasSizedCoequalizer:varvar : hasSizedCoequalizer {𝒞 = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ)} (simpleVar x) (simpleVar y)
     hasSizedCoequalizer:varvar = lem-11
   -- record hasSizedCoequalizer {a b : 𝒞} (f g : a ⟶ b) : 𝒰 𝑖 where
 

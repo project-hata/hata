@@ -24,7 +24,7 @@ module _ (Σ : ℒHMSignature 𝑖) where
 -- [Notation]
 -- | We write |ℒHMType| for a term in that signature, i.e.:
 ℒHMType : 人ℕ -> 𝒰₀
-ℒHMType μs = 𝒯⊔Term Σ-Sim μs tt
+ℒHMType μs = FOTerm Σ-Sim μs tt
 
 -- | That is, given a list of type variables |μs : 人ℕ|,
 --   an element of |ℒHMType μs| is a HM type,
@@ -36,7 +36,7 @@ module _ (Σ : ℒHMSignature 𝑖) where
 -- [Notation]
 -- | We denote the category of type substitutions by:
 ℒHMTypesᵘ : 𝒰₀
-ℒHMTypesᵘ = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term Σ-Sim)
+ℒHMTypesᵘ = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO Σ-Sim)
 
 macro ℒHMTypes = #structureOn ℒHMTypesᵘ
 

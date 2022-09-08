@@ -52,8 +52,8 @@ open Overwrite:isInitial:𝐒𝐮𝐛𝐬𝐭-Sim 𝒹
 
 private
   _⟶_ = Hom
-  -- _≅_ = _≅ᵘ_ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim 𝒹} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = 𝒯⊔term 𝒹}}}
-  -- ⟨_⟩⁻¹ = ⟨_⟩⁻¹ᵘ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim 𝒹} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = 𝒯⊔term 𝒹}}}
+  -- _≅_ = _≅ᵘ_ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim 𝒹} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = term-FO 𝒹}}}
+  -- ⟨_⟩⁻¹ = ⟨_⟩⁻¹ᵘ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim 𝒹} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = term-FO 𝒹}}}
 
 
 -- abstract
@@ -69,13 +69,13 @@ private
 -- [Notation]
 -- | We write |ℒHMType| for a term in that signature, i.e.:
 ℒHMType : (Γ : 人ℕ) -> 𝒰₀
-ℒHMType Γ = 𝒯⊔Term 𝒹 Γ tt
+ℒHMType Γ = FOTerm 𝒹 Γ tt
 -- //
 
 -- [Notation]
 -- | We denote the category of type substitutions by:
 ℒHMTypesᵘ : 𝒰₀
-ℒHMTypesᵘ = ⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term 𝒹)
+ℒHMTypesᵘ = ⧜𝐒𝐮𝐛𝐬𝐭 (term-FO 𝒹)
 
 macro ℒHMTypes = #structureOn ℒHMTypesᵘ
 
@@ -104,11 +104,11 @@ abstract
 infixl 80 _⇃[_]⇂
 
 abstract
-  _⇃[_]⇂ : ∀{a b : ℒHMTypes} -> 𝒯⊔Term 𝒹 ⟨ a ⟩ tt -> (a ⟶ b) -> 𝒯⊔Term 𝒹 ⟨ b ⟩ tt
+  _⇃[_]⇂ : ∀{a b : ℒHMTypes} -> FOTerm 𝒹 ⟨ a ⟩ tt -> (a ⟶ b) -> FOTerm 𝒹 ⟨ b ⟩ tt
   _⇃[_]⇂ x f = fromArr (asArr x ◆ f)
 
   -- the abstraction equality
-  abstract-⇃[]⇂ : ∀{a b : ℒHMTypes} -> {τ : 𝒯⊔Term 𝒹 ⟨ a ⟩ tt} -> {σ : a ⟶ b}
+  abstract-⇃[]⇂ : ∀{a b : ℒHMTypes} -> {τ : FOTerm 𝒹 ⟨ a ⟩ tt} -> {σ : a ⟶ b}
                   -> fromArr (asArr τ ◆ σ) ≡ τ ⇃[ σ ]⇂
   abstract-⇃[]⇂ = refl-≡
 

@@ -31,18 +31,18 @@ open import Verification.Core.Theory.Std.Specific.FirstOrderTerm.Unification.PCF
 open import Verification.Core.Computation.Unification.Categorical.PrincipalFamilyCat
 
 
-module _ {𝓅 : 𝒯FOSignature 𝑖} where
+module _ {𝓅 : FOSignature 𝑖} where
 
   -- postulate
   --   instance
-  --     hasUnification:𝒯⊔term : hasUnification (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term 𝓅))
+  --     hasUnification:term-FO : hasUnification (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO 𝓅))
 
   instance
-    isPrincipalFamilyCat:𝐂𝐭𝐱-𝕋× : isPrincipalFamilyCat (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term 𝓅))
+    isPrincipalFamilyCat:𝐂𝐭𝐱-𝕋× : isPrincipalFamilyCat (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO 𝓅))
     isPrincipalFamilyCat:𝐂𝐭𝐱-𝕋× = record { isBase = isBase-𝕋× ; ∂C = ∂-𝕋× ; isPrincipalC:Base = decide-Base-𝕋× }
 
   abstract
     instance
-      hasUnification:𝐂𝐭𝐱-𝕋× : hasUnification (⧜𝐒𝐮𝐛𝐬𝐭 (𝒯⊔term 𝓅))
+      hasUnification:𝐂𝐭𝐱-𝕋× : hasUnification (⧜𝐒𝐮𝐛𝐬𝐭 (term-FO 𝓅))
       hasUnification:𝐂𝐭𝐱-𝕋× = hasUnification:byPrincipalFamilyCat
 

@@ -81,8 +81,8 @@ open Overwrite:isInitial:𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim public
 
 _⟶_ = Hom
 
-_≅_ = _≅ᵘ_ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = 𝒯⊔term Σ-Sim}}}
-⟨_⟩⁻¹ = ⟨_⟩⁻¹ᵘ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = 𝒯⊔term Σ-Sim}}}
+_≅_ = _≅ᵘ_ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = term-FO Σ-Sim}}}
+⟨_⟩⁻¹ = ⟨_⟩⁻¹ᵘ {𝒞 = 𝐒𝐮𝐛𝐬𝐭-Sim Σ-Sim} {{isCategory:⧜𝐒𝐮𝐛𝐬𝐭 {T = term-FO Σ-Sim}}}
 
 -- {-# DISPLAY isCoequalizer.π₌ _ = π₌ #-}
 -- {-# DISPLAY isCoproduct.ι₀ _ = ι₀ #-}

@@ -23,7 +23,7 @@ module _ {a : 𝕋× 𝑖} {{_ : ∀{xs} {x} -> IShow (Con a xs x)}} where
       lem-1 (con c x) = show c <> "(" <> lem-1s x <> ")"
 
   instance
-    Show:𝒯⊔Term : ∀{Γ : ⋆List (Type-𝕋× a)} {τ : Type-𝕋× a} -> IShow (Term₁-𝕋× a Γ τ)
-    Show:𝒯⊔Term = record { show = lem-1 }
+    Show:FOTerm : ∀{Γ : ⋆List (Type-𝕋× a)} {τ : Type-𝕋× a} -> IShow (Term₁-𝕋× a Γ τ)
+    Show:FOTerm = record { show = lem-1 }
 
 
