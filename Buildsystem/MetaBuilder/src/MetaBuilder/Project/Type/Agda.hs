@@ -17,6 +17,7 @@ data AgdaProjectConfig = AgdaProjectConfig
   , haskellStackTemplateRelDir :: FilePath
   , agdaAutobuild              :: Bool
   , libraryDefinitions_Filename :: String
+  , agdaDependencySibling_RelDirs :: [FilePath]
   }
   deriving (Generic, Show)
 instance FromJSON AgdaProjectConfig
@@ -34,6 +35,7 @@ data ExtraAgdaProjectConfig = ExtraAgdaProjectConfig
   -- derived paths
   , haskellStack_TemplateSource_AbDir   :: FilePath
   , haskellStack_TemplateTarget_AbDir   :: FilePath
+  , agdaDependencySibling_AbDirs :: [(FilePath, FilePath)] -- copy [from] [to]
   -- fixed paths
   , ghcshim_AbFile                      :: FilePath
   -- original settings
@@ -48,6 +50,8 @@ data ExtraAgdaProjectConfig = ExtraAgdaProjectConfig
 deriveExtraProjectConfig_Agda :: ExtraGlobalConfig -> AgdaProjectConfig -> ExtraAgdaProjectConfig
 deriveExtraProjectConfig_Agda egpc ap =
   let transpilationSource_AbDir = egpc.>buildAbDir </> "agdabuild" </> ap.>sourceRelDir
+      agdaDependencySibling_AbDirs = (f) <$> ap.>agdaDependencySibling_RelDirs
+        where f reldir = (egpc.>rootAbDir </> reldir , egpc.>buildAbDir </> reldir)
   in
   ExtraAgdaProjectConfig
   {
@@ -62,6 +66,7 @@ deriveExtraProjectConfig_Agda egpc ap =
   , agdaTarget_AbDir                  = normalise $ egpc.>buildAbDir </> ap.>haskellStackTemplateRelDir </> "src"
   , transpilationTarget_AbDir         = normalise $ egpc.>buildAbDir </> ap.>haskellStackTemplateRelDir </> "src" </> "MAlonzo" </> "Code"
   , haskellStack_TemplateTarget_AbDir = normalise $ egpc.>buildAbDir </> ap.>haskellStackTemplateRelDir
+  , agdaDependencySibling_AbDirs = agdaDependencySibling_AbDirs
   , agdaBin_AbFile                    = normalise $ egpc.>binAbDir </> ap.>agdaBin_RelFile <.> exe
   -- fixed paths:
   , ghcshim_AbFile                    = normalise $ egpc.>buildAbDir </> "ghcshim" </> "ghc" <.> exe
@@ -89,6 +94,13 @@ makeRules_AgdaProject egpc eapc = do
 
   phony (eapc.>originalAgdaConfig.>agdaBin_RelFile) $ do
     need [eapc.>agdaBin_AbFile]
+
+  ---- copy folder dependencies ----
+  phony "copy-folder-dependencies" $ do
+    let copySingleDep (from,to) = do
+          files <- getDirectoryFiles from (["//*"])
+          mapM_ (\f -> copyFileChanged (from </> f) (to </> f)) files
+    mapM_ copySingleDep (eapc.>agdaDependencySibling_AbDirs)
 
   -- haskellStack_Template_Files <- liftIO $ getDirectoryFilesIO (eapc.>haskellStack_TemplateSource_AbDir) ["" <//> "*.hs", "" <//> "*.yaml", "" <//> "*.md"]
   -- let filtered_haskellStack_Template_Files = filter (\f -> not (elem ".stack-work" (splitDirectories f))) haskellStack_Template_Files
@@ -155,7 +167,7 @@ makeRules_AgdaProject egpc eapc = do
   ----------------------------------------------
   -- last step (... -- stack --> binaries)
   eapc.>agdaBin_AbFile %> \file -> do
-    need ((eapc.>agdaPhonyTarget_AbFile) : haskellStack_TemplateTarget_Files)
+    need ("copy-folder-dependencies" : (eapc.>agdaPhonyTarget_AbFile) : haskellStack_TemplateTarget_Files)
     -- need (transpilationTarget_Files ++ haskellStack_TemplateTarget_Files)
 
     -- we need the install location of the file, such that we can temporarily

@@ -45,6 +45,7 @@ library:
     - filepath
     - data-default
     - command
+    - HataSystemInterface
   default-extensions:
     - DeriveGeneric
     - OverloadedStrings
