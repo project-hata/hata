@@ -10,13 +10,14 @@ import Data.Text as T
 import qualified Data.Text.IO as TIO
 
 import HataSystemInterface.Reflection
-import Edittime.Commands.Generation (writeGeneratedHaskellFile)
+import Edittime.Commands.Generation (writeGeneratedHaskellFile, updateAgdaDatatypeSourceFile)
 
 data Command =
   CommandEcho String
   | Command_ET_RegisterFunction String
   | Command_ET_ExecuteFunction String
   | Command_ET_writeGeneratedHaskellFile String String
+  | Command_ET_updateAgdaDatatypeSourceFile String String String
   | Command_HSI_getNameFromFQ String
   | Command_HSI_getModuleFromFQ String
 
@@ -41,6 +42,14 @@ pCmd = subparser
  <> command "ET:writeGeneratedHaskellFile"
     (info (Command_ET_writeGeneratedHaskellFile
            <$> strOption (long "module" <> help "modulepath")
+           <*> strOption (long "content" <> help "file content")
+          )
+     (progDesc "write generated haskell file"))
+
+ <> command "ET:updateAgdaDatatypeSourceFile"
+    (info (Command_ET_updateAgdaDatatypeSourceFile
+           <$> strOption (long "module" <> help "modulepath")
+           <*> strOption (long "rspart" <> help "reflection statement part")
            <*> strOption (long "content" <> help "file content")
           )
      (progDesc "write generated haskell file"))
@@ -71,7 +80,10 @@ execute :: Command -> IO ()
 execute (CommandEcho text) = echoToDaemon text
 execute (Command_ET_RegisterFunction name) = registerFunction (FQName $ T.pack name)
 execute (Command_ET_ExecuteFunction name) = executeFunction (FQName $ T.pack name)
-execute (Command_ET_writeGeneratedHaskellFile m content) = writeGeneratedHaskellFile (FQName (T.pack m)) (T.pack content)
+execute (Command_ET_writeGeneratedHaskellFile m content) =
+  writeGeneratedHaskellFile (FQName (T.pack m)) (T.pack content)
+execute (Command_ET_updateAgdaDatatypeSourceFile m rspart content) =
+  updateAgdaDatatypeSourceFile (FQName (T.pack m)) (T.pack rspart) (T.pack content)
 execute (Command_HSI_getNameFromFQ name) = TIO.putStr $ getNameFromFQ $ FQName (T.pack name)
 execute (Command_HSI_getModuleFromFQ name) = TIO.putStr $ unFQName $ getModuleFromFQ $ FQName (T.pack name)
 

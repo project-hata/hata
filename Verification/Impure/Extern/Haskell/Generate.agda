@@ -37,19 +37,26 @@ convertNameToHaskell xs = replaceT '-' '_' xs
 
 generateRecord : RecordFOSignature -> List Text
 generateRecord Σ =
-  "data " <> sort Σ <> " = " <> sort Σ
+  "data " <> convertNameToHaskell (sort Σ) <> " = " <> sort Σ
   ∷ indent (hList ("{" , "}") (map-List genField (fields Σ)))
   where
     genField = λ (name , type) → convertNameToHaskell name <> " :: " <> convertNameToHaskell type
 
 generateRecordWithDecorations : RecordFOSignature -> List Text
-generateRecordWithDecorations Σ = generateRecord Σ <>
-  (
-  "  deriving (Show, Generic)"
-  ∷ ("instance ToJSON " <> sort Σ)
-  ∷ ("instance FromJSON " <> sort Σ)
-  ∷ []
-  )
+generateRecordWithDecorations Σ =
+  let n = convertNameToHaskell (sort Σ)
+  in generateRecord Σ <>
+    (
+    "  deriving (Show, Generic)"
+    ∷ ("instance ToJSON " <> n)
+    ∷ ("instance FromJSON " <> n)
+    ∷ ""
+    ∷ "toJSON_" <> n <> " :: " <> n <> " -> Text"
+    ∷ "toJSON_" <> n <> " = toStrict . f . decodeUtf8' . encode"
+    ∷ "  where f (Left e) = \"error\""
+    ∷ "        f (Right r) = r"
+    ∷ []
+    )
 
 generateRecordFile : RecordFOSignature -> Text
 generateRecordFile Σ = intercalate "\n" $
@@ -57,20 +64,34 @@ generateRecordFile Σ = intercalate "\n" $
   ∷ ""
   ∷ "import GHC.Generics"
   ∷ "import Data.Aeson"
+  ∷ "import Data.Text as T"
+  ∷ "import Data.Text.Lazy.Encoding"
+  ∷ "import Data.Text.Lazy (toStrict)"
   ∷ ""
   ∷ generateRecordWithDecorations Σ
 
--- module _ (Σ : DatatypeFOSignature) where
---   private
---     genCtor : Text -> (DatatypeFOCtor (externalSorts Σ)) -> Text
---     genCtor sort (name , inputs) = name <> " :: " <> intercalate " -> " (map-List f inputs) <> " -> " <> sort
---       where
---         f : Maybe (♮Element (externalSorts Σ)) -> Text
---         f nothing = sort
---         f (just (el , _)) = el
 
---   generateDataType : List Text
---   generateDataType = {!!}
+---------------------------------------------------------------------
+
+generateHaskellBindings : RecordFOSignature -> Text
+generateHaskellBindings Σ =
+  intercalate "\n" (genTypeBinding ∷ genFunBinding)
+  where
+    name' = sort Σ
+    -- genField = λ (name , type) -> convertNameToHaskell name
+    genTypeBinding =
+      "{-# COMPILE GHC " <> sort Σ <> " = data " <> convertNameToHaskell (sort Σ)
+      <> " ("
+      <> convertNameToHaskell (sort Σ)
+      -- <> intercalate " | " (map-List genField (fields Σ))
+      <> ") #-}"
+
+    genFunBinding =
+      "postulate"
+      ∷ ("  toJSON-" <> name' <> " : " <> name' <> " -> Text")
+      ∷ ("{-# COMPILE GHC " <> "toJSON-" <> name' <> " = " <> "toJSON_" <> convertNameToHaskell name' <> " #-}")
+      ∷ []
+
 
 
 

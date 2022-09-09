@@ -67,6 +67,19 @@ private
       }
   reflectIntoRecordSignature _ _ = typeError (strErr "Expected a record definition." ∷ [])
 
+
+notice =
+  "\n\
+  \---------------------------------------------------------------\n\
+  \---------- v v v v     AUTO GENERATED        v v v v ----------\n\
+  \---------------------------------------------------------------\n"
+notice2 =
+  "--  -----------------\n\
+  \--  |\n\
+  \--  | GENERATED CODE for haskell bindings is here.\n\
+  \--  v\n\
+  \--------------------------------------------------\n"
+
 macro
   #generate-haskell : Name -> Term → TC 𝟙-𝒰
   #generate-haskell object-name s = do
@@ -74,7 +87,9 @@ macro
     Σ <- reflectIntoRecordSignature object-name object-def
 
     let file = generateRecordFile Σ
+    let bindings = generateHaskellBindings Σ
     call-ET-writeGeneratedHaskellFile ("HataGeneratedModules.Types." <> modulePath Σ) file
+    call-ET-updateAgdaDatatypeSourceFile (modulePath Σ) ("_ = #generate-haskell") (notice2 <> bindings)
 
     unify s (lit (string ""))
 

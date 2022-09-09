@@ -2,6 +2,9 @@ module HataGeneratedModules.Types.Verification.Impure.Program.MetaBuilder.Config
 
 import GHC.Generics
 import Data.Aeson
+import Data.Text as T
+import Data.Text.Lazy.Encoding
+import Data.Text.Lazy (toStrict)
 
 data RustProjectConfig = RustProjectConfig
   { rustSource_RelDir :: FilePath
@@ -10,3 +13,8 @@ data RustProjectConfig = RustProjectConfig
   deriving (Show, Generic)
 instance ToJSON RustProjectConfig
 instance FromJSON RustProjectConfig
+
+toJSON_RustProjectConfig :: RustProjectConfig -> Text
+toJSON_RustProjectConfig = toStrict . f . decodeUtf8' . encode
+  where f (Left e) = "error"
+        f (Right r) = r

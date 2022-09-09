@@ -34,5 +34,6 @@ agdaProjects:
     libraryDefinitions_Filename: hata.agda-lib
     agdaDependencySibling_RelDirs:
       - Common/HataSystemInterface
+      - Common/HataGeneratedModules
 
 

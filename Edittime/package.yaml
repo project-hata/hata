@@ -39,6 +39,7 @@ library:
   dependencies:
     - text
     - HataSystemInterface
+    - HataGeneratedModules
 
 executables:
   hata-edittime:

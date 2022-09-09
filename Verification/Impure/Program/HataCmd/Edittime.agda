@@ -9,5 +9,10 @@ call-ET-writeGeneratedHaskellFile : Text -> Text -> TC Text
 call-ET-writeGeneratedHaskellFile mod content =
   call-hatacmd ("ET:writeGeneratedHaskellFile" ∷ "--module" ∷ mod ∷ "--content" ∷ content ∷ [])
 
+call-ET-updateAgdaDatatypeSourceFile : Text -> Text -> Text -> TC Text
+call-ET-updateAgdaDatatypeSourceFile mod rspart content =
+  call-hatacmd ("ET:updateAgdaDatatypeSourceFile" ∷ "--module" ∷ mod ∷ "--rspart" ∷ rspart ∷ "--content" ∷ content ∷ [])
+
+
 
 
