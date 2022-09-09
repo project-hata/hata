@@ -33,7 +33,7 @@ agdaProjects:
     agdaAutobuild: false
     libraryDefinitions_Filename: hata.agda-lib
     agdaDependencySibling_RelDirs:
-      - Common/HataSystemInterface
-      - Common/HataGeneratedModules
+      - ../../Common/HataSystemInterface
+      - ../../Common/HataGeneratedModules
 
 

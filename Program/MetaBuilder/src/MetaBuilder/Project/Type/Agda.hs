@@ -51,7 +51,7 @@ deriveExtraProjectConfig_Agda :: ExtraGlobalConfig -> AgdaProjectConfig -> Extra
 deriveExtraProjectConfig_Agda egpc ap =
   let transpilationSource_AbDir = egpc.>buildAbDir </> "agdabuild" </> ap.>sourceRelDir
       agdaDependencySibling_AbDirs = (f) <$> ap.>agdaDependencySibling_RelDirs
-        where f reldir = (egpc.>rootAbDir </> reldir , egpc.>buildAbDir </> reldir)
+        where f reldir = (egpc.>rootAbDir </> ap.>haskellStackTemplateRelDir </> reldir , egpc.>buildAbDir </> ap.>haskellStackTemplateRelDir </> reldir)
   in
   ExtraAgdaProjectConfig
   {
