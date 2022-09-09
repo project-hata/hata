@@ -1,5 +1,5 @@
 
-module Edittime.Commands where
+module Edittime.Commands.Function where
 
 import Data.Text (Text)
 import Data.Text.IO as TIO
@@ -68,4 +68,3 @@ compileEdittime root funs = do
   -- update state
   let newFuns = fmap (\(RegisteredFunction name _) -> RegisteredFunction name IsCompiled) funs
   writeState (HataCmdState newFuns)
-

@@ -82,7 +82,7 @@ isUsedInOtherVisibles i tele main = isUsedInOtherVisibles' i (rev tele) main
     isUsedInOtherVisibles' (zero) _ _ = false -- ((a , ar) ∷ tele) main with a ≟ main
     isUsedInOtherVisibles' (suc i) ((a , ar) ∷ tele) main with a ≟ main
     ... | true = isUsedInOtherVisibles' i tele main
-    ... | false with i ∈?-List (getVars visible (getFromArg ar .fst))
+    ... | false with i ∈?-List (getVars visible (unArg ar .fst))
     ... | true = true
     ... | false = isUsedInOtherVisibles' i tele main
 
@@ -379,7 +379,7 @@ module TestInstancing where
      lastSort <- liftTCMaybe lastSort ("Could not extract level of structure target universe.")
 
      -- | type of main argument
-     let type-mainArg = getFromArg (mainPos .snd)
+     let type-mainArg = unArg (mainPos .snd)
 
      -- | Tele optimizations
      -- 1. make hidden, but not inferable variables visible

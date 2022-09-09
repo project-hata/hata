@@ -139,8 +139,8 @@ instance
   IShow:Arg : ∀{A : 𝒰 𝑖} -> {{_ : IShow A}} -> IShow (Arg A)
   IShow.show IShow:Arg (arg i x) = wrapInfo i (show x)
 
-getFromArg : ∀{A : 𝒰 𝑖} -> Arg A -> A
-getFromArg (arg _ a) = a
+unArg : ∀{A : 𝒰 𝑖} -> Arg A -> A
+unArg (arg _ a) = a
 
 findMainName : List Char -> List Char -> List Char
 findMainName cur [] = cur

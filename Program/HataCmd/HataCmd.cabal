@@ -25,7 +25,8 @@ source-repository head
 
 library
   exposed-modules:
-      Edittime.Commands
+      Edittime.Commands.Function
+      Edittime.Commands.Generation
       Edittime.MainGeneration
       Lib
       State.Definition

@@ -23,7 +23,8 @@ record RustProjectConfig : 𝒰₀ where
     rustBin-Name : FilePath
 
 
-_ = #generate-haskell RustProjectConfig
+
+abc = #generate-haskell RustProjectConfig
 
 
 ---------------------------------------------------------------
