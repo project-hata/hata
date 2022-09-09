@@ -5,3 +5,4 @@ _state/
 **/dist-newstyle/cache/
 **/.vscode/
 **/auto/*.el
+.direnv/
