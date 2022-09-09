@@ -4,7 +4,7 @@ globalConfig:
 
 haskellStackProjects: []
   # - haskellStackBin_RelFile: metabuild
-  #   haskellStackSource_RelDir: Buildsystem/MetaBuilder
+  #   haskellStackSource_RelDir: Program/MetaBuilder
   #   haskellStackAutobuild: false
   #   installGlobal: true
 

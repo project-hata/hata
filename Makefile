@@ -2,7 +2,7 @@
 all: hata
 
 meta:
-	cd Buildsystem/MetaBuilder && stack install
+	cd Program/MetaBuilder && stack install
 
 hata: meta
 	metabuild hata
@@ -15,5 +15,5 @@ justrun:
 
 clean: meta
 	metabuild clean
-	cd Buildsystem/MetaBuilder && stack clean
+	cd Program/MetaBuilder && stack clean
 
