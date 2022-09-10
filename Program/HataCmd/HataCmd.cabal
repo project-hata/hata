@@ -31,6 +31,7 @@ library
       Lib
       State.Definition
       Utility.Echo
+      Utility.RunCmd
   other-modules:
       Paths_HataCmd
   hs-source-dirs:
@@ -42,8 +43,12 @@ library
   build-depends:
       HataSystemInterface
     , aeson
+    , async
     , base >=4.7 && <5
+    , bytestring
     , command
+    , conduit
+    , conduit-extra
     , data-default
     , directory
     , executable-path
@@ -51,6 +56,7 @@ library
     , network-simple
     , optparse-applicative
     , text
+    , unix
   default-language: Haskell2010
 
 executable hata-cmd

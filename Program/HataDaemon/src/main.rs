@@ -4,26 +4,35 @@
 mod log_listener;
 mod error;
 
+// extern crate alloc;
+// use alloc::sync::Arc;
+
+use std::sync::{Arc, Mutex};
+
 // When compiling natively:
 #[cfg(not(target_arch = "wasm32"))]
-fn main() {
+#[tokio::main]
+async fn main() {
     // Log to stdout (if you run with `RUST_LOG=debug`).
     tracing_subscriber::fmt::init();
 
     // // hata init code
     // let current_text: String = "empty".
 
+    let messages = Arc::new(Mutex::new(Vec::new()));
+
+    match log_listener::listen(messages.clone()).await {
+        Ok(_) => {}
+        Err(e) => println!("Error: {e}")
+    }
+
     let native_options = eframe::NativeOptions::default();
     eframe::run_native(
         "eframe template",
         native_options,
-        Box::new(|cc| Box::new(HataDaemon::TemplateApp::new(cc))),
+        Box::new(|cc| Box::new(HataDaemon::TemplateApp::new(cc, messages))),
     );
 
-    match log_listener::listen() {
-        Ok(_) => {}
-        Err(e) => println!("Error: {e}")
-    }
 }
 
 // when compiling to web using trunk.

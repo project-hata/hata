@@ -1,8 +1,7 @@
 
-extern crate alloc;
 
 use egui::widgets::Widget;
-use alloc::sync::Arc;
+use std::sync::{Arc,Mutex};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(serde::Deserialize, serde::Serialize)]
@@ -18,6 +17,7 @@ pub struct TemplateApp {
     ///////////////////////// hata ///////////////////////
     current_log: String,
     // myfont: egui::FontId,
+    messages: Option<Arc<Mutex<Vec<String>>>>,
 
 }
 
@@ -28,14 +28,16 @@ impl Default for TemplateApp {
             label: "Hello World!".to_owned(),
             value: 2.7,
             current_log: "".to_owned(),
+            messages: None,
             // myfont: egui::FontId::new(10.0, egui::FontFamily::Name(Arc::from("MxFont"))),
         }
     }
 }
 
 impl TemplateApp {
+
     /// Called once before the first frame.
-    pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
+    pub fn new(cc: &eframe::CreationContext<'_>, messages: Arc<Mutex<Vec<String>>>) -> Self {
         setup_custom_fonts(&cc.egui_ctx);
 
         // This is also where you can customized the look at feel of egui using
@@ -43,11 +45,12 @@ impl TemplateApp {
 
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
+        let mut res:Self = Default::default();
         if let Some(storage) = cc.storage {
-            return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
+            res = eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
         }
-
-        Default::default()
+        res.messages = Some(messages);
+        res
     }
 }
 
@@ -99,6 +102,14 @@ impl eframe::App for TemplateApp {
 
         egui::CentralPanel::default().show(ctx, |ui| {
             // The central panel the region left after adding TopPanel's and SidePanel's
+            let msg = self.messages.clone().unwrap();
+            let mut ml = msg.lock().unwrap();
+
+            for s in ml.iter() {
+                self.current_log.push_str("\n");
+                self.current_log.push_str(s);
+            }
+            *ml = Vec::new();
 
             let edit = egui::widgets::TextEdit::multiline(&mut self.current_log)
                 .code_editor();

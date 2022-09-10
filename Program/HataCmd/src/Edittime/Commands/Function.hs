@@ -12,6 +12,7 @@ import System.Command
 import Utility.Echo
 import System.FilePath
 import Edittime.MainGeneration
+import Utility.RunCmd
 
 registerFunction :: FQName -> IO ()
 registerFunction name = do
@@ -61,9 +62,12 @@ compileEdittime root funs = do
   TIO.writeFile (root </> "_generated" </> "Agda" </> "Edittime" </> "Main.agda") (getMain funs)
 
   -- compile
-  (Exit c, Stdout out, Stderr err) <- command [] "metabuild" ["hata-edittime"]
-  echoToDaemon $ "compilation end, code: " <> show c
-  echoToDaemon $ err
+  -- (Exit c, Stdout out, Stderr err) <- command [] "metabuild" ["hata-edittime"]
+
+  runSingleCmd "metabuild hata-edittime"
+  echoToDaemon "compilation done"
+  -- echoToDaemon $ "compilation end, code: " <> show c
+  -- echoToDaemon $ err
 
   -- update state
   let newFuns = fmap (\(RegisteredFunction name _) -> RegisteredFunction name IsCompiled) funs

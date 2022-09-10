@@ -45,6 +45,11 @@ library:
     - filepath
     - data-default
     - command
+    - async
+    - conduit
+    - conduit-extra
+    - bytestring
+    - unix
     - HataSystemInterface
   default-extensions:
     - DeriveGeneric
