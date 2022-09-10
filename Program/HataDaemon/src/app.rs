@@ -1,3 +1,9 @@
+
+extern crate alloc;
+
+use egui::widgets::Widget;
+use alloc::sync::Arc;
+
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(serde::Deserialize, serde::Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
@@ -8,6 +14,11 @@ pub struct TemplateApp {
     // this how you opt-out of serialization of a member
     #[serde(skip)]
     value: f32,
+
+    ///////////////////////// hata ///////////////////////
+    current_log: String,
+    // myfont: egui::FontId,
+
 }
 
 impl Default for TemplateApp {
@@ -16,6 +27,8 @@ impl Default for TemplateApp {
             // Example stuff:
             label: "Hello World!".to_owned(),
             value: 2.7,
+            current_log: "".to_owned(),
+            // myfont: egui::FontId::new(10.0, egui::FontFamily::Name(Arc::from("MxFont"))),
         }
     }
 }
@@ -23,6 +36,8 @@ impl Default for TemplateApp {
 impl TemplateApp {
     /// Called once before the first frame.
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
+        setup_custom_fonts(&cc.egui_ctx);
+
         // This is also where you can customized the look at feel of egui using
         // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
 
@@ -36,6 +51,41 @@ impl TemplateApp {
     }
 }
 
+fn setup_custom_fonts(ctx: &egui::Context) {
+    // Start with the default fonts (we will be adding to them rather than replacing them).
+    let mut fonts = egui::FontDefinitions::default();
+
+    // Install my own font (maybe supporting non-latin characters).
+    // .ttf and .otf files supported.
+    fonts.font_data.insert(
+        "MxFont".to_owned(),
+        egui::FontData::from_static(include_bytes!(
+            "../assets/MxFontDone.ttf"
+        )),
+    );
+
+    // // Put my font first (highest priority) for proportional text:
+    // fonts
+    //     .families
+    //     .entry(egui::FontFamily::Proportional)
+    //     .or_default()
+    //     .insert(0, "MxFont".to_owned());
+
+    // Put my font as last fallback for monospace:
+    fonts
+        .families
+        .entry(egui::FontFamily::Monospace)
+        .or_default()
+        .insert(0, "MxFont".to_owned());
+        // .push("MxFont".to_owned());
+
+    // Tell egui to use these fonts:
+    ctx.set_fonts(fonts);
+}
+
+
+
+
 impl eframe::App for TemplateApp {
     /// Called by the frame work to save state before shutdown.
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
@@ -45,72 +95,19 @@ impl eframe::App for TemplateApp {
     /// Called each time the UI needs repainting, which may be many times per second.
     /// Put your widgets into a `SidePanel`, `TopPanel`, `CentralPanel`, `Window` or `Area`.
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        let Self { label, value } = self;
-
-        // Examples of how to create different panels and windows.
-        // Pick whichever suits you.
-        // Tip: a good default choice is to just keep the `CentralPanel`.
-        // For inspiration and more examples, go to https://emilk.github.io/egui
-
-        #[cfg(not(target_arch = "wasm32"))] // no File->Quit on web pages!
-        egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
-            // The top panel is often a good place for a menu bar:
-            egui::menu::bar(ui, |ui| {
-                ui.menu_button("File", |ui| {
-                    if ui.button("Quit").clicked() {
-                        _frame.close();
-                    }
-                });
-            });
-        });
-
-        egui::SidePanel::left("side_panel").show(ctx, |ui| {
-            ui.heading("Side Panel");
-
-            ui.horizontal(|ui| {
-                ui.label("Write something: ");
-                ui.text_edit_singleline(label);
-            });
-
-            ui.add(egui::Slider::new(value, 0.0..=10.0).text("value"));
-            if ui.button("Increment").clicked() {
-                *value += 1.0;
-            }
-
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
-                ui.horizontal(|ui| {
-                    ui.spacing_mut().item_spacing.x = 0.0;
-                    ui.label("powered by ");
-                    ui.hyperlink_to("egui", "https://github.com/emilk/egui");
-                    ui.label(" and ");
-                    ui.hyperlink_to(
-                        "eframe",
-                        "https://github.com/emilk/egui/tree/master/crates/eframe",
-                    );
-                    ui.label(".");
-                });
-            });
-        });
+        // let Self { label, value, current_log } = self;
 
         egui::CentralPanel::default().show(ctx, |ui| {
             // The central panel the region left after adding TopPanel's and SidePanel's
 
-            ui.heading("eframe template");
-            ui.hyperlink("https://github.com/emilk/eframe_template");
-            ui.add(egui::github_link_file!(
-                "https://github.com/emilk/eframe_template/blob/master/",
-                "Source code."
-            ));
+            let edit = egui::widgets::TextEdit::multiline(&mut self.current_log)
+                .code_editor();
+                // .font(self.myfont.clone());
+
+            ui.add_sized(ui.available_size(), edit);
+            // let edit_response = edit.ui(ui);
             egui::warn_if_debug_build(ui);
         });
 
-        if false {
-            egui::Window::new("Window").show(ctx, |ui| {
-                ui.label("Windows can be moved by dragging them.");
-                ui.label("They are automatically sized based on contents.");
-                ui.label("You can turn on resizing and scrolling if you like.");
-                ui.label("You would normally chose either panels OR windows.");
-            });
-        }
     }
 }

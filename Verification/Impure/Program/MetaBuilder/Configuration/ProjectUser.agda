@@ -19,8 +19,11 @@ myconfig = record { rustSource-RelDir = tofp "Template/Rust" ; rustBin-Name = to
 myfun : IO (⊤-𝒰 {ℓ₀})
 myfun = putStrLn (toJSON-RustProjectConfig myconfig)
 
-_  = #reflect myfun
 
 
-_ = #call myfun
+
+_ = #echo "bla"
+
+-- _  = #reflect myfun
+-- _ = #call myfun
 

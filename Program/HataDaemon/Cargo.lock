@@ -10,6 +10,7 @@ dependencies = [
  "eframe",
  "egui",
  "serde",
+ "thiserror",
  "tracing-subscriber",
  "tracing-wasm",
 ]
