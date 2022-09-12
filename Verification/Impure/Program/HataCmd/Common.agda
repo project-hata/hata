@@ -15,7 +15,9 @@ postulate
 call-echo : Text -> TC 𝟙-𝒰
 call-echo mytext = do
     (exitCode , (stdOut , stdErr)) ← execTC "hata-cmd" ("echo" ∷ "--text" ∷ mytext ∷ []) ""
-    return tt
+    if exitCode ≟ 0
+      then (return tt)
+      else (typeError (strErr "Got error: " ∷ strErr stdErr ∷ []))
 
 call-hatacmd : List Text -> TC Text
 call-hatacmd args = do

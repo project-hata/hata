@@ -37,4 +37,7 @@ replaceT a b xs = primStringFromList (replace a b (primStringToList xs))
 convertNameToHaskell : Text -> Text
 convertNameToHaskell xs = replaceT '-' '_' xs
 
+data Error : 𝒰₀ where
+  error : Text -> Error
+
 

@@ -1,8 +1,8 @@
 
 module Verification.Impure.Extern.Haskell.Generate where
 
-open import Verification.Conventions
-open import Verification.Impure.Basics
+-- open import Verification.Conventions
+open import Verification.Impure.SpecialConventions
 open import Verification.Core.Theory.FirstOrderTerm.Signature.Record
 open import Verification.Core.Data.List.Variant.Unary.Definition
 open import Verification.Core.Data.List.Variant.Unary.Element
