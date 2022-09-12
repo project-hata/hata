@@ -4,6 +4,7 @@ module Verification.Impure.Program.HataDaemon.Message where
 open import Verification.Conventions
 open import Verification.Impure.Basics
 
+
 data BuildResult : 𝒰₀ where
   Success : BuildResult
   Error : BuildResult
@@ -17,5 +18,7 @@ data Message : 𝒰₀ where
   BuildDone : BuildResult -> Message
 
 
+open import Verification.Impure.Program.HataCmd.Common
+_ = #echo "hello?"
 
 

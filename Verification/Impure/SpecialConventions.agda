@@ -1,13 +1,16 @@
 
-module Verification.Impure.Basics where
+module Verification.Impure.SpecialConventions where
 
+open import Verification.Conventions
+  hiding (Path)
+  renaming (_×-𝒰_ to _×_)
+  public
 open import Verification.Impure.Builtin public
 open import Agda.Builtin.Char public
 
 open import Verification.Core.Data.List.Variant.Unary.Definition
 open import Verification.Core.Data.List.Variant.Unary.Element
 open import Verification.Core.Data.List.Variant.Unary.ElementSum
-open import Verification.Conventions
 
 
 intercalate : Text -> List Text -> Text
@@ -18,7 +21,7 @@ intercalate i (x ∷ y ∷ ys) = x <> i <> intercalate i (y ∷ ys)
 indent : List Text -> List Text
 indent = map-List ("  " <>_)
 
-hList : (Text ×-𝒰 Text) -> List Text -> List Text
+hList : (Text × Text) -> List Text -> List Text
 hList (a , b) [] = (a <> b) ∷ []
 hList (a , b) (x ∷ xs) = ((a <> " " <> x) ∷ map-List (", " <>_) xs) <> (b ∷ [])
 
