@@ -1,7 +1,7 @@
 
 module Impure.Abstract.Path.Definition where
 
-open import Impure.SpecialConventions
+open import Impure.Conventions
 
 data RootType : 𝒰₀ where
   Rel Abs : RootType

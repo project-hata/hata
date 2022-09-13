@@ -3,7 +3,7 @@
 
 module Impure.Base.HIO.Definition where
 
-open import Impure.SpecialConventions
+open import Impure.Conventions
 
 
 data HIO : 𝒰₀ -> 𝒰₀ where

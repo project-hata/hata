@@ -2,7 +2,7 @@
 module Impure.Abstract.Generation.Command where
 
 open import Verification.Conventions.Meta.Term
-open import Impure.SpecialConventions
+open import Impure.Conventions
 open import Impure.IO.Definition
 
 data GenerationCommand : 𝒰₀ where

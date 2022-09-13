@@ -2,7 +2,7 @@
 module Impure.Extern.Haskell.Generate where
 
 -- open import Verification.Conventions
-open import Impure.SpecialConventions
+open import Impure.Conventions
 open import Verification.Core.Theory.FirstOrderTerm.Signature.Record
 open import Verification.Core.Data.List.Variant.Unary.Definition
 open import Verification.Core.Data.List.Variant.Unary.Element

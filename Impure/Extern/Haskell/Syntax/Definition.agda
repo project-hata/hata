@@ -1,7 +1,7 @@
 
 module Impure.Extern.Haskell.Syntax.Definition where
 
-open import Impure.SpecialConventions
+open import Impure.Conventions
 open import Impure.Abstract.Generation.Definition
 
 

@@ -2,7 +2,7 @@
 module Impure.Abstract.Generation.Definition where
 
 open import Verification.Conventions.Meta.Term
-open import Impure.SpecialConventions
+open import Impure.Conventions
 
 record isGeneratable (A : 𝒰 𝑖) : 𝒰 𝑖 where
   field generate : A -> Text

@@ -1,7 +1,7 @@
 
 module Impure.Base.HIO.EvalIO where
 
-open import Impure.SpecialConventions
+open import Impure.Conventions
 open import Impure.Base.HIO.Definition
 
 open import Impure.IO.Definition

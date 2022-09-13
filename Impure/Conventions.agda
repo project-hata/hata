@@ -1,5 +1,5 @@
 
-module Impure.SpecialConventions where
+module Impure.Conventions where
 
 open import Verification.Conventions
   hiding (Path)
