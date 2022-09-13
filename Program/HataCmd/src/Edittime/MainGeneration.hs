@@ -15,7 +15,7 @@ getMain funs = T.unlines $
   [
     "module _generated.Agda.Edittime.Main where"
   , ""
-  , "open import Verification.Impure.IO.Definition"
+  , "open import Impure.IO.Definition"
   , "open import Verification.Conventions"
   ]
   <> fmap ("open import " <>) (unFQName <$> getModuleFromFQ <$> qualifiedNameRF <$> funs)

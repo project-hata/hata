@@ -6,7 +6,7 @@ open import Verification.Core.Data.List.Variant.Unary.Definition
 open import Verification.Core.Data.List.Variant.Unary.Element
 open import Verification.Core.Data.List.Variant.Unary.Natural
 
-open import Verification.Impure.IO.Definition
+open import Impure.IO.Definition
 
 
 mymain : IO (ℕ)
