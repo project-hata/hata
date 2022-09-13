@@ -7,8 +7,10 @@ open import Impure.Conventions
 
 
 data HIO : 𝒰₀ -> 𝒰₀ where
-  putStrLn : Text -> HIO ⊤-𝒰
-
+  return-HIO : ∀{A} -> A -> HIO A
+  echoLn : Text -> HIO ⊤-𝒰
+  writeFile : FilePath -> Text -> HIO ⊤-𝒰
+  editFile : FilePath -> Text -> Text -> Text -> HIO ⊤-𝒰
 
 
 
