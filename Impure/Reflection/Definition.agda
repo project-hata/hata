@@ -95,7 +95,6 @@ private
   reflectIntoDatatypeSignature _ _ = typeError (strErr "Expected a datatype definition." ∷ [])
 
 
-
 notice =
   "\n\
   \---------------------------------------------------------------\n\
@@ -122,5 +121,67 @@ macro
     unify s (lit (string ""))
 
 
+
+---------------------------------------------------------------------
+-- Next steps:
+--
+-- [[For a reflected HIO execution system]]
+--
+-- A) HIO 1
+-- 0. abstract existing reflection generation code over different things to be reflected
+-- 0.5. add arg to control where the result is generated
+-- 0.7. for haskell bindings we also have to say where the agda code has to be generated
+--      that is for Hs->Ag it has to be in the same file in a marked block
+-- 1. generate haskell files for data type signatures
+-- 2. generate agda haskell bindings for data type signatures
+-- 3. ACTUALLY, generate bindings for HIO data type
+-- 4. use ad-hoc binding for HIO -> TCMEXEC execution
+--
+-- B) HIO 2: Now implementation of IO binding for HIO tasks
+-- 5. allow for reflection of postulate functions
+-- 6. generate Hs->Ag bindings for these functions
+-- 7. ACTUALLY, generate binding for HIO evaluation
+-- 8. NOTE: this is special generation of templates; for the function needs to be
+--    implemented in haskell. Think about how this can be done in a user friendly way.
+--
+-- C) Commands to HataDaemon
+-- 9. OPTIONAL Generate JSON printing of reflected datatype / record in TC
+-- 10. Generate rust code for records / datatypes (with json parsing)
+-- 11. Implement code to execute these (translated) `DaemonCommand`s
+-- 12. Call these DaemonCommands from AgdaCmd with haskells json generation
+--
+-- D) Better HataDaemon UI
+-- 13. Add multiple message/log-views for different hata interaction states
+--
+-- E) Syntax generation
+-- 14. Given a reflected datatype, generate a rust treesitter project that parses it
+-- 15. Somehow describe how we can connect this project to other things.
+--      - Different connection possibilities: via cmd, via direct library binding
+--
+-- F) Library integration
+-- 16. Define external C libraries. Allow them to be binded into Hata, or into
+--     other binding targets.
+--
+--
+-- ---------------------------------------------------------------------
+-- Pattern:
+-- - All interfaces between languages are written in Agda, and the actual
+--   language files are generated. Other things may be required to be implemented
+--   in the given language.
+-- - For external projects that use hata, the usage-pattern can be the following:
+--   in the .metabuild-root (or rather .hata-root) it is defined where the agda files
+--   are that describe the interfaces between the languages. Or rather, that describe
+--   how the different languages fit together to make up a project.
+--   This is used by the metabuilder to create a "building plan".
+-- - Every "Hata Project" has an "Agda core", which allows for interactivity with
+--   the differenct language components of the project.
+-- - This means that the file should rather be called "cubelang.hataprj"
+--    - In this file it is described where the (agda-)project definitions are
+--    - All these definitions are the primary watch targets for metabuilder
+-- - There is a way to run agda code from haskell. By generating a temporary file
+--   that contains EXECTCM code that typechecks the given file and then sends
+--   the result back via HataCmd.
+-- - This way, external projects can built.
+--
 
 
