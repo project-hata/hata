@@ -4,8 +4,7 @@ module Impure.Base.HIO.Translate.IO where
 open import Impure.Conventions
 open import Impure.Base.HIO.Definition
 
-open import Impure.IO.Definition
-
+open import Impure.Base.IO.Definition
 
 
 

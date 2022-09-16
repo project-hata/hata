@@ -10,7 +10,8 @@ open import Impure.Program.HataCmd.Common
 open import Impure.Extern.Haskell.Generate
 
 -- reflection targets
-open import Verification.Core.Theory.FirstOrderTerm.Signature.Record
+open import Impure.Reflection.Signature.Record
+open import Impure.Reflection.Signature.Datatype
 
 sequence : ∀{A : 𝒰 𝑖} -> List (TC A) -> TC (List A)
 sequence [] = return []
@@ -18,6 +19,11 @@ sequence (x ∷ xs) = do
   x' <- x
   xs' <- sequence xs
   return (x' ∷ xs')
+
+dropLast : ∀{A : 𝒰 𝑖} -> List A -> List A
+dropLast [] = []
+dropLast (x ∷ []) = []
+dropLast (x ∷ y ∷ xs) = x ∷ dropLast (y ∷ xs)
 
 mapM : ∀{A : 𝒰 𝑖} {B : 𝒰 𝑗} -> (A -> TC B) -> List A -> TC (List B)
 mapM f xs = sequence (map-List f xs)
@@ -33,27 +39,25 @@ private
   expectArr (pi a b) = return (unArg a , unAbs b)
   expectArr x = throwError ("expected an arrow type, but got: " <> show x)
 
+  expectMultiArr : Type -> TC (List Type)
+  expectMultiArr (pi a (Abs.abs s x)) = do
+    xs <- expectMultiArr x
+    return $ unArg a ∷ xs
+  expectMultiArr _ = return []
+
   showType : Type -> TC Text
   showType (def f args) = call-hsi-getNameFromFQ f
   showType ty = throwError ("unsupported " <> show ty)
-  -- showType (var x args) = {!!}
-  -- showType (con c args) = {!!}
-  -- showType (lam v t) = {!!}
-  -- showType (pat-lam cs args) = {!!}
-  -- showType (pi a b) = {!!}
-  -- showType (agda-sort s) = {!!}
-  -- showType (lit l) = {!!}
-  -- showType (meta x x₁) = {!!}
-  -- showType unknown = {!!}
 
-  -- reflect : Definit
+
+  ---------------------------------------------------------------------
+  -- records
   reflectRecordField : Name -> TC (Text ×-𝒰 Text)
   reflectRecordField n = do
     n' <- call-hsi-getNameFromFQ n
     (_ , ty) <- getType n >>= expectArr
     ty' <- showType ty
     return (n' , ty')
-
 
   reflectIntoRecordSignature : Name -> Definition -> TC RecordFOSignature
   reflectIntoRecordSignature n (record-type c fs) = do
@@ -66,6 +70,30 @@ private
       ; modulePath = modulePath'
       }
   reflectIntoRecordSignature _ _ = typeError (strErr "Expected a record definition." ∷ [])
+
+
+  ---------------------------------------------------------------------
+  -- data types
+  reflectDatatypeCtor : Name -> TC (Text ×-𝒰 List Text)
+  reflectDatatypeCtor n = do
+    n' <- call-hsi-getNameFromFQ n
+    arrtys <- getType n >>= expectMultiArr
+    let arrargs = dropLast arrtys
+    tys <- mapM showType arrargs
+    return (n' , tys)
+
+  reflectIntoDatatypeSignature : Name -> Definition -> TC DatatypeFOSignature
+  reflectIntoDatatypeSignature n (data-type pars cs) = do
+    sort' <- call-hsi-getNameFromFQ n
+    modulePath' <- call-hsi-getModuleFromFQ n
+    ctors' <- mapM reflectDatatypeCtor cs
+    return $ record
+      { sort = sort'
+      ; modulePath = modulePath'
+      ; ctors = ctors'
+      }
+  reflectIntoDatatypeSignature _ _ = typeError (strErr "Expected a datatype definition." ∷ [])
+
 
 
 notice =

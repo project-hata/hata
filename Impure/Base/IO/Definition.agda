@@ -1,5 +1,5 @@
 
-module Impure.IO.Definition where
+module Impure.Base.IO.Definition where
 
 open import Verification.Conventions hiding (_⊔_)
 

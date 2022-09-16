@@ -1,7 +1,8 @@
 
-module Verification.Core.Theory.FirstOrderTerm.Signature.Record where
+module Impure.Reflection.Signature.Record where
 
-open import Verification.Conventions hiding (_⊔_)
+open import Impure.Conventions
+-- open import Verification.Conventions hiding (_⊔_)
 open import Verification.Core.Data.List.Variant.Unary.Definition
 open import Verification.Core.Data.List.Variant.Unary.Element
 open import Verification.Core.Data.List.Variant.Unary.ElementSum
@@ -9,12 +10,12 @@ open import Verification.Core.Data.List.Variant.Unary.ElementSum
 
 module _ {A : 𝒰₀} (sorts : List A) where
   NamedFOField : 𝒰₀
-  NamedFOField = (Text ×-𝒰 ♮Element sorts)
+  NamedFOField = (Text × ♮Element sorts)
 
 record RecordFOSignature : 𝒰₀ where
   field modulePath : Text
   field sort : Text
-  field fields : List (Text ×-𝒰 Text) -- name , type
+  field fields : List (Text × Text) -- name , type
   -- field externalSorts : List Text
   -- field fields : List (NamedFOField externalSorts)
 
