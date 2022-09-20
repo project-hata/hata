@@ -1,4 +1,4 @@
-name: HATA
+name: hata
 depend: cubical
 include: .
   Archive

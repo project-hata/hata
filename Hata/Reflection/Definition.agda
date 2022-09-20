@@ -120,7 +120,71 @@ macro
 
     unify s (lit (string ""))
 
+---------------------------------------------------------------------
+-- reflection
 
+data ReflectedObject : 𝒰₀ where
+  ReflectedDatatype : DatatypeFOSignature -> ReflectedObject
+  ReflectedRecord : RecordFOSignature -> ReflectedObject
+
+module _ where
+  private
+    reflect : Name -> Definition -> TC ReflectedObject
+    reflect n d@(data-type pars cs) = do
+      Σ <- reflectIntoDatatypeSignature n d
+      return (ReflectedDatatype Σ)
+    reflect n d@(record-type c fs) = do
+      Σ <- reflectIntoRecordSignature n d
+      return (ReflectedRecord Σ)
+    -- reflect n (data-cons d) = {!!}
+    -- reflect n axiom = {!!}
+    -- reflect n prim-fun = {!!}
+    reflect n x = throwError ("The definition of " <> show n <> " cannot be reflected.")
+
+  macro
+    #reflect : Name -> Term -> TC 𝟙-𝒰
+    #reflect object-name hole = do
+      object-def <- getDefinition object-name
+      object-reflected <- reflect object-name object-def
+      object-reflected-quoted <- quoteTC object-reflected
+      unify hole object-reflected-quoted
+
+------------------------------------------
+-- misc
+
+open import Hata.Abstract.Path.Definition renaming (Abs to AAbs)
+
+sln-root : TC ((AAbs , Dir)-Path)
+sln-root = return (:: / "hello")
+
+macro
+  # : ∀{A : 𝒰 𝑖} -> TC A -> Term -> TC 𝟙-𝒰
+  # f hole = do
+    res <- f
+    res-quoted <- quoteTC res
+    unify hole res-quoted
+
+------------------------------------------
+-- projects
+
+TypeMap : 𝒰₁
+TypeMap = List (𝒰₀ ×-𝒰 𝒰₀ ×-𝒰 Text)
+
+record isProjectType (A : 𝒰₀) : 𝒰₁ where
+  field
+    SingleFile : 𝒰₀
+    IdentMapping : TypeMap -> 𝒰₀
+    generateProjectFile : (TM : TypeMap) -> SingleFile -> (AAbs , Mod)-Path -> (Text ×-𝒰 IdentMapping TM)
+    projectFilePath : A -> (AAbs , Mod)-Path -> (AAbs , File)-Path
+
+open isProjectType public
+
+generateFile : (TM : TypeMap) -> {A : 𝒰₀} {{AP : isProjectType A}} -> (a : A) -> SingleFile AP -> (AAbs , Mod)-Path -> TC (IdentMapping AP TM)
+generateFile TM {{AP}} a file path = do
+  let txt , map = generateProjectFile AP TM file path
+  let path-file = projectFilePath AP a path
+  --- write to file
+  return map
 
 ---------------------------------------------------------------------
 -- Next steps:

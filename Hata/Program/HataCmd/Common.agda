@@ -35,18 +35,18 @@ macro
   getTName _ _ = typeError (strErr "this is not a name." ∷ [])
 
 macro
-  #reflect : Term -> Term → TC 𝟙-𝒰
-  #reflect (def n args) hole = do
+  #register-function : Term -> Term → TC 𝟙-𝒰
+  #register-function (def n args) hole = do
     call-hatacmd ("edittime:register-function" ∷ "--name" ∷ (primShowQName n) ∷ [])
     unify hole (lit (string "text"))
-  #reflect _ _ = typeError (strErr "this is not a name." ∷ [])
+  #register-function _ _ = typeError (strErr "this is not a name." ∷ [])
 
 macro
-  #call : Term -> Term → TC 𝟙-𝒰
-  #call (def n args) hole = do
+  #execute-function : Term -> Term → TC 𝟙-𝒰
+  #execute-function (def n args) hole = do
     call-hatacmd ("edittime:execute-function" ∷ "--name" ∷ (primShowQName n) ∷ [])
     unify hole (lit (string "text"))
-  #call _ _ = typeError (strErr "this is not a name." ∷ [])
+  #execute-function _ _ = typeError (strErr "this is not a name." ∷ [])
 
 
 macro
@@ -56,7 +56,7 @@ macro
     unify hole (lit (string mytext))
 
 ---------------------------
--- new reflection
+-- new register-functionion
 
 
 -- bla = echo "hello! this or"
@@ -68,5 +68,5 @@ macro
 -- myfuntocall = putStrLn "now the text changes!"
 
 
--- _ = #reflect myfuntocall
--- _ = #call myfuntocall
+-- _ = #register-function myfuntocall
+-- _ = #execute-function myfuntocall
