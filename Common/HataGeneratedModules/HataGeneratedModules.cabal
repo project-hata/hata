@@ -25,7 +25,6 @@ source-repository head
 
 library
   exposed-modules:
-      HataGeneratedModules.Test
       HataGeneratedModules.Types.Verification.Impure.Program.MetaBuilder.Configuration.Project
   other-modules:
       Paths_HataGeneratedModules

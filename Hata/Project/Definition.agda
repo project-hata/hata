@@ -6,6 +6,7 @@ open import Hata.Reflection.Definition
 open import Hata.Abstract.Path.Definition
 
 
+
 ------------------------------------------
 
 record RustProjectDefinition : 𝒰₀ where
@@ -57,13 +58,7 @@ makeAgdaBindings : ∀{TM} -> HaskellAgdaMapping TM -> TC 𝟙-𝒰
 makeAgdaBindings mapping = return tt
 
 
-_ = # do
-  let RP = #reflect RustProjectDefinition
-  let P = #reflect ProjectDefinition
-  mapping <- generateFile HaskellTypeMap HSI {!!} (:: / "HataSystemInterface" / "Project")
-
-  makeAgdaBindings mapping
-
+record HataProject : 𝒰₀ where
 
 
 ------------------------------------------

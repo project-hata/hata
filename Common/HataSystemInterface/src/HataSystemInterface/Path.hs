@@ -3,7 +3,7 @@ module HataSystemInterface.Path
   (
     findProjectRootFile
   , findProjectRootDir
-  , path_HataGeneratedModules_src
+  -- , path_HataGeneratedModules_src
   )
   where
 
@@ -18,7 +18,7 @@ import HataSystemInterface.Exception
 -- Finding the root file
 
 filterRoot :: FilePath -> Bool
-filterRoot file = takeExtension file == ".metabuild-root"
+filterRoot file = snd (splitExtensions file) == ".hata-sln.yaml"
 
 findProjectRootFile_impl :: FilePath -> IO FilePath
 findProjectRootFile_impl cur_dir = do
@@ -39,12 +39,12 @@ findProjectRootFile = do
 findProjectRootDir :: IO FilePath
 findProjectRootDir = takeDirectory <$> findProjectRootFile
 
----------------------------------------------------------------
--- path constants
+-- ---------------------------------------------------------------
+-- -- path constants
 
-path_HataGeneratedModules_src :: IO FilePath
-path_HataGeneratedModules_src = do
-  root <- findProjectRootDir
-  return (root </> "Common" </> "HataGeneratedModules" </> "src")
+-- path_HataGeneratedModules_src :: IO FilePath
+-- path_HataGeneratedModules_src = do
+--   root <- findProjectRootDir
+--   return (root </> "Common" </> "HataGeneratedModules" </> "src")
 
 
