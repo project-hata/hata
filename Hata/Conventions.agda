@@ -3,7 +3,7 @@ module Hata.Conventions where
 
 open import Verification.Conventions
   hiding (Path)
-  renaming (_×-𝒰_ to _×_)
+  renaming (_×-𝒰_ to _×_ ; ⊥-𝒰 to ⊥ ; ⊤-𝒰 to ⊤)
   public
 open import Hata.Builtin public
 open import Agda.Builtin.Char public

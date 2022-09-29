@@ -55,6 +55,12 @@ macro
     call-echo mytext
     unify hole (lit (string mytext))
 
+macro
+  #echo-term : (a : Term) -> (t : Term) -> TC 𝟙-𝒰
+  #echo-term a hole = do
+    call-echo (show a)
+    unify hole (lit (string ""))
+
 ---------------------------
 -- new register-functionion
 
