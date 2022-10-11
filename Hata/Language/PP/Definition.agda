@@ -44,9 +44,5 @@ Y : FILE S (con Empty)
 Y = con tt
 
 
--- X = PP S
-
-
-
 
 
