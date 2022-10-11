@@ -161,7 +161,7 @@ record isSubsetoid {𝑗 : 𝔏 ^ 2} {X : 𝒰' _} {{_ : Setoid 𝑗 on X}} (P :
 open isSubsetoid {{...}} public
 
 Subsetoid : {𝑗 : 𝔏 ^ 2} (X : Setoid 𝑗) -> 𝒰 _
-Subsetoid X = 𝒫 ⟨ X ⟩ :& isSubsetoid
+Subsetoid X = 𝒫-𝒰 ⟨ X ⟩ :& isSubsetoid
 
 
 ---------------------------------------------------------------

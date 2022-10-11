@@ -8,26 +8,19 @@ open import Verification.Core.Setoid.Definition
 open import Verification.Core.Setoid.Instance.Category
 
 
-record PowerSetoid (A : 𝐒𝐭𝐝 𝑖) : 𝒰 (𝑖 ⁺) where
-  field El : Subsetoid A
+-- record PowerSetoid (A : 𝐒𝐭𝐝 𝑖) : 𝒰 (𝑖 ⁺) where
+--   field El : Subsetoid A
+
+PowerSetoid = Subsetoid
 
 module _ (A : 𝐒𝐭𝐝 𝑖) where
   macro
     𝒫-𝐒𝐭𝐝 = #structureOn (PowerSetoid A)
 
+instance
+  hasPower:𝐒𝐭𝐝 : hasPower (𝐒𝐭𝐝 𝑖) (𝒰 (fst 𝑖 ⁺ ⊔ snd 𝑖))
+  hasPower:𝐒𝐭𝐝 = record { 𝒫ᵘ = Subsetoid }
 
-module _ {A : 𝐒𝐭𝐝 𝑖} where
-
-  data _∼-𝒫-𝐒𝐭𝐝_ : (a b : 𝒫-𝐒𝐭𝐝 A) -> 𝒰 (𝑖 ⁺) where
-    -- incl : ∀
-
-
-  instance
-    isSetoid:PowerSetoid : isSetoid (𝒫-𝐒𝐭𝐝 A)
-    isSetoid:PowerSetoid = isSetoid:byDef _∼-𝒫-𝐒𝐭𝐝_ {!!} {!!} {!!}
-
--- 𝒫-𝐒𝐭𝐝 : ∀ 𝑗 -> 𝐒𝐭𝐝 𝑖 -> 𝐒𝐭𝐝 _
--- 𝒫-𝐒𝐭𝐝 𝑗 A = {!𝒫 ⟨ !}
 
 
 

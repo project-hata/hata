@@ -12,10 +12,14 @@ record INotation:DirectSum (A : 𝒰 𝑖) : (𝒰 𝑖) where
   field _⊕_ : A -> A -> A
 open INotation:DirectSum {{...}} public
 
+{-
+
 record INotation:Union (A : 𝒰 𝑖) : 𝒰 𝑖 where
   field _∪_ : A -> A -> A
         ∅ : A
 open INotation:Union {{...}} public
+
+-}
 
 --------------------------------------------------------------------
 -- Restriction
