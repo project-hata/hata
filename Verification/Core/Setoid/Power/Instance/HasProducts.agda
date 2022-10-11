@@ -60,6 +60,10 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
     hasProducts:𝒫-𝐒𝐭𝐝 : hasProducts (𝒫 A)
     hasProducts:𝒫-𝐒𝐭𝐝 = record { _⊓_ = _ }
 
+  instance
+    hasFiniteProducts:𝒫-𝐒𝐭𝐝 : hasFiniteProducts (𝒫 A)
+    hasFiniteProducts:𝒫-𝐒𝐭𝐝 = hasFiniteProducts:default
+
 ----------------------------------------------------------
 -- Indexed products
 ----------------------------------------------------------
@@ -83,11 +87,15 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
       isIndexedProduct.reduce-πᵢ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 = λ f i → tt
       isIndexedProduct.expand-πᵢ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 = λ f → tt
 
-  module _ {I : 𝒰₀} where
-    instance
-      hasIndexedProducts:𝒫-𝐒𝐭𝐝 : hasIndexedProducts I (𝒫 A)
-      hasIndexedProducts.⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = ⋂-𝒫-𝐒𝐭𝐝
-      hasIndexedProducts.isIndexedProduct:⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = it
+  -- module _ {I : 𝒰₀} where
+  --   instance
+  --     hasIndexedProducts:𝒫-𝐒𝐭𝐝 : hasIndexedProducts I (𝒫 A)
+  --     hasIndexedProducts.⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = ⋂-𝒫-𝐒𝐭𝐝
+  --     hasIndexedProducts.isIndexedProduct:⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = it
+  instance
+    hasAllIndexedProducts:𝒫-𝐒𝐭𝐝 : hasAllIndexedProducts ℓ₀ (𝒫 A)
+    hasAllIndexedProducts.⨅ᵢ hasAllIndexedProducts:𝒫-𝐒𝐭𝐝 = ⋂-𝒫-𝐒𝐭𝐝
+    hasAllIndexedProducts.isIndexedProduct:⨅ᵢ hasAllIndexedProducts:𝒫-𝐒𝐭𝐝 = it
 
 
 

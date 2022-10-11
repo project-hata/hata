@@ -157,6 +157,23 @@ module _ {𝒞 : 𝒰 𝑗} {{_ : isCategory {𝑖} 𝒞}} where
   data isId : ∀{a b : 𝒞} (f : a ⟶ b) -> 𝒰 (𝑖 ､ 𝑗) where
     incl : ∀{a : 𝒞} {f : a ⟶ a} -> f ∼ id -> isId {a} {a} f
 
+
+
+module _ {𝒞 : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞}} where
+  _⟨_⟩-Hom_ : (x : 𝒞) {y : 𝒞} {z : 𝒞} → x ⟶ y → y ⟶ z → x ⟶ z
+  _ ⟨ f ⟩-Hom g = f ◆ g
+
+  ⟨⟩-Hom-syntax : (x : 𝒞) {y z : 𝒞} → x ⟶ y → y ⟶ z → x ⟶ z
+  ⟨⟩-Hom-syntax = _⟨_⟩-Hom_
+  infixr 2 ⟨⟩-Hom-syntax
+  infixr 2 _⟨_⟩-Hom_
+
+  infix  3 _∎-Hom
+
+  _∎-Hom : (x : 𝒞) → x ⟶ x
+  _ ∎-Hom = id
+
+
 -- //
 
 

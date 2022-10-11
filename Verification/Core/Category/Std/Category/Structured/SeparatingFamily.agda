@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Structured.SeparatingFamily where
 
 open import Verification.Conventions
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 
 

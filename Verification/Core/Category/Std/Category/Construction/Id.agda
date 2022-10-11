@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Construction.Id where
 
 open import Verification.Conventions
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Product.Definition
 -- open import Verification.Core.Data.Fin.Definition
 -- open import Verification.Core.Algebra.Monoid.Definition

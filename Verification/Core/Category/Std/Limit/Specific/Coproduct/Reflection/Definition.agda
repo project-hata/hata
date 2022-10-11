@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Limit.Specific.Coproduct.Reflection.Defini
 
 open import Verification.Conventions hiding (_⊔_)
 
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.Category.Definition

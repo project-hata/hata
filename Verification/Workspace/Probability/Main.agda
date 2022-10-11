@@ -9,6 +9,9 @@ open import Verification.Conventions
 --
 -- Constructively, the power set is completely distributive in only one direction.
 -- I.e., we have ⋀ (A_i ∨ B) ∼ ⋀ A_i ∨ B
+--
+-- see in Verification.Core.Setoid.Power.Instance.IsDistributive
+--
 
 
 

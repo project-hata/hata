@@ -21,13 +21,13 @@ Group : (𝑗 : 𝔏 ^ 2) -> 𝒰 _
 Group 𝑗 = Monoid 𝑗 :& isGroup
 
 
-record isSubgroup {𝑗 : 𝔏 ^ 2} {A} {{_ : Group 𝑗 on A}} (P : 𝒫 A :& isSubsetoid :& isSubmonoid) : 𝒰 𝑗 where
+record isSubgroup {𝑗 : 𝔏 ^ 2} {A} {{_ : Group 𝑗 on A}} (P : 𝒫-𝒰 A :& isSubsetoid :& isSubmonoid) : 𝒰 𝑗 where
   field closed-◡ : ∀{a} -> ⟨ ⟨ P ⟩ a ⟩ -> ⟨ ⟨ P ⟩ (◡ a) ⟩
 open isSubgroup {{...}} public
 
 
 Subgroup : (G : Group 𝑗) -> 𝒰 _
-Subgroup G = 𝒫 ⟨ G ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup
+Subgroup G = 𝒫-𝒰 ⟨ G ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup
 
 
 data RelSubgroup {𝑗 : 𝔏 ^ 2} {G : Group 𝑗} (H : Subgroup G) (a : ⟨ G ⟩) (b : ⟨ G ⟩) : 𝒰 (𝑗 ⌄ 0) where

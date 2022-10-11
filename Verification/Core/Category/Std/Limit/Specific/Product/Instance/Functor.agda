@@ -3,7 +3,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Product.Instance.Functor where
 
 open import Verification.Conventions
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.Category.Definition
@@ -44,7 +44,7 @@ module _ {𝒞 : 𝒰 _} {{_ : FiniteProductCategory 𝑖 on 𝒞}} where
         idab = id
 
         P = ⧼ π₀ ◆ ida , π₁ ◆ idb ⧽    ⟨ cong-∼ (unit-r-◆ ∙ unit-l-◆ ⁻¹ , unit-r-◆ ∙ unit-l-◆ ⁻¹) ⟩-∼
-            ⧼ idab ◆ π₀ , idab ◆ π₁ ⧽  ⟨ expand-⊓ ⁻¹ ⟩-∼
+            ⧼ idab ◆ π₀ , idab ◆ π₁ ⧽  ⟨ expand-π₀,π₁ ⁻¹ ⟩-∼
             idab                       ∎
 
   isFunctor:⊓ : isFunctor (𝒞' ×-𝐂𝐚𝐭 𝒞') 𝒞' ⊓⃨

@@ -61,6 +61,10 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
     hasCoproducts:𝒫-𝐒𝐭𝐝 : hasCoproducts (𝒫 A)
     hasCoproducts:𝒫-𝐒𝐭𝐝 = record { _⊔_ = _ }
 
+  instance
+    hasFiniteCoproducts:𝒫-𝐒𝐭𝐝 : hasFiniteCoproducts (𝒫 A)
+    hasFiniteCoproducts:𝒫-𝐒𝐭𝐝 = hasFiniteCoproducts:default
+
 ----------------------------------------------------------
 -- Indexed products
 ----------------------------------------------------------
@@ -85,9 +89,14 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
       isIndexedCoproduct.expand-ιᵢ isIndexedCoproduct:⋃-𝒫-𝐒𝐭𝐝 = λ f → tt
 
   module _ {I : 𝒰₀} where
-    instance
-      hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 : hasIndexedCoproducts I (𝒫 A)
-      hasIndexedCoproducts.⨆ᵢ hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 = ⋃-𝒫-𝐒𝐭𝐝
-      hasIndexedCoproducts.isIndexedCoproduct:⨆ᵢ hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 = it
+    -- instance
+    --   hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 : hasIndexedCoproducts I (𝒫 A)
+    --   hasIndexedCoproducts.⨆ᵢ hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 = ⋃-𝒫-𝐒𝐭𝐝
+    --   hasIndexedCoproducts.isIndexedCoproduct:⨆ᵢ hasIndexedCoproducts:𝒫-𝐒𝐭𝐝 = it
+
+  instance
+    hasAllIndexedCoproducts:𝒫-𝐒𝐭𝐝 : hasAllIndexedCoproducts ℓ₀ (𝒫 A)
+    hasAllIndexedCoproducts.⨆ᵢ hasAllIndexedCoproducts:𝒫-𝐒𝐭𝐝 = ⋃-𝒫-𝐒𝐭𝐝
+    hasAllIndexedCoproducts.isIndexedCoproduct:⨆ᵢ hasAllIndexedCoproducts:𝒫-𝐒𝐭𝐝 = it
 
 

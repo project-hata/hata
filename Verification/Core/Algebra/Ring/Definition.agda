@@ -112,7 +112,7 @@ module _ {𝑗 : 𝔏 ^ 2} {R : 𝒰 _} {{_ : CRing 𝑗 on R}} where
 
 
 -- record isIdeal {A} {{_ : Ring 𝑗 on A}} (P : 𝒫 A :& isSubsetoid :& isSubmonoid :& isSubgroup :& isSubabelian {A = ′ A ′}) : 𝒰 𝑗 where
-record isIdeal {𝑗 : 𝔏 ^ 2} {A : Ring 𝑗} (P : 𝒫 ⟨ A ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup :& isSubabelian {A = ′ ⟨ A ⟩ ′}) : 𝒰 𝑗 where
+record isIdeal {𝑗 : 𝔏 ^ 2} {A : Ring 𝑗} (P : 𝒫-𝒰 ⟨ A ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup :& isSubabelian {A = ′ ⟨ A ⟩ ′}) : 𝒰 𝑗 where
   field ideal-l-⋅ : ∀{a b} -> ⟨ ⟨ P ⟩ b ⟩ -> ⟨ ⟨ P ⟩ (a ⋅ b) ⟩
         ideal-r-⋅ : ∀{a b} -> ⟨ ⟨ P ⟩ a ⟩ -> ⟨ ⟨ P ⟩ (a ⋅ b) ⟩
 open isIdeal {{...}} public

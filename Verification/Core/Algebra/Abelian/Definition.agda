@@ -18,8 +18,8 @@ Abelian 𝑗 = Monoid 𝑗 :& (isGroup :, isCommutative)
 -- Subabelian : (A : Abelian 𝑗) -> 𝒰 _
 -- Subabelian A = Subgroup ′ ⟨ A ⟩ ′
 
--- record isSubabelian {A} {{_ : Abelian 𝑗 on A}} (P : 𝒫 A :& isSubsetoid :& isSubmonoid :& isSubgroup) : 𝒰 𝑗 where
-record isSubabelian {𝑗 : 𝔏 ^ 2} {A : Abelian 𝑗} (P : 𝒫 ⟨ A ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup) : 𝒰 𝑗 where
+-- record isSubabelian {A} {{_ : Abelian 𝑗 on A}} (P : 𝒫-𝒰 A :& isSubsetoid :& isSubmonoid :& isSubgroup) : 𝒰 𝑗 where
+record isSubabelian {𝑗 : 𝔏 ^ 2} {A : Abelian 𝑗} (P : 𝒫-𝒰 ⟨ A ⟩ :& isSubsetoid :& isSubmonoid :& isSubgroup) : 𝒰 𝑗 where
 open isSubabelian {{...}} public
 
 

@@ -20,6 +20,9 @@ module _ {𝑖 : 𝔏 ^ 2} where
 
   open isOrderedRing {{...}} public
 
+module _ (𝑖 : 𝔏 ^ 3) where
+  OrderedRing = Ring (𝑖 ⌄ 0 ⋯ 1) :& isOrderedRing (𝑖 ⌄ 2)
+
 
 module _ {𝑖 : 𝔏 ^ 2} {𝑗 : 𝔏} where
   module _ {R : 𝒰 _} {_ : Ring 𝑖 on R} {{_ : isOrderedRing 𝑗 ′ R ′}} where

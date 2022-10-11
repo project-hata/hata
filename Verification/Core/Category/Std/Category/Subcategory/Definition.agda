@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.Subcategory.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Category.Std.Category.Definition
