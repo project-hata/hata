@@ -15,9 +15,9 @@ open import Verification.Core.Category.Std.Limit.Specific.Product
 open import Verification.Core.Category.Std.Limit.Specific.Product.Instance.Functor
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Functor.Constant
-open import Verification.Core.Set.Setoid.As.Category
-open import Verification.Core.Set.Setoid.Discrete
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.As.Category
+open import Verification.Core.Setoid.Discrete
+open import Verification.Core.Setoid.Definition
 
 open import Verification.Core.Category.Std.Monad.Definition
 open import Verification.Core.Category.Std.Monad.Instance.LargeCategory

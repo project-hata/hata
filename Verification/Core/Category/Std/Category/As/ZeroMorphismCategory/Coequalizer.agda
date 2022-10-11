@@ -5,7 +5,7 @@ module Verification.Core.Category.Std.Category.As.ZeroMorphismCategory.Coequaliz
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Lattice

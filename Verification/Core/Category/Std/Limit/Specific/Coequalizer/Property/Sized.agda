@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Coequalizer.Property.Sized where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Sized.Definition
 open import Verification.Core.Category.Std.Functor.Definition

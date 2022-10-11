@@ -3,8 +3,8 @@ module Verification.Core.Category.Std.RelativeMonad.KleisliCategory.Instance.Iso
 
 open import Verification.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid
-open import Verification.Core.Set.Setoid.Morphism
+open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Morphism
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition

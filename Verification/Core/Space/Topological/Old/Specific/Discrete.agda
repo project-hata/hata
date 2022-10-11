@@ -2,7 +2,7 @@
 module Verification.Core.Space.Topological.Specific.Discrete where
 
 open import Verification.Conventions hiding (Discrete ; ∅ ; Bool ; _and_)
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Set.Decidable
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Data.Universe.Definition

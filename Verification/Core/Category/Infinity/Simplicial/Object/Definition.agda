@@ -5,8 +5,8 @@ open import Verification.Conventions
 
 open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Set.Finite.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Totalorder

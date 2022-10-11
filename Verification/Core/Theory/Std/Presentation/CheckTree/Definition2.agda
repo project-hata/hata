@@ -3,7 +3,7 @@ module Verification.Core.Theory.Std.Presentation.CheckTree.Definition2 where
 
 open import Verification.Conventions
 open import Verification.Core.Set.Function.Surjective
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Set.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Algebra.Monoid.Definition

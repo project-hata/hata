@@ -3,7 +3,7 @@ module Verification.Core.Data.Indexed.Xiix where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Set.Definition
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Set.Set.Instance.Category

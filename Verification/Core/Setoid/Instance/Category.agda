@@ -1,9 +1,9 @@
 
-module Verification.Core.Set.Setoid.Instance.Category where
+module Verification.Core.Setoid.Instance.Category where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Category.Std.Category.Definition
 

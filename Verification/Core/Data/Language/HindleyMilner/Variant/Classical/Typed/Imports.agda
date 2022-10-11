@@ -3,7 +3,7 @@ module Verification.Core.Data.Language.HindleyMilner.Variant.Classical.Typed.Imp
 
 -------------
 -- Classes
-open import Verification.Core.Set.Setoid.Definition public
+open import Verification.Core.Setoid.Definition public
 open import Verification.Core.Order.Preorder public
 open import Verification.Core.Set.Discrete public
 open import Verification.Core.Algebra.Monoid.Definition public

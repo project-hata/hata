@@ -3,7 +3,7 @@ module Verification.Core.Data.Sum.Instance.Monad where
 
 open import Verification.Conventions
 open import Verification.Core.Set.Function.Injective
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.Category.Definition

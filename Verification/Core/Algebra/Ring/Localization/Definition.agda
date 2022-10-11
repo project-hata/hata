@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Ring.Localization.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Everything
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Algebra.Group.Definition

@@ -5,7 +5,7 @@ open import Verification.Core.Conventions
 open import Verification.Core.Data.Prop.Everything
 open import Verification.Core.Data.Int.Definition
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid
 open import Verification.Core.Algebra.Group
 open import Verification.Core.Algebra.Ring

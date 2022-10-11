@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Graph.Definition where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 
 open import Verification.Conventions.Meta.Term
 

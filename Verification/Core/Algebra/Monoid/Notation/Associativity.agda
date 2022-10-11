@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Monoid.Notation.Associativity where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 
 

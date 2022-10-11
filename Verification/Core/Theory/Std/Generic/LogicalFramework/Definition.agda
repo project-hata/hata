@@ -6,7 +6,7 @@ open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Category.Subcategory.Full2
 -- open import Verification.Core.Category.Std.Graph.Definition
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 -- open import Verification.Core.Set.Discrete
 -- open import Verification.Core.Set.Decidable
 open import Verification.Core.Data.Universe.Definition

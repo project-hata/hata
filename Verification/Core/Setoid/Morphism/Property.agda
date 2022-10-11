@@ -1,11 +1,11 @@
 
-module Verification.Core.Set.Setoid.Morphism.Property where
+module Verification.Core.Setoid.Morphism.Property where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Morphism.Iso.Definition
 open import Verification.Core.Category.Std.Category.Definition
-open import Verification.Core.Set.Setoid.Morphism.Injective
+open import Verification.Core.Setoid.Morphism.Injective
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 

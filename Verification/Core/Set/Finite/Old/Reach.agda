@@ -3,7 +3,7 @@ module Verification.Core.Set.Finite.Old.Reach where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Data.Prop.Everything
 open import Verification.Core.Data.Universe.Definition

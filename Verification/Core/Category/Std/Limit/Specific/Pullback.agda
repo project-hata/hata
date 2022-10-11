@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Pullback where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 
 

@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.Instance.ProductMonoid where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Lift.Definition

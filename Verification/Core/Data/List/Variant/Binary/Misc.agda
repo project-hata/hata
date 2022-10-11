@@ -4,8 +4,8 @@ module Verification.Core.Data.List.Variant.Binary.Misc where
 open import Verification.Core.Conventions hiding (ℕ)
 
 open import Verification.Core.Set.Decidable
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Free
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Free
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Algebra.Monoid.Definition
 

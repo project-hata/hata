@@ -3,7 +3,7 @@ module Verification.Core.Space.Affine.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Algebra.Monoid.Instance.Category

@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.Subcategory.Full.Construction.Cop
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition

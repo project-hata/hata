@@ -2,10 +2,10 @@
 module Verification.Core.Data.List.Variant.Binary.Instance.Category where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Free
-open import Verification.Core.Set.Setoid.As.Category
-open import Verification.Core.Set.Setoid.As.Groupoid
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Free
+open import Verification.Core.Setoid.As.Category
+open import Verification.Core.Setoid.As.Groupoid
 -- open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Category.Std.Category.Definition

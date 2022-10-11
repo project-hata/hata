@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.RelativeMonad.KleisliCategory.Definition w
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Functor.Instance.Category

@@ -1,5 +1,5 @@
 
-module Verification.Core.Set.Setoid.Definition where
+module Verification.Core.Setoid.Definition where
 
 open import Verification.Core.Conventions
 open import Verification.Core.Data.Prop.Definition

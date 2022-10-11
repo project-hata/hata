@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Coproduct.Properties.Monoidal where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 -- open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.AllOf.Collection.Basics

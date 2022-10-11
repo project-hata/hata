@@ -2,7 +2,7 @@
 module Verification.Core.Set.Discrete where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Everything
 
 

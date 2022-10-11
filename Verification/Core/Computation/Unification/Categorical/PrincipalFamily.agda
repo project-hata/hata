@@ -3,7 +3,7 @@ module Verification.Core.Computation.Unification.Categorical.PrincipalFamily whe
 
 open import Verification.Conventions
 open import Verification.Core.Set.Induction.WellFounded
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 open import Verification.Core.Order.Preorder

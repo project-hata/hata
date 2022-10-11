@@ -3,14 +3,14 @@ module Verification.Core.Category.Std.Functor.Equivalence.ToFFEso where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Notation.Associativity
 open import Verification.Core.Category.Std.Category.Instance.Category
 open import Verification.Core.Category.Std.Morphism.Iso
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Functor.Instance.Category
-open import Verification.Core.Set.Setoid.Morphism
+open import Verification.Core.Setoid.Morphism
 open import Verification.Core.Category.Std.Functor.Image
 open import Verification.Core.Category.Std.Functor.EssentiallySurjective
 open import Verification.Core.Category.Std.Functor.Faithful

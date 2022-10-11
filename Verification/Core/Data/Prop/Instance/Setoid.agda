@@ -3,7 +3,7 @@ module Verification.Core.Data.Prop.Instance.Setoid where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.Universe.Definition
 

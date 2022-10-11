@@ -3,9 +3,9 @@ module Verification.Core.Data.NormalFiniteIndexed.Definition where
 
 open import Verification.Core.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Set.Definition
-open import Verification.Core.Set.Setoid.Free
+open import Verification.Core.Setoid.Free
 open import Verification.Core.Set.Function.Injective
 open import Verification.Core.Set.Contradiction
 -- open import Verification.Core.Set.Set.Instance.Category

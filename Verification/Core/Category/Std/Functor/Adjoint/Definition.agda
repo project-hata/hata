@@ -3,8 +3,8 @@ module Verification.Core.Category.Std.Functor.Adjoint.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Morphism
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Morphism
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Instance.Category
 open import Verification.Core.Category.Std.Functor.Definition

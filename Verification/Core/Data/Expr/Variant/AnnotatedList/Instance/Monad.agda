@@ -5,8 +5,8 @@ open import Verification.Conventions hiding (ℕ)
 
 open import Verification.Core.Algebra.Pointed.Definition
 open import Verification.Core.Data.Nat.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Data.AllOf.Product
 open import Verification.Core.Data.AllOf.Sum
 open import Verification.Core.Data.Expr.Variant.Base.Definition
@@ -20,9 +20,9 @@ open import Verification.Core.Category.Std.Limit.Specific.Product
 open import Verification.Core.Category.Std.Limit.Specific.Product.Instance.Functor
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Functor.Constant
-open import Verification.Core.Set.Setoid.As.Category
-open import Verification.Core.Set.Setoid.Discrete
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.As.Category
+open import Verification.Core.Setoid.Discrete
+open import Verification.Core.Setoid.Definition
 
 open import Verification.Core.Category.Std.Monad.Definition
 open import Verification.Core.Category.Std.Monad.Instance.Category

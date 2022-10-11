@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Torsor.Definition where
 
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Everything
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Algebra.MonoidAction.Definition
 open import Verification.Core.Algebra.MonoidAction.Instance.Category

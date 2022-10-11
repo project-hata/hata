@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Construction.BaseChange where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Lift.Definition

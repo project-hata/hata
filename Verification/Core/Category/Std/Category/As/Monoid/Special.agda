@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.As.Monoid.Special where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Lattice

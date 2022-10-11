@@ -3,7 +3,7 @@
 module Verification.Core.Theory.Computation.Problem.Definition5 where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 open import Verification.Core.Data.Prop.Everything

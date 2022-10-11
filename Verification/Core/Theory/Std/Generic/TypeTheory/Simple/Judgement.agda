@@ -2,7 +2,7 @@
 module Verification.Core.Theory.Std.Generic.TypeTheory.Simple.Judgement where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Data.Universe.Definition

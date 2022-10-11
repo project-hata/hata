@@ -2,7 +2,7 @@
 module Verification.Core.Order.HeytingAlgebra where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Lattice
 

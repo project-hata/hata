@@ -3,7 +3,7 @@ module Verification.Core.Category.Double.Category.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 
 record isDoubleCategory {𝑗} {𝑘} {𝑖} (𝒞 : Category 𝑖) : 𝒰 (𝑖 ､ (𝑗 ⁺) ､ (𝑘 ⁺)) where

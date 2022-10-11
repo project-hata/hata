@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Pointed.Definition where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Definition
 
 record isPointed (X : 𝒰 𝑖) : 𝒰 𝑖 where

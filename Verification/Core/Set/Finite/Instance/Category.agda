@@ -7,7 +7,7 @@ open import Verification.Conventions
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Subcategory.Full2
 open import Verification.Core.Data.Fin.Definition
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Data.Prop.Everything

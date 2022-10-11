@@ -1,11 +1,11 @@
 
-module Verification.Core.Set.Setoid.Power.Definition where
+module Verification.Core.Setoid.Power.Definition where
 
 open import Verification.Core.Conventions
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 
 
 record PowerSetoid (A : 𝐒𝐭𝐝 𝑖) : 𝒰 (𝑖 ⁺) where

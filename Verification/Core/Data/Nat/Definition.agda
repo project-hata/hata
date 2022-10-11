@@ -3,7 +3,7 @@ module Verification.Core.Data.Nat.Definition where
 
 open import Verification.Core.Conventions renaming (ℕ to Nat)
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Set.Discrete
 
 ℕᵘ = Nat

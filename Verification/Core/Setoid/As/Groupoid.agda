@@ -1,14 +1,14 @@
 
-module Verification.Core.Set.Setoid.As.Groupoid where
+module Verification.Core.Setoid.As.Groupoid where
 
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Definition
 -- open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Codiscrete
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Codiscrete
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Groupoid.Definition
-open import Verification.Core.Set.Setoid.As.Category
+open import Verification.Core.Setoid.As.Category
 open import Verification.Core.Category.Std.Morphism.Iso
 
 -- NOTE:

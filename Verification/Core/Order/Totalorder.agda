@@ -6,7 +6,7 @@ open import Verification.Conventions
 -- open import Verification.Core.Category.Instance.Set.Definition
 -- open import Verification.Core.Type
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 
 open import Verification.Core.Order.Preorder
 

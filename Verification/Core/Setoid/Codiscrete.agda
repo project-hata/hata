@@ -1,10 +1,10 @@
 
-module Verification.Core.Set.Setoid.Codiscrete where
+module Verification.Core.Setoid.Codiscrete where
 
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Definition
 -- open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 -- open import Verification.Core.Category.Std.Category.Definition
 
 

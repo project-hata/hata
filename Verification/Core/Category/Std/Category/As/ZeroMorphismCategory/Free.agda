@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.As.ZeroMorphismCategory.Free wher
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Order.Lattice
 open import Verification.Core.Order.WellFounded.Definition

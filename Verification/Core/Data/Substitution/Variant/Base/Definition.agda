@@ -3,12 +3,12 @@ module Verification.Core.Data.Substitution.Variant.Base.Definition where
 
 open import Verification.Core.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Set.Set.Definition
 open import Verification.Core.Set.Function.Injective
-open import Verification.Core.Set.Setoid.Morphism
-open import Verification.Core.Set.Setoid.Morphism.Property
+open import Verification.Core.Setoid.Morphism
+open import Verification.Core.Setoid.Morphism.Property
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Set.Function.Property
 open import Verification.Core.Category.Std.Category.Definition

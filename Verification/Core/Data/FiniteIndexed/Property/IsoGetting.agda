@@ -3,7 +3,7 @@ module Verification.Core.Data.FiniteIndexed.Property.IsoGetting where
 
 open import Verification.Core.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Set.Definition
 
 open import Verification.Core.Category.Std.Morphism.Iso

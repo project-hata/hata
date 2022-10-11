@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Monad.KleisliCategory.Instance.Monoidal wh
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Category.Std.Category.Definition

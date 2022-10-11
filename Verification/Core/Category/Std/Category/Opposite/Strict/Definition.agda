@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Category.Opposite.Strict.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 
 

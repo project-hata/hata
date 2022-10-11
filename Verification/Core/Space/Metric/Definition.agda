@@ -8,7 +8,7 @@ open import Verification.Core.Data.Rational.Definition
 open import Verification.Core.Data.Rational.Inclusion
 open import Verification.Core.Data.Real.Cauchy.Definition
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid
 open import Verification.Core.Algebra.Group
 open import Verification.Core.Algebra.Ring

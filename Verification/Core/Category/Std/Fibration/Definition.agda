@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Fibration.Definition where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Set.Definition
 open import Verification.Core.Set.Set.Instance.Category
 open import Verification.Core.Category.Std.Category.Definition

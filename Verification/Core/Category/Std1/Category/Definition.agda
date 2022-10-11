@@ -4,7 +4,7 @@
 module Verification.Core.Category.Std1.Category.Definition where
 
 open import Verification.Conventions
--- open import Verification.Core.Set.Setoid
+-- open import Verification.Core.Setoid
 
 
 record CategoryType (𝑖 : 𝔏 ^ 3) : 𝒰 (𝑖 ⁺) where

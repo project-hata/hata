@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Group.Definition where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Everything
 open import Verification.Core.Algebra.Monoid.Definition
 

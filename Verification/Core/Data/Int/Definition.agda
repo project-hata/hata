@@ -3,7 +3,7 @@ module Verification.Core.Data.Int.Definition where
 
 open import Verification.Core.Conventions hiding (ℕ)
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid
 open import Verification.Core.Algebra.Group
 open import Verification.Core.Algebra.Ring

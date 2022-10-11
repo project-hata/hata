@@ -4,8 +4,8 @@ module Verification.Core.Data.Expr.Variant.AnnotatedToken.Instance.Infer where
 open import Verification.Conventions hiding (ℕ)
 
 open import Verification.Core.Data.Nat.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 
 open import Verification.Core.Algebra.AllOf.Pointed
 
@@ -29,9 +29,9 @@ open import Verification.Core.Category.Std.AllOf.Collection.Limits
 -- open import Verification.Core.Category.Std.Functor.Definition
 -- open import Verification.Core.Category.Std.Functor.Constant
 -- open import Verification.Core.Category.Std.Morphism.Iso
-open import Verification.Core.Set.Setoid.As.Category
-open import Verification.Core.Set.Setoid.Discrete
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.As.Category
+open import Verification.Core.Setoid.Discrete
+open import Verification.Core.Setoid.Definition
 
 open import Verification.Core.Category.Std.Monad.Definition
 open import Verification.Core.Category.Std.Monad.Instance.Category

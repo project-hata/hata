@@ -2,8 +2,8 @@
 module Verification.Core.Algebra.Monoid.Instance.Category where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 

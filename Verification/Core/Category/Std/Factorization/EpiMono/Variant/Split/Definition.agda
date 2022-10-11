@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Factorization.EpiMono.Variant.Split.Defini
 
 open import Verification.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.AllOf.Collection.Basics
 open import Verification.Core.Category.Std.AllOf.Collection.Limits
 open import Verification.Core.Category.Std.Morphism.Epi.Definition

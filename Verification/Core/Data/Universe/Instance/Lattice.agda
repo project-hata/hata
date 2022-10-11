@@ -3,7 +3,7 @@ module Verification.Core.Data.Universe.Instance.Lattice where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Lattice
 open import Verification.Core.Data.Sum.Definition

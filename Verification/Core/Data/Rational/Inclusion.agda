@@ -9,7 +9,7 @@ open import Verification.Core.Data.Rational.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid
 open import Verification.Core.Algebra.Group
 open import Verification.Core.Algebra.Ring

@@ -4,8 +4,8 @@ module Verification.Core.Algebra.Module.Definition where
 open import Verification.Conventions
 
 open import Verification.Core.Data.Prop.Everything
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Free
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Free
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Algebra.Group.Definition
 open import Verification.Core.Algebra.Abelian.Definition

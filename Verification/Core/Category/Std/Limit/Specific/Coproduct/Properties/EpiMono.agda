@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Coproduct.Properties.EpiMono where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 -- open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Sum.Definition

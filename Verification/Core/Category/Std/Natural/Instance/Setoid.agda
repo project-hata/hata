@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Natural.Instance.Setoid where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Natural.Definition

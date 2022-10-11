@@ -3,8 +3,8 @@ module Verification.Core.Theory.Presentation.Signature.SingleSorted.Instance.Mon
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Monad.Definition

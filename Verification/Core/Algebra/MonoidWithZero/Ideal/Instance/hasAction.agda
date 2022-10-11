@@ -3,8 +3,8 @@ module Verification.Core.Algebra.MonoidWithZero.Ideal.Instance.hasAction where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Subsetoid
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Subsetoid
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Lattice
 open import Verification.Core.Data.Prop.Everything

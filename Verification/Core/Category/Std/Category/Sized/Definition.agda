@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Sized.Definition where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Set.Decidable
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Category.Std.Category.Definition

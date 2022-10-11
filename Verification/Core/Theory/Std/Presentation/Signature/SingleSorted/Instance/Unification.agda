@@ -5,8 +5,8 @@ open import Verification.Conventions
 
 open import Verification.Core.Data.Nat.Definition
 open import Verification.Core.Data.Fin.Definition
-open import Verification.Core.Set.Setoid
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Set.Decidable
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Category.Std.Category.Definition

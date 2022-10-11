@@ -3,7 +3,7 @@ module Verification.Core.Data.Universe.Instance.Setoid where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category using (isSetoid:𝒰) public
 

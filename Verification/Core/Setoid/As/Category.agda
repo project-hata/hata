@@ -1,11 +1,11 @@
 
-module Verification.Core.Set.Setoid.As.Category where
+module Verification.Core.Setoid.As.Category where
 
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Definition
 -- open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Discrete
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Discrete
 open import Verification.Core.Category.Std.Category.Definition
 
 -- NOTE:

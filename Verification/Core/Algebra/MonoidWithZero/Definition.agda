@@ -4,7 +4,7 @@ module Verification.Core.Algebra.MonoidWithZero.Definition where
 open import Verification.Conventions
 
 open import Verification.Core.Set.Decidable
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 
 

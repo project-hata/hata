@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Structured.Monoidal.Definition where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Lift.Definition
@@ -214,7 +214,7 @@ module _ {𝒞 : 𝒰 𝑖} {{𝒞p : isCategory {𝑗} 𝒞}} where
 module Verification.Core.Category.Std.Category.Structured.Monoidal.Definition where
 
 open import Verification.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Lift.Definition

@@ -3,7 +3,7 @@ module Verification.Core.Theory.Syndetic.v2.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Theory.Presentation.Signature.SingleSorted.Definition
 

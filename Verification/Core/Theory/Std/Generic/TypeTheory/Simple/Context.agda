@@ -2,7 +2,7 @@
 module Verification.Core.Theory.Std.Generic.TypeTheory.Simple.Context where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition

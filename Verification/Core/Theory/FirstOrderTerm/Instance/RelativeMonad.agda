@@ -4,7 +4,7 @@ module Verification.Core.Theory.FirstOrderTerm.Instance.RelativeMonad where
 open import Verification.Conventions hiding (_⊔_)
 
 open import Verification.Core.Set.Discrete
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 
 open import Verification.Core.Algebra.Monoid.Definition
 

@@ -2,7 +2,7 @@
 module Verification.Core.Theory.Std.Generic.Theory.Definition where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 
 -- ===* Theories

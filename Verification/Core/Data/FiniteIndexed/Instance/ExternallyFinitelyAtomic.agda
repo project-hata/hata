@@ -11,9 +11,9 @@
 module Verification.Core.Data.FiniteIndexed.Instance.ExternallyFinitelyAtomic where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Set.Setoid
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Instance.Category
+open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Set.Function.Injective
 open import Verification.Core.Category.Std.Category.Definition

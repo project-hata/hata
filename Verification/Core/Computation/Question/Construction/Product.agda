@@ -2,7 +2,7 @@
 module Verification.Core.Computation.Question.Construction.Product where
 
 open import Verification.Core.Conventions
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Discrete
 open import Verification.Core.Set.Decidable
 open import Verification.Core.Data.Universe.Definition

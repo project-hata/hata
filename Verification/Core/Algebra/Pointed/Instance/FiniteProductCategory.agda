@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Pointed.Instance.FiniteProductCategory where
 
 open import Verification.Core.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.AllOf.Collection.Basics
 open import Verification.Core.Category.Std.AllOf.Collection.Basics

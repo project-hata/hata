@@ -4,8 +4,8 @@ module Verification.Core.Category.Std.Category.Discrete where
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Definition
 -- open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Discrete
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Discrete
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 

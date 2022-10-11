@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.Fibration.GrothendieckConstruction.Definit
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Category.Instance.Category

@@ -3,7 +3,7 @@ module Verification.Core.Data.List.Variant.Unary.Instance.Traversable where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.List.Variant.Unary.Instance.Functor
 open import Verification.Core.Data.List.Variant.Unary.Instance.Monoid
 open import Verification.Core.Algebra.Monoid.Definition

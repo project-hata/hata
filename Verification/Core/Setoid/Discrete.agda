@@ -1,10 +1,10 @@
 
-module Verification.Core.Set.Setoid.Discrete where
+module Verification.Core.Setoid.Discrete where
 
 open import Verification.Conventions
 -- open import Verification.Core.Data.Prop.Definition
 -- open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 
 
 isSetoid:byDiscrete : ∀{A : 𝒰 𝑖} -> isSetoid {𝑖} A

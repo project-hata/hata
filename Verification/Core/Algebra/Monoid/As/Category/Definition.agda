@@ -3,7 +3,7 @@ module Verification.Core.Algebra.Monoid.As.Category.Definition where
 
 open import Verification.Conventions
 
-open import Verification.Core.Set.Setoid.Definition
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Algebra.Monoid.Definition

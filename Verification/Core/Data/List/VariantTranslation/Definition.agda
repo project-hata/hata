@@ -4,8 +4,8 @@ module Verification.Core.Data.List.VariantTranslation.Definition where
 open import Verification.Core.Conventions
 
 open import Verification.Core.Set.Decidable
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Free
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Free
 open import Verification.Core.Algebra.Monoid.Definition
 
 open import Verification.Core.Data.List.Variant.Unary.Definition

@@ -3,7 +3,7 @@ module Verification.Core.Category.Std.RelativeMonad.Finitary.Construction.Abstra
 
 open import Verification.Conventions hiding (_⊔_)
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Data.AllOf.Collection.Basics
 open import Verification.Core.Data.AllOf.Collection.TermTools
 open import Verification.Core.Category.Std.AllOf.Collection.Basics

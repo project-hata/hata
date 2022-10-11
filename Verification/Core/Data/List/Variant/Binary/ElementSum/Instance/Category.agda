@@ -5,8 +5,8 @@ open import Verification.Core.Conventions hiding (ℕ)
 
 
 open import Verification.Core.Set.Decidable
-open import Verification.Core.Set.Setoid.Definition
-open import Verification.Core.Set.Setoid.Free
+open import Verification.Core.Setoid.Definition
+open import Verification.Core.Setoid.Free
 open import Verification.Core.Algebra.Monoid.Definition
 
 open import Verification.Core.Data.List.Variant.Binary.Definition
@@ -20,9 +20,9 @@ open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Category.Discrete
 open import Verification.Core.Category.Std.Category.Construction.Coproduct
--- open import Verification.Core.Set.Setoid.As.Category
--- open import Verification.Core.Set.Setoid.Discrete
--- open import Verification.Core.Set.Setoid.Definition
+-- open import Verification.Core.Setoid.As.Category
+-- open import Verification.Core.Setoid.Discrete
+-- open import Verification.Core.Setoid.Definition
 
 module _ {A : 𝒰 𝑖} where
 

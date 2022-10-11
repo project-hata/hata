@@ -8,7 +8,7 @@ open import Verification.Core.Data.Int.Instance.Monoid
 open import Verification.Core.Data.Int.Instance.Ring
 open import Verification.Core.Data.Int.Instance.Order
 
-open import Verification.Core.Set.Setoid
+open import Verification.Core.Setoid
 open import Verification.Core.Algebra.Monoid
 open import Verification.Core.Algebra.Group
 open import Verification.Core.Algebra.Ring
