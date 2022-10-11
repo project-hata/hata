@@ -2,9 +2,9 @@
 module Verification.Core.Category.Std.Limit.Specific.Coproduct.Variant.Indexed where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 -- open import Verification.Core.Data.Fin.Definition
-open import Verification.Core.Data.Product.Definition
+-- open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Morphism.Iso
@@ -21,13 +21,17 @@ module _ {𝒞 : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞}} where
 
   open isIndexedCoproduct {{...}} public
 
-record hasIndexedCoproducts {𝑗} {𝑖} (𝒞 : Category 𝑖) : 𝒰 (𝑖 ､ 𝑗 ⁺) where
+record hasIndexedCoproducts (I : 𝒰 𝑗) (𝒞 : Category 𝑖) : 𝒰 (𝑖 ､ 𝑗) where
   infixl 80 ⨆ᵢ
-  field ⨆ᵢ : ∀{I : 𝒰 𝑗} -> (I -> ⟨ 𝒞 ⟩) -> ⟨ 𝒞 ⟩
-  field {{isIndexedCoproduct:⨆ᵢ}} : ∀{I : 𝒰 𝑗} -> ∀{x : I -> ⟨ 𝒞 ⟩} -> isIndexedCoproduct x (⨆ᵢ x)
+  field ⨆ᵢ : (I -> ⟨ 𝒞 ⟩) -> ⟨ 𝒞 ⟩
+  field {{isIndexedCoproduct:⨆ᵢ}} : ∀{x : I -> ⟨ 𝒞 ⟩} -> isIndexedCoproduct x (⨆ᵢ x)
+
+  syntax ⨆ᵢ (λ i -> X) = ⨆[ i ] X
 
 open hasIndexedCoproducts {{...}} public
 
-
+module _ (𝑗 : 𝔏) (𝒞 : Category 𝑖) where
+  hasAllIndexedCoproducts : ∀{I : 𝒰 𝑗} -> 𝒰 _
+  hasAllIndexedCoproducts {I} = hasIndexedCoproducts I 𝒞
 
 

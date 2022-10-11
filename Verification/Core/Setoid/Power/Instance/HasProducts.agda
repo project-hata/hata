@@ -15,6 +15,9 @@ open import Verification.Core.Category.Std.Limit.Specific.Product
 open import Verification.Core.Setoid.Power.Intersection
 
 
+----------------------------------------------------------
+-- Binary products
+----------------------------------------------------------
 module _ {A : 𝐒𝐭𝐝 𝑖} where
 
   intro-⊤-𝒫-𝐒𝐭𝐝 : ∀{U : 𝒫 A} -> U ⟶ ℧
@@ -51,7 +54,41 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
       isProduct.isSetoidHom:⧼⧽ isProduct:∩-𝒫-𝐒𝐭𝐝 = record { cong-∼ = λ x → tt }
       isProduct.reduce-π₀ isProduct:∩-𝒫-𝐒𝐭𝐝 = tt
       isProduct.reduce-π₁ isProduct:∩-𝒫-𝐒𝐭𝐝 = tt
-      isProduct.expand-⊓ isProduct:∩-𝒫-𝐒𝐭𝐝 = tt
+      isProduct.expand-π₀,π₁ isProduct:∩-𝒫-𝐒𝐭𝐝 = tt
+
+  instance
+    hasProducts:𝒫-𝐒𝐭𝐝 : hasProducts (𝒫 A)
+    hasProducts:𝒫-𝐒𝐭𝐝 = record { _⊓_ = _ }
+
+----------------------------------------------------------
+-- Indexed products
+----------------------------------------------------------
+
+module _ {A : 𝐒𝐭𝐝 𝑖} where
+
+  module _ {I : 𝒰₀} {Uᵢ : I -> 𝒫 A} where
+    private
+      U = ⋂-𝒫-𝐒𝐭𝐝 Uᵢ
+
+    πᵢ-𝒫-𝐒𝐭𝐝 : ∀ i -> U ⟶ Uᵢ i
+    πᵢ-𝒫-𝐒𝐭𝐝 i = incl (λ x → x i)
+
+    ⧼_⧽ᵢ-𝒫-𝐒𝐭𝐝 : ∀{V : 𝒫 A} -> (∀ i -> V ⟶ Uᵢ i) -> V ⟶ U
+    ⧼_⧽ᵢ-𝒫-𝐒𝐭𝐝 fᵢ = incl λ x∈V i → ⟨ fᵢ i ⟩ x∈V
+
+    instance
+      isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 : isIndexedProduct Uᵢ U
+      isIndexedProduct.πᵢ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 = πᵢ-𝒫-𝐒𝐭𝐝
+      isIndexedProduct.⧼ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 ⧽ᵢ = ⧼_⧽ᵢ-𝒫-𝐒𝐭𝐝
+      isIndexedProduct.reduce-πᵢ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 = λ f i → tt
+      isIndexedProduct.expand-πᵢ isIndexedProduct:⋂-𝒫-𝐒𝐭𝐝 = λ f → tt
+
+  module _ {I : 𝒰₀} where
+    instance
+      hasIndexedProducts:𝒫-𝐒𝐭𝐝 : hasIndexedProducts I (𝒫 A)
+      hasIndexedProducts.⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = ⋂-𝒫-𝐒𝐭𝐝
+      hasIndexedProducts.isIndexedProduct:⨅ᵢ hasIndexedProducts:𝒫-𝐒𝐭𝐝 = it
+
 
 
 
