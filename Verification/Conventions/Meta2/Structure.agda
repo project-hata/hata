@@ -75,8 +75,8 @@ resType {UU = UU} {{U}} a UU2 {{U2}} P2 refl-StrId =
 
 record _:>_ {UU : 𝒰 𝑖} {{U : hasU UU 𝑘 𝑙}} (P : UU -> 𝒰 𝑗) (Q : UU :& P -> 𝒰 𝑗₂) (a : UU) : 𝒰 (𝑗 ､ 𝑗₂ ､ 𝑘 ､ 𝑙) where
   instance constructor make:>
-  field overlap {{Proof1>}} : P (reconstruct U (destructEl U a , destructP U a))
-  field overlap {{Proof2>}} : Q (′_′ (destructEl U a) {destructP U a} {{Proof1>}})
+  field {{Proof1>}} : P (reconstruct U (destructEl U a , destructP U a))
+  field {{Proof2>}} : Q (′_′ (destructEl U a) {destructP U a} {{Proof1>}})
 
 open _:>_ {{...}} public
 
@@ -96,8 +96,8 @@ open _:>_ {{...}} public
 
 record _:,_ {UU : 𝒰 𝑖} {{U : hasU UU 𝑘 𝑙}} (P : UU -> 𝒰 𝑗) (Q : UU -> 𝒰 𝑗₂) (a : UU) : 𝒰 (𝑗 ､ 𝑗₂) where
   instance constructor make,
-  field overlap {{Proof1,}} : P a
-  field overlap {{Proof2,}} : Q a
+  field {{Proof1,}} : P a
+  field {{Proof2,}} : Q a
 open _:,_ {{...}} public
 
 infixr 80 _:,_

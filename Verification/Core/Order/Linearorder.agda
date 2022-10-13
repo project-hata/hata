@@ -58,27 +58,26 @@ open isDense {{...}} public
 --------------------------------------------------------------------
 -- as Totalorder⁻
 
-module LinearAsTotal {𝑖 : 𝔏 ^ 2} {𝑗 : 𝔏} {A : Setoid 𝑖} {{_ : isLinearorder 𝑗 A}} where
-  private
-    instance
-      isTotal:Linear : isPreorder 𝑗 A
-      isPreorder._≤_ isTotal:Linear a b = b ≮ a
-      isPreorder.reflexive isTotal:Linear = irrefl-<
-      isPreorder._⟡_ isTotal:Linear {a} {b} {c} (p) (q) = P
-        where
-            P : c < a -> ⊥
-            P r with compare-< r b
-            ... | left x = q x
-            ... | just x = p x
-      isPreorder.transp-≤ isTotal:Linear = {!!}
+module LinearAsTotal {𝑖 : 𝔏 ^ 2} {𝑗 : 𝔏} {A : 𝒰 (fst 𝑖)} {{_ : isSetoid {snd 𝑖} A}} {{_ : isLinearorder 𝑗 ′ A ′}} where
+  instance
+    isTotal:Linear : isPreorder 𝑗 ′ A ′
+    isPreorder._≤_ isTotal:Linear a b = b ≮ a
+    isPreorder.reflexive isTotal:Linear = irrefl-<
+    isPreorder._⟡_ isTotal:Linear {a} {b} {c} (p) (q) = P
+      where
+          P : c < a -> ⊥
+          P r with compare-< r b
+          ... | left x = q x
+          ... | just x = p x
+    isPreorder.transp-≤ isTotal:Linear = {!!}
 
-    instance
-      isPartialorder:Linear : isPartialorder ′ ⟨ A ⟩ ′
-      isPartialorder.antisym isPartialorder:Linear (p) (q) = connected-< q p
+  instance
+    isPartialorder:Linear : isPartialorder ′ A ′
+    isPartialorder.antisym isPartialorder:Linear (p) (q) = connected-< q p
 
-    instance
-      isTotalorder⁻:Linear : isTotalorder⁻ ′ ⟨ A ⟩ ′
-      isTotalorder⁻.total⁻ isTotalorder⁻:Linear _ _ p = (λ a<b -> p ((λ {b<a -> asym-< a<b b<a})))
+  instance
+    isTotalorder⁻:Linear : isTotalorder⁻ ′ A ′
+    isTotalorder⁻.total⁻ isTotalorder⁻:Linear _ _ p = (λ a<b -> p ((λ {b<a -> asym-< a<b b<a})))
 
 
 --------------------------------------------------------------------
