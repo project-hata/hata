@@ -174,6 +174,9 @@ module _ {𝒞 : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞}} where
   _ ∎-Hom = id
 
 
+module _ (𝒞 : Category 𝑖) (a b : ⟨ 𝒞 ⟩) where
+  macro HomOf = #structureOn (a ⟶ᵘ b)
+
 -- //
 
 

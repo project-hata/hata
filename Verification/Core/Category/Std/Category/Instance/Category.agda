@@ -39,3 +39,13 @@ instance
   isSetoid:Category = isSetoid:byCategory
 
 
+open import Verification.Core.Category.Std.2Category.Definition
+open import Verification.Core.Category.Std.Functor.Constant
+
+instance
+  is2Category:𝐂𝐚𝐭 : is2Category (𝐂𝐚𝐭 𝑖)
+  is2Category.cell is2Category:𝐂𝐚𝐭 = λ a b -> isCategory:Functor
+  is2Category.isFunctor:Comp is2Category:𝐂𝐚𝐭 = isFunctor:Comp-𝐂𝐚𝐭
+  is2Category.isFunctor:Id is2Category:𝐂𝐚𝐭 = isFunctor:const
+
+

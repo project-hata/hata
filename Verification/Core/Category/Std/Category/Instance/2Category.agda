@@ -22,13 +22,13 @@ open import Verification.Core.Category.Std.Category.Notation.Associativity
 
 module _ {𝒞 : Category 𝑖} {𝒟 : Category 𝑗} {ℰ : Category 𝑘} where
 
-  ◆⃨-𝐂𝐚𝐭ᵘ : (Functor 𝒞 𝒟 × Functor 𝒟 ℰ) -> Functor 𝒞 ℰ
-  ◆⃨-𝐂𝐚𝐭ᵘ = λ₋ _◆-𝐂𝐚𝐭_
+  Comp-𝐂𝐚𝐭ᵘ : (Functor 𝒞 𝒟 × Functor 𝒟 ℰ) -> Functor 𝒞 ℰ
+  Comp-𝐂𝐚𝐭ᵘ = λ₋ _◆-𝐂𝐚𝐭_
 
-  macro ◆⃨-𝐂𝐚𝐭 = #structureOn ◆⃨-𝐂𝐚𝐭ᵘ
+  macro Comp-𝐂𝐚𝐭 = #structureOn Comp-𝐂𝐚𝐭ᵘ
 
-  map-◆⃨-𝐂𝐚𝐭 : ∀{a b} -> (a ⟶ b) -> ◆⃨-𝐂𝐚𝐭 a ⟶ ◆⃨-𝐂𝐚𝐭 b
-  map-◆⃨-𝐂𝐚𝐭 {f₀ , g₀} {f₁ , g₁} (α , β) = γ since isNatural:γ
+  map-Comp-𝐂𝐚𝐭 : ∀{a b} -> (a ⟶ b) -> Comp-𝐂𝐚𝐭 a ⟶ Comp-𝐂𝐚𝐭 b
+  map-Comp-𝐂𝐚𝐭 {f₀ , g₀} {f₁ , g₁} (α , β) = γ since isNatural:γ
     where
       γ : ∀(x : ⟨ 𝒞 ⟩) -> ⟨ (f₀ ◆-𝐂𝐚𝐭 g₀) ⟩ x ⟶ ⟨ (f₁ ◆-𝐂𝐚𝐭 g₁) ⟩ x
       γ x = ⟨ β ⟩ _ ◆ map (⟨ α ⟩ _)
@@ -37,16 +37,16 @@ module _ {𝒞 : Category 𝑖} {𝒟 : Category 𝑗} {ℰ : Category 𝑘} whe
       isNatural:γ = {!!}
 
   instance
-    isFunctor:◆⃨-𝐂𝐚𝐭 : isFunctor (𝐅𝐮𝐧𝐜 𝒞 𝒟 ×-𝐂𝐚𝐭 𝐅𝐮𝐧𝐜 𝒟 ℰ) (𝐅𝐮𝐧𝐜 𝒞 ℰ) ◆⃨-𝐂𝐚𝐭
-    isFunctor.map isFunctor:◆⃨-𝐂𝐚𝐭 = map-◆⃨-𝐂𝐚𝐭
-    isFunctor.isSetoidHom:map isFunctor:◆⃨-𝐂𝐚𝐭 = {!!}
-    isFunctor.functoriality-id isFunctor:◆⃨-𝐂𝐚𝐭 = {!!}
-    isFunctor.functoriality-◆ isFunctor:◆⃨-𝐂𝐚𝐭 = {!!}
+    isFunctor:Comp-𝐂𝐚𝐭 : isFunctor (𝐅𝐮𝐧𝐜 𝒞 𝒟 ×-𝐂𝐚𝐭 𝐅𝐮𝐧𝐜 𝒟 ℰ) (𝐅𝐮𝐧𝐜 𝒞 ℰ) Comp-𝐂𝐚𝐭
+    isFunctor.map isFunctor:Comp-𝐂𝐚𝐭 = map-Comp-𝐂𝐚𝐭
+    isFunctor.isSetoidHom:map isFunctor:Comp-𝐂𝐚𝐭 = {!!}
+    isFunctor.functoriality-id isFunctor:Comp-𝐂𝐚𝐭 = {!!}
+    isFunctor.functoriality-◆ isFunctor:Comp-𝐂𝐚𝐭 = {!!}
   infixl 50 _⇃◆⇂_
   _⇃◆⇂_ : ∀{f₀ f₁ : Functor 𝒞 𝒟} {g₀ g₁ : Functor 𝒟 ℰ}
         -> (α : Natural f₀ f₁) -> (β : Natural g₀ g₁)
         -> (Natural (f₀ ◆-𝐂𝐚𝐭 g₀) (f₁ ◆-𝐂𝐚𝐭 g₁))
-  _⇃◆⇂_ α β = map-◆⃨-𝐂𝐚𝐭 (α , β)
+  _⇃◆⇂_ α β = map-Comp-𝐂𝐚𝐭 (α , β)
 
   -----------------------------------------
   -- properties of ⇃◆⇂
@@ -116,18 +116,6 @@ module _ {𝒞 : Category 𝑖} {𝒟 : Category 𝑗} {ℰ : Category 𝑘} whe
 
         P = record { inverse-◆ = αβ⁻¹ ; inv-r-◆ = lem-1 ; inv-l-◆ = lem-2 }
 
-{-
 
-
-  -- module _ {p : Functor 𝒞 𝒟} where
-      -- instance
-      --   isFunctor:◆-Cat : isFunctor ′(Functor 𝒟 ℰ)′ ′(Functor 𝒞 ℰ)′ (p ◆-𝐂𝐚𝐭_)
-      --   isFunctor.map isFunctor:◆-Cat F = {!!}
-      --   isFunctor.isSetoidHom:map isFunctor:◆-Cat = {!!}
-      --   isFunctor.functoriality-id isFunctor:◆-Cat = {!!}
-      --   isFunctor.functoriality-◆ isFunctor:◆-Cat = {!!}
-
-
--}
 
 
