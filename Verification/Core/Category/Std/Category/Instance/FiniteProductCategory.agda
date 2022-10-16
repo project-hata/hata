@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Category.Instance.FiniteProductCategory where
 
 open import Verification.Conventions
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Lift.Definition
 -- open import Verification.Core.Data.Fin.Definition
@@ -30,7 +30,7 @@ module _ {𝒞 𝒟 : 𝐂𝐚𝐭 𝑖} where
                         ; isSetoidHom:⧼⧽ = {!!}
                         ; reduce-π₀ = λ {x} {f} {g} -> reduce-π₀-𝐂𝐚𝐭 {F = f} {G = g}
                         ; reduce-π₁ = λ {x} {f} {g} -> reduce-π₁-𝐂𝐚𝐭 {F = f} {G = g}
-                        ; expand-⊓  = expand-⊓-𝐂𝐚𝐭
+                        ; expand-π₀,π₁  = expand-⊓-𝐂𝐚𝐭
                         }
 
 

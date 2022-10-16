@@ -6,10 +6,10 @@ open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Universe.Definition
 open import Verification.Core.Data.Universe.Instance.Category
 open import Verification.Core.Category.Std.Category.Definition
-open import Verification.Core.Category.Std.Category.Construction.Product
-open import Verification.Core.Category.Std.Functor.Definition
+-- open import Verification.Core.Category.Std.Category.Construction.Product
+-- open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Limit.Specific.Product
-open import Verification.Core.Category.Std.Limit.Specific.Product.Instance.Functor
+-- open import Verification.Core.Category.Std.Limit.Specific.Product.Instance.Functor
 
 open import Verification.Core.Data.Product.Definition
 
@@ -22,7 +22,7 @@ module _ {A B : 𝒰 𝑖} where
     isProduct.isSetoidHom:⧼⧽ isProduct:× = record { cong-∼ = λ (p , q) → λ i x → p i x , q i x }
     isProduct.reduce-π₀ isProduct:× = refl
     isProduct.reduce-π₁ isProduct:× = refl
-    isProduct.expand-⊓ isProduct:× = refl
+    isProduct.expand-π₀,π₁ isProduct:× = refl
 
 instance
   isTerminal:⊤-𝒰 : isTerminal (⊤-𝒰 {𝑖})
