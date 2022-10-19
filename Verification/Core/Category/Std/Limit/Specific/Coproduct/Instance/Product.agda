@@ -2,7 +2,7 @@
 module Verification.Core.Category.Std.Limit.Specific.Coproduct.Instance.Product where
 
 open import Verification.Conventions hiding (_⊔_)
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 -- open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Sum.Definition
@@ -22,7 +22,7 @@ module _ {𝒞 : Category 𝑖} where
       isProduct.isSetoidHom:⧼⧽ isProduct:Coproduct = it
       isProduct.reduce-π₀ isProduct:Coproduct = reduce-ι₀
       isProduct.reduce-π₁ isProduct:Coproduct = reduce-ι₁
-      isProduct.expand-⊓ isProduct:Coproduct = expand-ι₀,ι₁
+      isProduct.expand-π₀,π₁ isProduct:Coproduct = expand-ι₀,ι₁
 
   instance
     isTerminal:Initial : ∀{x : ⟨ 𝒞 ⟩} -> {{_ : isInitial x}} -> isTerminal {{of 𝒞 ᵒᵖ}} x

@@ -52,14 +52,6 @@ module _ {𝒞 : Category 𝑖} {{_ : hasProducts 𝒞}} {{_ : hasTerminal 𝒞}
 
 
 
--- record hasFiniteProducts (𝒞 : Category 𝑖) : 𝒰 𝑖 where
---   infixl 80 _⊓_
---   field _⊓_ : ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩
---   field {{isProduct:⊓}} : ∀{a b} -> isProduct a b (a ⊓ b)
---   field ⊤ : ⟨ 𝒞 ⟩
---   field {{isTerminal:⊤}} : isTerminal ⊤
-
--- open hasFiniteProducts {{...}} public
 
 
 module _ {𝒞 : Category 𝑖} {{_ : hasFiniteProducts 𝒞}} where
@@ -68,14 +60,13 @@ module _ {𝒞 : Category 𝑖} {{_ : hasFiniteProducts 𝒞}} where
     ⊓⃨ = #structureOn (λ₋ _⊓_)
 
 
+module _ {𝒞ᵘ : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞ᵘ}} {{_ : hasProducts ′ 𝒞ᵘ ′ }} where
+
+  private macro 𝒞 = #structureOn 𝒞ᵘ
+  private instance _ = isSetoidHom:⧼⧽
+
+  ⧼≀_≀⧽ : ∀{a b c : 𝒞} {f₀ f₁ : c ⟶ a} {g₀ g₁ : c ⟶ b} -> (f₀ ∼ f₁) × (g₀ ∼ g₁) -> ⧼ f₀ , g₀ ⧽ ∼ ⧼ f₁ , g₁ ⧽
+  ⧼≀_≀⧽ = cong-∼
 
 
--- module _ {𝒞 : 𝒰 _} {{_ : 𝒞 is Category 𝑖}} {a b x : 𝒞} {{pp : isProduct a b x }} where
-
---   mytest : ∀{c} -> ((c ⟶ a) × (c ⟶ b)) -> c ⟶ x
---   mytest (f , g) = ⧼ f , g ⧽
-
-
-
--- record hasProducts (𝒞 : Category 𝑖) : 𝒰 𝑖 where
 

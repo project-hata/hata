@@ -70,6 +70,11 @@ module _ {𝒞 : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞}} where
 
 -- //
 
+module _ (𝒞 : Category 𝑖) (a b : ⟨ 𝒞 ⟩) where
+  IsoOf = a ≅ b
+
+
+
 -- [Hide]
 -- | Equation syntax for ≅
 

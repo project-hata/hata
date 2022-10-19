@@ -2,8 +2,8 @@
 module Verification.Core.Category.Std.Category.Structured.FiniteProduct.As.Monoid where
 
 open import Verification.Conventions
-open import Verification.Core.Setoid
-open import Verification.Core.Data.Fin.Definition
+open import Verification.Core.Setoid.Definition
+-- open import Verification.Core.Data.Fin.Definition
 open import Verification.Core.Algebra.Monoid.Definition
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Morphism.Iso
@@ -31,19 +31,19 @@ module _ {𝒞 : 𝒰 _} {{_ : 𝒞 is FiniteProductCategory 𝑖}} where
         g = ⧼ π₁ , π₀ ⧽
 
         P₀ : f ◆ g ∼ id
-        P₀ = f ◆ g                             ⟨ expand-⊓ ⟩-∼
+        P₀ = f ◆ g                             ⟨ expand-π₀,π₁ ⟩-∼
              ⧼ (f ◆ g) ◆ π₀ , (f ◆ g) ◆ π₁ ⧽   ⟨ cong-∼ (assoc-l-◆ , assoc-l-◆) ⟩-∼
              ⧼ f ◆ (g ◆ π₀) , f ◆ (g ◆ π₁) ⧽   ⟨ cong-∼ (refl ◈ reduce-π₀ , refl ◈ reduce-π₁) ⟩-∼
              ⧼ f ◆ π₁ , f ◆ π₀ ⧽               ⟨ cong-∼ (reduce-π₁ ∙ unit-l-◆ ⁻¹ , reduce-π₀ ∙ unit-l-◆ ⁻¹) ⟩-∼
-             ⧼ id ◆ π₀ , id ◆ π₁ ⧽             ⟨ expand-⊓ ⁻¹ ⟩-∼
+             ⧼ id ◆ π₀ , id ◆ π₁ ⧽             ⟨ expand-π₀,π₁ ⁻¹ ⟩-∼
              id                                ∎
 
         P₁ : g ◆ f ∼ id
-        P₁ = g ◆ f                             ⟨ expand-⊓ ⟩-∼
+        P₁ = g ◆ f                             ⟨ expand-π₀,π₁ ⟩-∼
              ⧼ (g ◆ f) ◆ π₀ , (g ◆ f) ◆ π₁ ⧽   ⟨ cong-∼ (assoc-l-◆ , assoc-l-◆) ⟩-∼
              ⧼ g ◆ (f ◆ π₀) , g ◆ (f ◆ π₁) ⧽   ⟨ cong-∼ (refl ◈ reduce-π₀ , refl ◈ reduce-π₁) ⟩-∼
              ⧼ g ◆ π₁ , g ◆ π₀ ⧽               ⟨ cong-∼ (reduce-π₁ ∙ unit-l-◆ ⁻¹ , reduce-π₀ ∙ unit-l-◆ ⁻¹) ⟩-∼
-             ⧼ id ◆ π₀ , id ◆ π₁ ⧽             ⟨ expand-⊓ ⁻¹ ⟩-∼
+             ⧼ id ◆ π₀ , id ◆ π₁ ⧽             ⟨ expand-π₀,π₁ ⁻¹ ⟩-∼
              id                                ∎
 
         P : isIso (hom f)
@@ -60,11 +60,11 @@ module _ {𝒞 : 𝒰 _} {{_ : 𝒞 is FiniteProductCategory 𝑖}} where
         g = ⧼ intro-⊤ , id ⧽
 
         P₀ : π₁ ◆ g ∼ id
-        P₀ = π₁ ◆ g                             ⟨ expand-⊓ ⟩-∼
+        P₀ = π₁ ◆ g                             ⟨ expand-π₀,π₁ ⟩-∼
              ⧼ (π₁ ◆ g) ◆ π₀ , (π₁ ◆ g) ◆ π₁ ⧽  ⟨ cong-∼ (assoc-l-◆ , assoc-l-◆) ⟩-∼
              ⧼ π₁ ◆ (g ◆ π₀) , π₁ ◆ (g ◆ π₁) ⧽  ⟨ cong-∼ (refl ◈ reduce-π₀ , refl ◈ reduce-π₁ ) ⟩-∼
              ⧼ π₁ ◆ intro-⊤ , π₁ ◆ id ⧽         ⟨ cong-∼ (expand-⊤ ∙ expand-⊤ ⁻¹ ∙ unit-l-◆ ⁻¹ , unit-r-◆ ∙ unit-l-◆ ⁻¹) ⟩-∼
-             ⧼ id ◆ π₀ , id ◆ π₁ ⧽              ⟨ expand-⊓ ⁻¹ ⟩-∼
+             ⧼ id ◆ π₀ , id ◆ π₁ ⧽              ⟨ expand-π₀,π₁ ⁻¹ ⟩-∼
              id                                 ∎
 
         P : isIso (hom π₁)
