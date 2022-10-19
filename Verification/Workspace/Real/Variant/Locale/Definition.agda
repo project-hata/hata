@@ -62,16 +62,48 @@ open import Verification.Workspace.Structure.Definition2
 -- for external implementations.
 --
 
--- record isRational (Q : OrderedRing 𝑖) : 𝒰 𝑖 where
---   -- field {{isOrderedRing:this}} : isOrderedRing Q
+record isRational (Q : OrderedRing' 𝑖) : 𝒰 𝑖 where
 
--- module _ (𝑖 : 𝔏) where
---   Rational = OrderedRing (𝑖 , 𝑖 , 𝑖) :& isRational
+  private instance
+    _ : isOrderedRing _ _
+    _ = isnd Q
+
+    _ : isRing _
+    _ = (isnd (ifst Q))
+
+    _ : isCommutative _
+    _ = Proof2, (isnd (ifst (ifst Q)))
+
+    _ : isMonoid _
+    _ = isnd (ifst (ifst (ifst Q)))
+
+    _ : isSetoid _
+    _ = isnd (ifst (ifst (ifst (ifst Q))))
+
+  field {{isDense:This}} : isDense ′ El Q ′
+
+module _ 𝑖 where
+  Rational' = OrderedRing' 𝑖 :&' isRational
+
+record isRational# {𝑗 : 𝔏 ^ 3} (This : 𝒰 (𝑗 ⌄ 0)) : 𝒰 (𝑗 ⁺) where
+  instance constructor makeIsRational#
+  field {{isSetoid:This}} : isSetoid {𝑗 ⌄ 1} This
+  field {{isMonoid:This}} : isMonoid (make:&' This isSetoid:This)
+  field {{isGroup:This}}  : isGroup (make:&' (make:&' This isSetoid:This) isMonoid:This)
+  field {{isCommutative:This}}  : isCommutative ((make:&' (make:&' This isSetoid:This) isMonoid:This))
+  field {{isRing:This}}    : isRing (make:&' ((make:&' (make:&' This isSetoid:This) isMonoid:This)) (make, isGroup:This isCommutative:This))
+  field {{isOrderedRing:This}}    : isOrderedRing (𝑗 ⌄ 2) (make:&' (make:&' ((make:&' (make:&' This isSetoid:This) isMonoid:This)) (make, isGroup:This isCommutative:This)) isRing:This)
+  field {{isRational:This}} : isRational (make:&' ((make:&' (make:&' ((make:&' (make:&' This isSetoid:This) isMonoid:This)) (make, isGroup:This isCommutative:This)) isRing:This)) isOrderedRing:This)
+
+open isRational# public
+
+module _ 𝑖 where
+  Rational = _ :& isRational# {𝑖}
 
 --
 -- The definition of opens.
 --
-module _ {𝑖 : 𝔏} {Q : OrderedRing (𝑖 , 𝑖 , 𝑖)} where
+module _ {𝑖 : 𝔏} {Q : Rational (𝑖 , 𝑖 , 𝑖)} where
   macro ℚ = #structureOn ⟨ Q ⟩
 
   _ = LinearAsTotal.isTotal:Linear {𝑗 = 𝑖} {A = ℚ} {{it}}
@@ -87,26 +119,6 @@ module _ {𝑖 : 𝔏} {Q : OrderedRing (𝑖 , 𝑖 , 𝑖)} where
 
   Opens = ∑ isOpen
 
-{-
-
-  -- data Open : ℚ -> ℚ -> 𝒰 𝑖 where
-  --   O1 : ∀{a b : ℚ} -> a ≮ b -> Open a b
-  --   O2 : ∀{a b c d} -> a ≮ b -> b ∼ c -> c ≮ d -> Open a d
-  --   O3 : ∀{a b c d} -> a ∼ b -> c < b -> c ∼ d -> Open a d
-  --   O4 : ∀{a d} -> (∀{b c} -> a < b -> c < d -> Open b c) -> Open a d
-
-
-  -- record Opens : 𝒰 𝑖 where
-  --   constructor _,_because_
-  --   field fst : ℚ
-  --   field snd : ℚ
-  --   field op : Open fst snd
-
--}
-
-
-
-
 
   ι-Opens : Opens -> 𝒫 (ℚ × ℚ)
   ι-Opens = fst
@@ -120,8 +132,57 @@ module _ {𝑖 : 𝔏} {Q : OrderedRing (𝑖 , 𝑖 , 𝑖)} where
   macro ℝ = #structureOn ℝᵘ
 
   --
+  -- Zigzags and the zigzag lemma
+  --
+  data Zigzag {I : 𝒰₀} (F : I -> Opens) : (a b : ℚ) -> 𝒰 𝑖 where
+    zig : ∀{a b} -> ∀ i -> (a , b) ∈ fst (F i) -> Zigzag F a b
+    zagzig : ∀{a b} -> Zigzag F a b -> ∀{a₁ b₁} -> a₁ < b -> ∀ i -> (a₁ , b₁) ∈ fst (F i) -> Zigzag F a b₁
+
+  module Zigzag-Proof-1 where
+    --
+    -- We can make a zigzag shorter at the end.
+    --
+    lem-1 : ∀{I} {F : I -> Opens} {a b c} -> Zigzag F a b -> b ≮ c -> Zigzag F a c
+    lem-1 {F = F} {a = a} {b} {c} (zig i x) b≮c = zig i (O2 {{snd (F i)}} (reflexive {a = a}) x b≮c)
+    lem-1 {F = F} {a = a} {b₁} {c} (zagzig {_} {b} z {a₁} {.b₁} a₁<b i zag) b₁≮c with compare-< a₁<b c
+    ... | left a₁<c = lem-1 z {!!}
+    ... | just c<b = zagzig z c<b i (O1 {{snd (F i)}} irrefl-<)
+
+  --
   -- now we show that Op has various limits.
   --
+
+  module Compute-⊔-ℝ (U V : ℝ) where
+    instance _ = snd ⟨ U ⟩
+    instance _ = snd ⟨ V ⟩
+
+    F : Bool -> Opens
+    F true = ⟨ U ⟩
+    F false = ⟨ V ⟩
+
+    Wᵘ : 𝒫-𝒰 (ℚ × ℚ)
+    Wᵘ (a , b) = ∣ Zigzag F a b ∣
+
+    macro W = #structureOn Wᵘ
+
+    instance
+      isSubsetoid:W : isSubsetoid W
+      isSubsetoid:W = {!!}
+
+    isOpen:W : isOpen W
+    isOpen:W = record
+      { O1 = λ a≮b → zig true (O1 a≮b)
+      ; O2 = λ a≮b bc∈W c≮d -> zagzig (zig true (O1 a≮b)) {!!} {!!} {!!}
+      ; O3 = {!!}
+      ; O4 = {!!}
+      }
+
+    Return : ℝ
+    Return = incl (W , {!!})
+
+
+{-
+
   ⊤-ℝ : ℝ
   ⊤-ℝ = incl (⊤ , P)
     where
@@ -153,7 +214,7 @@ module _ {𝑖 : 𝔏} {Q : OrderedRing (𝑖 , 𝑖 , 𝑖)} where
         }
 
   ⊥-ℝ : ℝ
-  ⊥-ℝ = incl (X since isSubsetoid:X , {!!})
+  ⊥-ℝ = incl (X since isSubsetoid:X , isOpen:X)
     where
       X : ℚ × ℚ -> Prop _
       X (a , b) = ∣ a ≮ b ∣
@@ -172,21 +233,21 @@ module _ {𝑖 : 𝔏} {Q : OrderedRing (𝑖 , 𝑖 , 𝑖)} where
         ; O2 = λ a≮b b≮c c≮d -> c≮d ⟡ b≮c ⟡ a≮b
         ; O3 = λ {a} {b} {c} {d} a≮b c<b c≮d a<d -> case compare-< a<d b of a≮b λ b<d -> c≮d (c<b ∙-< b<d)
         ; O4 = λ {a} {d} F a<d ->
-                 let c : ℚ
-                     c = {!!}
-                     c' : ℚ
-                     c' = {!!}
-                     p : a < c
-                     p = {!!}
-                     q : c' < d
-                     q = {!!}
-                     r : c < c'
-                     r = {!!}
-                 in F p q r
+                 let B = between a<d
+                     b = ⟨ B ⟩
+                     a<b = fst (Proof B)
+                     b<d = snd (Proof B)
+
+                     C = between b<d
+                     c = ⟨ C ⟩
+                     b<c = fst (Proof C)
+                     c<d = snd (Proof C)
+                 in F a<b c<d b<c
         }
 
-        -- record { transp-Subsetoid = λ {(a , b) (x , y) : ℚ × ℚ } -> {!!} }
-  -- module _ (G H : ℝ) where
+-}
+
+
 
 
 
