@@ -1,5 +1,5 @@
 
-module Verification.Core.Category.Std.Category.Structured.Monoidal.Definition4 where
+module Verification.Core.Category.StdMonoidal.Category.Definition where
 
 open import Verification.Conventions
 open import Verification.Core.Setoid.Definition
@@ -54,29 +54,31 @@ record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
   -- field iλ : ∀(a : ⟨ 𝒞 ⟩) -> ident ⊗ a ≅ a
   -- iλ a = ⟨ ⟨ unit-l-⊗ ⟩ ⟩ a
 
-  field fα : ∀(a b c : ⟨ 𝒞 ⟩) -> (a ⊗ b) ⊗ c ⟶ a ⊗ (b ⊗ c)
+  field fα : ∀{a b c : ⟨ 𝒞 ⟩} -> (a ⊗ b) ⊗ c ⟶ a ⊗ (b ⊗ c)
   -- fα a b c = ⟨ ⟨ assoc-l-⊗ ⟩ ⟩ ((a , b) , c)
 
-  field fρ : ∀(a : ⟨ 𝒞 ⟩) -> a ⊗ ident ⟶ a
+  field fρ : ∀{a : ⟨ 𝒞 ⟩} -> a ⊗ ident ⟶ a
   -- fρ a = ⟨ ⟨ unit-r-⊗ ⟩ ⟩ a
 
-  field fλ : ∀(a : ⟨ 𝒞 ⟩) -> ident ⊗ a ⟶ a
+  field fλ : ∀{a : ⟨ 𝒞 ⟩} -> ident ⊗ a ⟶ a
   -- fλ a = ⟨ ⟨ unit-l-⊗ ⟩ ⟩ a
 
-  field bα : ∀(a b c : ⟨ 𝒞 ⟩) -> a ⊗ (b ⊗ c) ⟶ (a ⊗ b) ⊗ c
+  field bα : ∀{a b c : ⟨ 𝒞 ⟩} -> a ⊗ (b ⊗ c) ⟶ (a ⊗ b) ⊗ c
   -- bα a b c = ⟨ ⟨ assoc-l-⊗ ⟩⁻¹ ⟩ ((a , b) , c)
 
-  field bρ : ∀(a : ⟨ 𝒞 ⟩) -> a ⟶ a ⊗ ident
+  field bρ : ∀{a : ⟨ 𝒞 ⟩} -> a ⟶ a ⊗ ident
   -- bρ a = ⟨ ⟨ unit-r-⊗ ⟩⁻¹ ⟩ a
 
-  field bλ : ∀(a : ⟨ 𝒞 ⟩) -> a ⟶ ident ⊗ a
+  field bλ : ∀{a : ⟨ 𝒞 ⟩} -> a ⟶ ident ⊗ a
   -- bλ a = ⟨ ⟨ unit-l-⊗ ⟩⁻¹ ⟩ a
 
 {-
 -}
 
-  field triangle : ∀{A B : ⟨ 𝒞 ⟩} -> (fρ A ⇃⊗⇂ id {a = B}) ∼ (fα A ident B ◆ (id ⇃⊗⇂ fλ B))
+  field triangle : ∀{A B : ⟨ 𝒞 ⟩} -> (fρ {A} ⇃⊗⇂ id {a = B}) ∼ (fα {A} {ident} {B} ◆ (id ⇃⊗⇂ fλ {B}))
 
+
+open isMonoidal {{...}} public
 
 
 module _ 𝑖 where
