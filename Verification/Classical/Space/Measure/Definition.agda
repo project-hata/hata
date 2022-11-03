@@ -1,7 +1,7 @@
 
 module Verification.Classical.Space.Measure.Definition where
 
-open import Verification.Conventions hiding (comp)
+open import Verification.Conventions
 open import Verification.Core.Setoid.Definition
 
 open import Verification.Workspace.Structure.Example.Algebra.Monoid.Definition
@@ -16,18 +16,21 @@ open import Verification.Core.Order.Totalorder
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Data.Product.Definition
-open import Verification.Core.Data.Universe.Definition -- for function comp
+open import Verification.Core.Data.Universe.Definition -- for function ᶜ-σ
 
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Opposite
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Morphism.Iso.Definition
+open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Definition
 open import Verification.Core.Setoid.Definition
 open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Setoid.Codiscrete
 open import Verification.Core.Setoid.Power.Definition
 
 open import Verification.Core.Setoid.Power.Instance.Category
+open import Verification.Core.Setoid.Power.Instance.HasCoproducts
+open import Verification.Core.Setoid.Power.Instance.HasProducts
 open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Definition
 open import Verification.Core.Category.Std.Limit.Specific.Product.Definition
 open import Verification.Core.Setoid.Power.Union
@@ -97,30 +100,33 @@ module _ {Ω : Setoid 𝑖} where
       g = incl (λ _ x → impossible x)
 
 
-  -- TODO: actually use generic set colimit
-  set-union : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
-  set-union As = Bᵘ since isSubsetoid:Bᵘ
-    where
-      Bᵘ : ⟨ Ω ⟩ -> Prop _
-      Bᵘ a = ∣ (∑ λ n -> a ∈ As n) ∣
+  -- -- TODO: actu⊤-σy use generic set colimit
+  -- set-union : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
+  -- set-union As = Bᵘ since isSubsetoid:Bᵘ
+  --   where
+  --     Bᵘ : ⟨ Ω ⟩ -> Prop _
+  --     Bᵘ a = ∣ (∑ λ n -> a ∈ As n) ∣
 
-      P : ∀{a b : ⟨ Ω ⟩} -> a ∼ b -> a ∈ Bᵘ -> b ∈ Bᵘ
-      P {a} {b} a∼b (n , a∈Asn) = n , transp-Subsetoid {{_}} {{of As n}} a∼b a∈Asn
+  --     P : ∀{a b : ⟨ Ω ⟩} -> a ∼ b -> a ∈ Bᵘ -> b ∈ Bᵘ
+  --     P {a} {b} a∼b (n , a∈Asn) = n , transp-Subsetoid {{_}} {{of As n}} a∼b a∈Asn
 
-      isSubsetoid:Bᵘ : isSubsetoid Bᵘ
-      isSubsetoid:Bᵘ = record { transp-Subsetoid = P }
+  --     isSubsetoid:Bᵘ : isSubsetoid Bᵘ
+  --     isSubsetoid:Bᵘ = record { transp-Subsetoid = P }
+
+  -- set-union2 : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
+  -- set-union2 X = ⨆ᵢ X
 
 
 record isSigmaAlgebra {𝑗 : 𝔏} {𝑖} (Ω : Setoid 𝑖) : 𝒰 (𝑖 ⁺ ､ 𝑗 ⁺) where
   field Measurable : 𝒰 𝑗
-  field 𝒻 : Measurable -> 𝒫 Ω
-  field empt : Measurable
-  field comp : Measurable -> Measurable
-  field σ-union : (ℕ -> Measurable) -> Measurable
+  field ⟦_⟧ : Measurable -> 𝒫 Ω
+  field ⊥-σ : Measurable
+  field _ᶜ-σ : Measurable -> Measurable
+  field ⨆-σ : (ℕ -> Measurable) -> Measurable
 
-  field isEmpt : 𝒻 empt ≅ ⊥
-  field isComp : ∀{m : Measurable} -> 𝒻 (comp m) ≅ (𝒻 m ᶜ)
-  field closed-σ-union : ∀{As} -> 𝒻 (σ-union As) ≅ set-union (𝒻 ∘ As)
+  field eval-⊥-σ : ⟦ ⊥-σ ⟧ ≅ ⊥
+  field eval-ᶜ-σ : ∀{m : Measurable} -> ⟦ m ᶜ-σ ⟧ ≅ (⟦ m ⟧ ᶜ)
+  field eval-⨆-σ : ∀{As} -> ⟦ ⨆-σ As ⟧ ≅ ⨆[ i ] ⟦ As i ⟧
 
 open isSigmaAlgebra using (Measurable) public
 open isSigmaAlgebra {{...}} hiding (Measurable) public
@@ -131,15 +137,13 @@ module _ (𝑗 : 𝔏 ^ 3) where
 
 
 module SigmaAlgebraProofs (Ω : SigmaAlgebra 𝑖) where
-  all : Measurable (of Ω)
-  all = comp empt
+  ⊤-σ : Measurable (of Ω)
+  ⊤-σ = ⊥-σ ᶜ-σ
 
-  lem-1 : 𝒻 all ≅ ⊤
-  lem-1 = isComp ∙-≅ (cong-ᶜ isEmpt ∙-≅ complement-of-⊥)
-
-
-
-
-
+  lem-1 : ⟦ ⊤-σ ⟧ ≅ ⊤
+  lem-1 = ⟦ ⊥-σ ᶜ-σ ⟧   ⟨ eval-ᶜ-σ ⟩-≅
+          ⟦ ⊥-σ ⟧ ᶜ     ⟨ cong-ᶜ eval-⊥-σ ⟩-≅
+          ⊥ ᶜ           ⟨ complement-of-⊥ ⟩-≅
+          ⊤             ∎-≅
 
 

@@ -84,7 +84,7 @@ module _ {A : 𝒰 𝑙} where
 -- indexed Operators
 
 module _ {A : 𝒰 𝑙} {I : 𝒰 𝑙₀}
-      {U : 𝒰 𝑖₀}  (uᵢ : I -> U)  {{UU : hasU U (𝑗₀ ⁺ ⊔ 𝑙) 𝑘}}  {{_ : getU UU ≡-Str (A -> Prop 𝑗₀)}}
+      {U : 𝒰 𝑖₀}  {{UU : hasU U (𝑗₀ ⁺ ⊔ 𝑙) 𝑘}}  {{_ : getU UU ≡-Str (A -> Prop 𝑗₀)}} (uᵢ : I -> U)
       where
 
   ⋂ᵘ : A -> Prop _

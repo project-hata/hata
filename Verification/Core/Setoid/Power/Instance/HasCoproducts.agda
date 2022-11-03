@@ -66,7 +66,7 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
     hasFiniteCoproducts:𝒫-𝐒𝐭𝐝 = hasFiniteCoproducts:default
 
 ----------------------------------------------------------
--- Indexed products
+-- Indexed coproducts
 ----------------------------------------------------------
 
 module _ {A : 𝐒𝐭𝐝 𝑖} where
