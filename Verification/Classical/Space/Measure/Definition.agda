@@ -16,6 +16,7 @@ open import Verification.Core.Order.Totalorder
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.Sum.Definition
 open import Verification.Core.Data.Product.Definition
+open import Verification.Core.Data.Universe.Definition -- for function comp
 
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Opposite
@@ -58,7 +59,6 @@ module _ {Ω : Setoid 𝑖} where
 
 
 
-
   infix 120 _ᶜ
   _ᶜ : 𝒫 Ω -> 𝒫 Ω
   _ᶜ U = Vᵘ since isSubsetoid:Vᵘ
@@ -74,6 +74,12 @@ module _ {Ω : Setoid 𝑖} where
 
   map-ᶜ : ∀{U V : 𝒫 Ω} -> (V ⟶ U) -> U ᶜ ⟶ V ᶜ
   map-ᶜ f = incl (λ x∉U x∈V → x∉U (⟨ f ⟩ x∈V))
+
+  cong-ᶜ : ∀{U V : 𝒫 Ω} -> (V ≅ U) -> V ᶜ ≅ U ᶜ
+  cong-ᶜ ϕ = ψ⁻¹ since record { inverse-◆ = ψ ; inv-r-◆ = tt ; inv-l-◆ = tt }
+    where
+      ψ = map-ᶜ ⟨ ϕ ⟩
+      ψ⁻¹ = map-ᶜ ⟨ ϕ ⟩⁻¹
 
   isFunctor:ᶜ : isFunctor (𝒫 Ω ᵒᵖ) (𝒫 Ω) (_ᶜ)
   isFunctor.map isFunctor:ᶜ = map-ᶜ
@@ -114,7 +120,7 @@ record isSigmaAlgebra {𝑗 : 𝔏} {𝑖} (Ω : Setoid 𝑖) : 𝒰 (𝑖 ⁺ �
 
   field isEmpt : 𝒻 empt ≅ ⊥
   field isComp : ∀{m : Measurable} -> 𝒻 (comp m) ≅ (𝒻 m ᶜ)
-  field closed-σ-union : ∀{As} -> 𝒻 (σ-union As) ≅  set-union (λ i -> 𝒻 (As i))
+  field closed-σ-union : ∀{As} -> 𝒻 (σ-union As) ≅ set-union (𝒻 ∘ As)
 
 open isSigmaAlgebra using (Measurable) public
 open isSigmaAlgebra {{...}} hiding (Measurable) public
@@ -129,7 +135,7 @@ module SigmaAlgebraProofs (Ω : SigmaAlgebra 𝑖) where
   all = comp empt
 
   lem-1 : 𝒻 all ≅ ⊤
-  lem-1 = isComp ∙-≅ {!!}
+  lem-1 = isComp ∙-≅ (cong-ᶜ isEmpt ∙-≅ complement-of-⊥)
 
 
 
