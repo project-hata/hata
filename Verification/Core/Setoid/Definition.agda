@@ -156,8 +156,19 @@ module _ {UU : 𝒰 𝑖} {{U : hasU UU 𝑗 𝑘}} {{_ : isSetoid {𝑙} (getU 
 -- Subsetoids
 
 
--- record isSubsetoid {𝑗 : 𝔏 ^ 2} (X : Setoid 𝑗) (P : 𝒫 ⟨ X ⟩) : 𝒰 𝑗 where
 
+
+--
+-- NOTE: We (probably) use the instance argument form of passing the setoid structure here,
+--       such that we can state `isSubsetoid P` instead of saying `isSubsetoid X P`.
+--
+--       The same pattern is used for submonoid, etc. in Core/Algebra.
+--
+--       The alternative, that we don't use, would be:
+--       '''
+--       record isSubsetoid {𝑗 : 𝔏 ^ 2} (X : Setoid 𝑗) (P : 𝒫 ⟨ X ⟩) : 𝒰 𝑗 where
+--       '''
+--
 record isSubsetoid {𝑗 : 𝔏 ^ 2} {X : 𝒰' _} {{_ : Setoid 𝑗 on X}} (P : X -> Prop (𝑗 ⌄ 0)) : 𝒰 𝑗 where
   field transp-∼ : ∀{a b : X} -> a ∼ b -> a ∈ P -> b ∈ P
 
@@ -165,6 +176,10 @@ open isSubsetoid {{...}} public
 
 Subsetoid : {𝑗 : 𝔏 ^ 2} (X : Setoid 𝑗) -> 𝒰 _
 Subsetoid X = 𝒫-𝒰 ⟨ X ⟩ :& isSubsetoid
+
+module _ {X : 𝒰' _} {{SX : Setoid 𝑗 on X}} where
+  transpOf-∼ : (V : Subsetoid ′ X ′) -> ∀{a b : X} -> a ∼ b -> a ∈ V -> b ∈ V
+  transpOf-∼ V a∼b a∈V = transp-∼ a∼b a∈V
 
 
 ---------------------------------------------------------------
