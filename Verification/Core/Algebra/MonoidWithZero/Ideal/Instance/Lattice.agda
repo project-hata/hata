@@ -86,7 +86,7 @@ module _ {Aᵘ : 𝒰 _} {{_ : Monoid₀ (𝑖 , 𝑖) on Aᵘ}} where
   -- it is a setoid
   instance
     isSetoid:⊥-Ideal : isSubsetoid ⊥-Ideal
-    isSetoid:⊥-Ideal = record { transp-Subsetoid = t }
+    isSetoid:⊥-Ideal = record { transp-∼ = t }
       where
         t : ∀{a b : A} -> a ∼ b -> ⊥-Idealᵘ a -> ⊥-Idealᵘ b
         t p (incl P) = incl (p ⁻¹ ∙ P)
@@ -109,7 +109,7 @@ module _ {Aᵘ : 𝒰 _} {{_ : Monoid₀ (𝑖 , 𝑖) on Aᵘ}} where
 
   -- it is the initial ideal
   initial-⊥-Ideal : ∀{I : Ideal A} -> ⊥-Ideal ≤ I
-  initial-⊥-Ideal a = incl (λ (incl a∼◍) → transp-Subsetoid (a∼◍ ⁻¹) ideal-◍)
+  initial-⊥-Ideal a = incl (λ (incl a∼◍) → transp-∼ (a∼◍ ⁻¹) ideal-◍)
 
   ----------------------------------------------------------
   -- This means that the preorder of ideals has finite joins

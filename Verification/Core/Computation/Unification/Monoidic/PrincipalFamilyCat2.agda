@@ -48,7 +48,7 @@ module _ {𝒞 : 𝒰 𝑖} {{_ : isCategory {𝑗} 𝒞}} where
 module _ {M : Monoid₀ (𝑖 , 𝑖)} {f g : ⟨ M ⟩} where
   instance
     isSubsetoid:CoeqSolutions : isSubsetoid (CoeqSolutions f g)
-    isSubsetoid.transp-Subsetoid isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+    isSubsetoid.transp-∼ isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
   instance
     isIdeal-r:CoeqSolutions : isIdeal-r M ′(CoeqSolutions f g)′
@@ -190,10 +190,10 @@ module _ (𝒞 : Category (𝑖 , 𝑖 , 𝑖)) {{X : isSizedCategory 𝒞}} {{F
 
     instance
       isSubsetoid:Good : isSubsetoid Good
-      isSubsetoid:Good = record { transp-Subsetoid = lem-100 }
-      -- isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl idp) P = tt
-      -- isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl []) P = P
-      -- isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl (arrow f∼g)) (↥ p) = ↥ p
+      isSubsetoid:Good = record { transp-∼ = lem-100 }
+      -- isSubsetoid.transp-∼ isSubsetoid:Good (incl idp) P = tt
+      -- isSubsetoid.transp-∼ isSubsetoid:Good (incl []) P = P
+      -- isSubsetoid.transp-∼ isSubsetoid:Good (incl (arrow f∼g)) (↥ p) = ↥ p
 
       isSubmonoid:Good : isSubmonoid ′ Good ′
       isSubmonoid:Good = record { closed-◌ = tt ; closed-⋆ = {!!} }

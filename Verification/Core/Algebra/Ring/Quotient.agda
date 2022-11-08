@@ -42,7 +42,7 @@ module _ {𝑗 : 𝔏 ^ 2} {R : Ring 𝑗} {I : Ideal R} where
                x ⋅ z ⋆ ◡ (y ⋅ z) ∎
 
           P₂ : ⟨ ⟨ I ⟩ (a₀ ⋅ b₀ ⋆ ◡ (a₁ ⋅ b₀)) ⟩
-          P₂ = transp-Subsetoid P₁ P₀
+          P₂ = transp-∼ P₁ P₀
 
           P₃ : ∀{x y z : ⟨ R ⟩} -> (z ⋅ (x ⋆ ◡ y)) ∼ z ⋅ x ⋆ ◡ (z ⋅ y)
           P₃ {x} {y} {z} =
@@ -51,7 +51,7 @@ module _ {𝑗 : 𝔏 ^ 2} {R : Ring 𝑗} {I : Ideal R} where
                z ⋅ x ⋆ ◡ (z ⋅ y) ∎
 
           P₄ : ⟨ ⟨ I ⟩ (a₁ ⋅ b₀ ⋆ ◡ (a₁ ⋅ b₁)) ⟩
-          P₄ = transp-Subsetoid P₃ (ideal-l-⋅ q)
+          P₄ = transp-∼ P₃ (ideal-l-⋅ q)
 
           P₅ : ⟨ ⟨ I ⟩ ((a₀ ⋅ b₀ ⋆ ◡ (a₁ ⋅ b₀)) ⋆ (a₁ ⋅ b₀ ⋆ ◡ (a₁ ⋅ b₁))) ⟩
           P₅ = closed-⋆ P₂ P₄
@@ -64,7 +64,7 @@ module _ {𝑗 : 𝔏 ^ 2} {R : Ring 𝑗} {I : Ideal R} where
             x ⋆ z                 ∎
 
           P₇ : ⟨ ⟨ I ⟩ (a₀ ⋅ b₀ ⋆ ◡ (a₁ ⋅ b₁)) ⟩
-          P₇ = transp-Subsetoid P₆ P₅
+          P₇ = transp-∼ P₆ P₅
       in incl (incl P₇)
 
     -- isRing:Quot : isRing ′ ⟨ (′ R ′) /-Abelian ′ I ′ ⟩ ′

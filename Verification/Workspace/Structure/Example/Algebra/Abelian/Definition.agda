@@ -38,7 +38,7 @@ Abelian' 𝑗 = Monoid' 𝑗 :&' (isGroup :,' isCommutative)
 --                 a ⋆ b ⋆ ◡ a   ∎
 
 --           P₁ : ⟨ ⟨ B ⟩ (a ⋆ b ⋆ ◡ a) ⟩
---           P₁ = transp-Subsetoid P₀ b∈B
+--           P₁ = transp-∼ P₀ b∈B
 --       in P₁
 
 {-

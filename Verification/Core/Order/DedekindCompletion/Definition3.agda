@@ -15,7 +15,7 @@ open import Verification.Core.Order.Linearorder
 
 -- record isSubsetoid' {𝑗 : 𝔏 ^ 2} {A : Setoid 𝑗} (P : ⟨ A ⟩ -> 𝒰 𝑘) : 𝒰 (𝑗 ､ 𝑘) where
 record isSubsetoid' {𝑗 : 𝔏 ^ 2} {A} {{_ : Setoid 𝑗 on A}} (P : A -> Prop 𝑘) : 𝒰 (𝑗 ､ 𝑘) where
-  field transp-Subsetoid' : ∀{a b : A} -> a ∼ b -> a ∈ P -> b ∈ P
+  field transp-∼' : ∀{a b : A} -> a ∼ b -> a ∈ P -> b ∈ P
 
 open isSubsetoid' {{...}} public
 

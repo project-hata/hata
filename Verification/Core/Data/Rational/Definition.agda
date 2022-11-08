@@ -44,7 +44,7 @@ macro ℤ₊ₚ = #structureOn ℤ₊ₚᵘ
 
 instance
   isSubsetoid:ℤ₊ₚ : isSubsetoid ℤ₊ₚᵘ
-  isSubsetoid:ℤ₊ₚ = record { transp-Subsetoid = lem-1 }
+  isSubsetoid:ℤ₊ₚ = record { transp-∼ = lem-1 }
     where
       lem-1 : ∀{a b : ℤ} -> a ∼ b -> a ∈ ℤ₊ₚᵘ -> b ∈ ℤ₊ₚᵘ
       lem-1 (refl-StrId) q = q

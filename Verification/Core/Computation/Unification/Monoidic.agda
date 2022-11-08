@@ -32,7 +32,7 @@ module _ {M : 𝒰 𝑖} {{_ : Monoid₀ (𝑖 , 𝑖) on M}} where
 module _ {M : Monoid₀ (𝑖 , 𝑖)} {f g : ⟨ M ⟩} where
   instance
     isSubsetoid:CoeqSolutions : isSubsetoid (CoeqSolutions f g)
-    isSubsetoid.transp-Subsetoid isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+    isSubsetoid.transp-∼ isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
   instance
     isIdeal-r:CoeqSolutions : isIdeal-r M ′(CoeqSolutions f g)′
@@ -90,7 +90,7 @@ module _ {𝒞 : Category 𝑖} {{_ : isDiscrete ⟨ 𝒞 ⟩}} {{_ : isSet-Str 
               P₀ = Principal-r::rep-in-ideal
 
               P₁ : ⟨ CoeqSolutions f' g' idp ⟩
-              P₁ = transp-Subsetoid {{_}} {{isSubsetoid:CoeqSolutions}} p P₀
+              P₁ = transp-∼ {{_}} {{isSubsetoid:CoeqSolutions}} p P₀
 
               P₂ : arrow f ⋆ idp ∼ arrow g ⋆ idp
               P₂ = ⟨ P₁ ⟩
@@ -193,7 +193,7 @@ module _ {𝒞 : Category 𝑖} {{_ : isDiscrete ⟨ 𝒞 ⟩}} {{_ : isSet-Str 
 
                 -- thus, since rep is actually the arrow i, it is also in this ideal
                 P₁ : ⟨ (CoeqSolutions f' g') (arrow i) ⟩
-                P₁ = transp-Subsetoid rep=i P₀
+                P₁ = transp-∼ rep=i P₀
 
                 -- by definition of this ideal, this means that f⋆i ∼ g⋆i
                 P₂ : (arrow f ⋆ arrow i) ∼ (arrow g ⋆ arrow i)

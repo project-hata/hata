@@ -24,13 +24,13 @@ module _ {X : Setoid 𝑖} where
 
   instance
     isSubsetoid:⊤ : isSubsetoid {X = ⟨ X ⟩} ⊤
-    isSubsetoid.transp-Subsetoid isSubsetoid:⊤ p _ = tt
+    isSubsetoid.transp-∼ isSubsetoid:⊤ p _ = tt
 
     -- isSubsetoid:∧ : ∀{U V : Subsetoid X} -> isSubsetoid X (⟨ U ⟩ ∧ ⟨ V ⟩)
 
     isSubsetoid:∧ : ∀{U V : 𝒫 ⟨ X ⟩} {{_ : isSubsetoid U}} {{_ : isSubsetoid V}} -> isSubsetoid (U ∧ V)
     isSubsetoid:∧ = record
-      { transp-Subsetoid = λ p (P , Q) -> transp-Subsetoid p P , transp-Subsetoid p Q
+      { transp-∼ = λ p (P , Q) -> transp-∼ p P , transp-∼ p Q
       }
 
   instance
@@ -44,12 +44,12 @@ module _ {X : Setoid 𝑖} where
 
   instance
     isSubsetoid:⊥ : isSubsetoid {X = ⟨ X ⟩} ⊥
-    isSubsetoid.transp-Subsetoid isSubsetoid:⊥ p _ = {!!}
+    isSubsetoid.transp-∼ isSubsetoid:⊥ p _ = {!!}
 
 
     isSubsetoid:∨ : ∀{U V : 𝒫 ⟨ X ⟩} {{_ : isSubsetoid U}} {{_ : isSubsetoid V}} -> isSubsetoid (U ∨ V)
     isSubsetoid:∨ = {!!} -- record
-      -- { transp-Subsetoid = λ p (P , Q) -> transp-Subsetoid p P , transp-Subsetoid p Q
+      -- { transp-∼ = λ p (P , Q) -> transp-∼ p P , transp-∼ p Q
       -- }
 
   instance

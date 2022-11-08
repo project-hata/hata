@@ -20,7 +20,7 @@ module _ where
 
     private
       lem-10 : ∀{a : ⟨ G ⟩} -> RelSubgroup H a a
-      lem-10 {a} = incl (transp-Subsetoid (inv-r-⋆ ⁻¹) closed-◌)
+      lem-10 {a} = incl (transp-∼ (inv-r-⋆ ⁻¹) closed-◌)
 
       lem-20 : ∀{a b} -> RelSubgroup H a b -> RelSubgroup H b a
       lem-20 {a} {b} (incl x) =
@@ -28,7 +28,7 @@ module _ where
             p = ◡ (a ⋆ ◡ b) ≣⟨ distr-⋆-◡ ⟩
                 ◡ ◡ b ⋆ ◡ a ≣⟨ double-◡ ≀⋆≀ refl ⟩
                 b ⋆ ◡ a     ∎
-        in incl (transp-Subsetoid p (closed-◡ x))
+        in incl (transp-∼ p (closed-◡ x))
 
       lem-30 : ∀{a b c} -> RelSubgroup H a b -> RelSubgroup H b c -> RelSubgroup H a c
       lem-30 {a} {b} {c} (incl p) (incl q) =
@@ -37,7 +37,7 @@ module _ where
                 a ⋆ (◡ b ⋆ b) ⋆ ◡ c   ≣⟨ refl ≀⋆≀ inv-l-⋆ ≀⋆≀ refl ⟩
                 a ⋆ ◌ ⋆ ◡ c           ≣⟨ unit-r-⋆ ≀⋆≀ refl ⟩
                 a ⋆ ◡ c               ∎
-        in incl (transp-Subsetoid P (closed-⋆ p q))
+        in incl (transp-∼ P (closed-⋆ p q))
 
     instance
       isEquivRel:RelSubgroup : isEquivRel (RelSubgroup H)
@@ -51,7 +51,7 @@ module _ where
         let P = a ⋆ ◡ b ≣⟨ p ≀⋆≀ refl ⟩
                 b ⋆ ◡ b ≣⟨ inv-r-⋆ ⟩
                 ◌       ∎
-        in incl (incl (transp-Subsetoid (P ⁻¹) closed-◌))
+        in incl (incl (transp-∼ (P ⁻¹) closed-◌))
 
     instance
       isMonoid:GroupQuot : isMonoid ′ ⟨ G ⟩ /-𝒰 RelSubgroup H ′
@@ -79,7 +79,7 @@ module _ where
                 (a₀ ⋆ b₀) ⋆ ◡ (a₁ ⋆ b₁)                    ∎
 
             P₃ : ⟨ ⟨ H ⟩ ((a₀ ⋆ b₀) ⋆ ◡ (a₁ ⋆ b₁)) ⟩
-            P₃ = transp-Subsetoid P₂ P₁
+            P₃ = transp-∼ P₂ P₁
 
         in incl (incl P₃)
 
@@ -94,7 +94,7 @@ module _ where
                   a₁ ⋆ ◡ a₀                   ∎
 
             P₁ : ⟨ ⟨ H ⟩ (a₁ ⋆ ◡ a₀) ⟩
-            P₁ = transp-Subsetoid P₀ (closed-◡ p)
+            P₁ = transp-∼ P₀ (closed-◡ p)
 
             P₂ : ⟨ ⟨ H ⟩ (◡ a₁ ⋆ (a₁ ⋆ ◡ a₀) ⋆ ◡ ◡ a₁) ⟩
             P₂ = normal (◡ a₁) P₁
@@ -105,7 +105,7 @@ module _ where
                   ◡ a₀ ⋆ ◡ ◡ a₁               ∎
 
             P₄ : ⟨ ⟨ H ⟩ (◡ a₀ ⋆ ◡ ◡ a₁) ⟩
-            P₄ = transp-Subsetoid P₃ P₂
+            P₄ = transp-∼ P₃ P₂
         in incl (incl P₄)
 
 _/-Group_ : {𝑗 : 𝔏 ^ 2} (G : Group 𝑗) -> (H : Subgroup G) {{_ : isNormal H}} -> Group _

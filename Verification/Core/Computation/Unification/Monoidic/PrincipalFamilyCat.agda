@@ -38,7 +38,7 @@ module _ {M : 𝒰 𝑖} {{_ : Monoid₀ (𝑖 , 𝑖) on M}} where
 module _ {M : Monoid₀ (𝑖 , 𝑖)} {f g : ⟨ M ⟩} where
   instance
     isSubsetoid:CoeqSolutions : isSubsetoid (CoeqSolutions f g)
-    isSubsetoid.transp-Subsetoid isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+    isSubsetoid.transp-∼ isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
   instance
     isIdeal-r:CoeqSolutions : isIdeal-r M ′(CoeqSolutions f g)′
@@ -163,9 +163,9 @@ module _ (𝒞 : Category 𝑖) {{_ : isDiscrete ⟨ 𝒞 ⟩}} {{_ : isSet-Str 
 
     instance
       isSubsetoid:Good : isSubsetoid Good
-      isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl idp) P = tt
-      isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl []) P = P
-      isSubsetoid.transp-Subsetoid isSubsetoid:Good (incl (arrow f∼g)) (↥ p) = ↥ p
+      isSubsetoid.transp-∼ isSubsetoid:Good (incl idp) P = tt
+      isSubsetoid.transp-∼ isSubsetoid:Good (incl []) P = P
+      isSubsetoid.transp-∼ isSubsetoid:Good (incl (arrow f∼g)) (↥ p) = ↥ p
 
       isSubmonoid:Good : isSubmonoid ′ Good ′
       isSubmonoid.closed-◌ isSubmonoid:Good = tt

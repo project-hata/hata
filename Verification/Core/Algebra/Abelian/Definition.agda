@@ -45,7 +45,7 @@ Subabelian A = Subgroup ′ ⟨ A ⟩ ′ :& isSubabelian {A = A}
 --                 a ⋆ b ⋆ ◡ a   ∎
 
 --           P₁ : B (a ⋆ b ⋆ ◡ a)
---           P₁ = transp-Subsetoid P₀ b∈B
+--           P₁ = transp-∼ P₀ b∈B
 --       in P₁
 
 -- private
@@ -60,7 +60,7 @@ module _ {𝑗 : 𝔏 ^ 2} {A : Group 𝑗} {B : Subgroup A} {{_ : isCommutative
                 a ⋆ b ⋆ ◡ a   ∎
 
           P₁ : ⟨ ⟨ B ⟩ (a ⋆ b ⋆ ◡ a) ⟩
-          P₁ = transp-Subsetoid P₀ b∈B
+          P₁ = transp-∼ P₀ b∈B
       in P₁
 
 -- module _ {A : Abelian 𝑗} {B : Subabelian A} where

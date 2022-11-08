@@ -33,7 +33,7 @@ module _ {A : Monoid₀ (𝑖 , 𝑖)} where
     instance
       -- isSubsetoid:↷-Ideal : isSubsetoid ((a ↷-Ideal ′ I ′))
       isSubsetoid:↷-Ideal : isSubsetoid (a ↷-Ideal I)
-      isSubsetoid.transp-Subsetoid isSubsetoid:↷-Ideal {b} {c} p (incl (x , Ix , q)) = incl (x , Ix , p ⁻¹ ∙ q)
+      isSubsetoid.transp-∼ isSubsetoid:↷-Ideal {b} {c} p (incl (x , Ix , q)) = incl (x , Ix , p ⁻¹ ∙ q)
 
       -- isIdeal:↷-Ideal : isIdeal A (′ (λ x -> ∣ ⟨ (a ↷-Ideal I) x ⟩ ∣-Prop) ′ {{isSubsetoid:↷-Ideal}})
     instance
@@ -105,7 +105,7 @@ module _ {A : Monoid₀ (𝑖 , 𝑖)} where
         --                                          Q₂ : x ∼ y
         --                                          Q₂ = cancel-a Q₁
         --                                          Q₃ : x ∈ (I ∧ J)
-        --                                          Q₃ = (x∈I , transp-Subsetoid (Q₂ ⁻¹) y∈J)
+        --                                          Q₃ = (x∈I , transp-∼ (Q₂ ⁻¹) y∈J)
 
         --                                      in incl (x , Q₃ , xP))
 
@@ -137,14 +137,14 @@ module _ {A : Monoid₀ (𝑖 , 𝑖)} where
     {{_ : isIdeal A ′ I ′}} where
     instance
       isSubsetoid:⁻¹↷-Ide' : isSubsetoid (a ⁻¹↷-Ide' ′ I ′)
-      isSubsetoid.transp-Subsetoid isSubsetoid:⁻¹↷-Ide' {x} {y} x∼y x∈I = incl (transp-Subsetoid (refl ≀⋆≀ x∼y) ⟨ x∈I ⟩)
+      isSubsetoid.transp-∼ isSubsetoid:⁻¹↷-Ide' {x} {y} x∼y x∈I = incl (transp-∼ (refl ≀⋆≀ x∼y) ⟨ x∈I ⟩)
 
     instance
       isIdeal:⁻¹↷-Ide' : isIdeal A ′(a ⁻¹↷-Ide' ′ I ′)′
-      isIdeal.ideal-◍   isIdeal:⁻¹↷-Ide' = incl (transp-Subsetoid (absorb-r-⋆ ⁻¹) ideal-◍)
+      isIdeal.ideal-◍   isIdeal:⁻¹↷-Ide' = incl (transp-∼ (absorb-r-⋆ ⁻¹) ideal-◍)
       isIdeal.ideal-r-⋆ isIdeal:⁻¹↷-Ide' {b} b∈a⁻¹I c =
         let P₀ : a ⋆ (b ⋆ c) ∈ I
-            P₀ = transp-Subsetoid assoc-l-⋆ (ideal-r-⋆ ⟨ b∈a⁻¹I ⟩ c)
+            P₀ = transp-∼ assoc-l-⋆ (ideal-r-⋆ ⟨ b∈a⁻¹I ⟩ c)
         in incl P₀
 
   _⁻¹↷-Ide_ : (a : ⟨ A ⟩) -> (I : Ideal A) -> Ideal A
@@ -153,24 +153,24 @@ module _ {A : Monoid₀ (𝑖 , 𝑖)} where
   inv-↷Ide-r : {a : ⟨ A ⟩} -> {I : Ideal A} -> a ↷ (a ⁻¹↷-Ide I) ∼ I ∧ (a ↷ ⊤)
   inv-↷Ide-r {a} {I} =
     let P₀ : (a ↷ (a ⁻¹↷-Ide I)) ≤ (I ∧ (a ↷ ⊤))
-        P₀ = {!!} -- incl (λ (incl (x , x∈a⁻¹I , xP)) → transp-Subsetoid (xP ⁻¹) ⟨ x∈a⁻¹I ⟩ , incl (x , tt , xP))
+        P₀ = {!!} -- incl (λ (incl (x , x∈a⁻¹I , xP)) → transp-∼ (xP ⁻¹) ⟨ x∈a⁻¹I ⟩ , incl (x , tt , xP))
         P₁ : (I ∧ (a ↷ ⊤)) ≤ (a ↷ (a ⁻¹↷-Ide I))
-        P₁ = {!!} -- incl (λ {b} (x , (incl (z , _ , zP))) → incl $ z , (incl (transp-Subsetoid zP x) , zP))
+        P₁ = {!!} -- incl (λ {b} (x , (incl (z , _ , zP))) → incl $ z , (incl (transp-∼ zP x) , zP))
     in antisym P₀ P₁
 
   absorb-l-⁻¹↷-Ide : {I : Ideal A} -> (◍ ⁻¹↷-Ide I) ∼ ⊤
   absorb-l-⁻¹↷-Ide {I} =
     let P₁ : ⊤ ≤ (◍ ⁻¹↷-Ide I)
-        P₁ = {!!} -- incl (λ x → incl (transp-Subsetoid (absorb-l-⋆ ⁻¹) ideal-◍))
+        P₁ = {!!} -- incl (λ x → incl (transp-∼ (absorb-l-⋆ ⁻¹) ideal-◍))
     in {!!} --  antisym terminal-⊤ P₁
 
 
   unit-l-⁻¹↷-Ide : {I : Ideal A} -> (◌ ⁻¹↷-Ide I) ∼ I
   unit-l-⁻¹↷-Ide {I} =
     let P₀ : (◌ ⁻¹↷-Ide I) ≤ I
-        P₀ = {!!} -- incl (λ (incl x) → transp-Subsetoid unit-l-⋆ x)
+        P₀ = {!!} -- incl (λ (incl x) → transp-∼ unit-l-⋆ x)
         P₁ : I ≤ (◌ ⁻¹↷-Ide I)
-        P₁ = {!!} -- incl (λ x → incl (transp-Subsetoid (unit-l-⋆ ⁻¹) x))
+        P₁ = {!!} -- incl (λ x → incl (transp-∼ (unit-l-⋆ ⁻¹) x))
     in antisym P₀ P₁
 
   unit-r-⁻¹↷-Ide : {a : ⟨ A ⟩} -> (a ⁻¹↷-Ide ⊤) ∼ ⊤

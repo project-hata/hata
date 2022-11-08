@@ -40,7 +40,7 @@ module _ {M : 𝒰 _} {{_ : Monoid (𝑖 , 𝑖) on M}} where
   module _ {f g : M} where
     instance
       isSubsetoid:MonEqᵣ : isSubsetoid (MonEqᵣ f g)
-      isSubsetoid.transp-Subsetoid isSubsetoid:MonEqᵣ p (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+      isSubsetoid.transp-∼ isSubsetoid:MonEqᵣ p (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
 module _ {M : 𝒰 _} {{_ : Monoid₀ (𝑖 , 𝑖) on M}} where
   module _ {f g : M} where
@@ -114,7 +114,7 @@ module _ {𝒞 : Category 𝑖} {{_ : isSizedCategory 𝒞}} where
 -- module _ {M : Monoid₀ (𝑖 , 𝑖)} {f g : ⟨ M ⟩} where
 --   instance
 --     isSubsetoid:MonEqᵣ : isSubsetoid (MonEqᵣ f g)
---     isSubsetoid.transp-Subsetoid isSubsetoid:MonEqᵣ (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+--     isSubsetoid.transp-∼ isSubsetoid:MonEqᵣ (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
 --   instance
 --     isIdeal:MonEqᵣ : isIdeal M ′(MonEqᵣ f g)′

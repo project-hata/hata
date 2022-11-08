@@ -224,7 +224,7 @@ module _ {𝑖 : 𝔏} {Q : Rational (𝑖 , 𝑖 , 𝑖)} where
 
       instance
         isSubsetoid:X : isSubsetoid X
-        isSubsetoid:X = record { transp-Subsetoid = P }
+        isSubsetoid:X = record { transp-∼ = P }
 
 
       isOpen:X : isOpen ′ X ′

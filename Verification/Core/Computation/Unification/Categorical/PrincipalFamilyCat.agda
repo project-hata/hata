@@ -48,7 +48,7 @@ open import Verification.Core.Category.Std.Category.As.ZeroMorphismCategory.Coeq
 -- module _ {M : Monoid₀ (𝑖 , 𝑖)} {f g : ⟨ M ⟩} where
 --   instance
 --     isSubsetoid:CoeqSolutions : isSubsetoid (CoeqSolutions f g)
---     isSubsetoid.transp-Subsetoid isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
+--     isSubsetoid.transp-∼ isSubsetoid:CoeqSolutions (p) (incl P) = incl ((refl ≀⋆≀ p ⁻¹) ∙ P ∙ (refl ≀⋆≀ p))
 
 --   instance
 --     isIdeal-r:CoeqSolutions : isIdeal-r M ′(CoeqSolutions f g)′

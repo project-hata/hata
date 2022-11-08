@@ -42,11 +42,11 @@ module _ {A : 𝐒𝐭𝐝 𝑖} {B : 𝐒𝐭𝐝 𝑖} where
       Vᵘ a = ∣ ⟨ f ⟩ a ∈ U ∣
 
       P : ∀{a b : ⟨ A ⟩} -> a ∼ b -> a ∈ Vᵘ -> b ∈ Vᵘ
-      P a∼b a∈V = transp-Subsetoid {{_}} {{of U}} (congOf-∼ f a∼b) a∈V
+      P a∼b a∈V = transp-∼ {{_}} {{of U}} (congOf-∼ f a∼b) a∈V
       -- P a∼b a∈V = transpOf-Subsetoid U (congOf f a∼b) a∈V
 
       isSubsetoid:Vᵘ : isSubsetoid Vᵘ
-      isSubsetoid:Vᵘ = record { transp-Subsetoid = P }
+      isSubsetoid:Vᵘ = record { transp-∼ = P }
 
   module _ (f : SetoidHom A B) where
     macro

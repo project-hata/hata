@@ -22,7 +22,7 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
     instance
       isSubsetoid:∩-𝒫-𝐒𝐭𝐝 : isSubsetoid (U ∩ᵘ V)
       isSubsetoid:∩-𝒫-𝐒𝐭𝐝 = record
-        { transp-Subsetoid = λ a∼b (a∈U , b∈V) → (transp-Subsetoid a∼b a∈U) , (transp-Subsetoid a∼b b∈V)
+        { transp-∼ = λ a∼b (a∈U , b∈V) → (transp-∼ a∼b a∈U) , (transp-∼ a∼b b∈V)
         }
 
   _∩-𝒫-𝐒𝐭𝐝_ : 𝒫 A -> 𝒫 A -> 𝒫 A
@@ -33,7 +33,7 @@ module _ {A : 𝐒𝐭𝐝 𝑖} where
   instance
     isSubsetoid:℧-𝒫-𝐒𝐭𝐝 : isSubsetoid {X = ⟨ A ⟩} ℧ᵘ
     isSubsetoid:℧-𝒫-𝐒𝐭𝐝 = record
-      { transp-Subsetoid = λ a∼b a∈℧ → tt
+      { transp-∼ = λ a∼b a∈℧ → tt
       }
 
   ℧-𝒫-𝐒𝐭𝐝 : 𝒫 A
@@ -49,7 +49,7 @@ module _ {A : 𝐒𝐭𝐝 𝑖} {I : 𝒰₀} where
     instance
       isSubsetoid:⋂-𝒫-𝐒𝐭𝐝 : isSubsetoid (⋂ᵘ Uᵢ)
       isSubsetoid:⋂-𝒫-𝐒𝐭𝐝 = record
-        { transp-Subsetoid = λ a∼b aᵢ∈U i → transp-Subsetoid {{_}} {{of Uᵢ i}} a∼b (aᵢ∈U i)
+        { transp-∼ = λ a∼b aᵢ∈U i → transp-∼ {{_}} {{of Uᵢ i}} a∼b (aᵢ∈U i)
         }
 
   ⋂-𝒫-𝐒𝐭𝐝 : (Uᵢ : I -> 𝒫 A) -> 𝒫 A

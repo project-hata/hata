@@ -33,10 +33,10 @@ module _ {𝑖 : 𝔏} (X : Linearorder (𝑖 , 𝑖 , 𝑖))
   where
   instance
     isSubsetoid':< : ∀{a : ⟨ X ⟩} -> isSubsetoid' (λ x -> ∣ x < a ∣)
-    isSubsetoid'.transp-Subsetoid' isSubsetoid':< p = transp-< p refl
+    isSubsetoid'.transp-∼' isSubsetoid':< p = transp-< p refl
 
     isSubsetoid':<2 : ∀{a : ⟨ X ⟩} -> isSubsetoid' (λ x -> ∣ a < x ∣)
-    isSubsetoid'.transp-Subsetoid' isSubsetoid':<2 p = transp-< refl p
+    isSubsetoid'.transp-∼' isSubsetoid':<2 p = transp-< refl p
 
   return-Cut : ⟨ X ⟩ -> Cut X 𝑖
   ⩘ (return-Cut x) = ′ (λ a -> ∣ a < x ∣) ′
@@ -104,8 +104,8 @@ module _ {𝑖 : 𝔏} (X : Linearorder (𝑖 , 𝑖 , 𝑖))
 
   instance
     isSubsetoid':lower-Cut : ∀{Cs : Cut X 𝑖 -> 𝒰 𝑖} {{_ : isSubsetoid' Cs}} -> isSubsetoid' (lower-Cut Cs)
-    isSubsetoid'.transp-Subsetoid' (isSubsetoid':lower-Cut {Cs}) p a = transp-Subsetoid' {{make∑i {_} {{isSetoid:Cut}}}} (preserves-∼ p) a
-    -- isSubsetoid'.transp-Subsetoid' (isSubsetoid':lower-Cut {Cs}) p a = transp-Subsetoid' {{make∑i {_} {{isSetoid:Cut}}}} (preserves-∼ p) a
+    isSubsetoid'.transp-∼' (isSubsetoid':lower-Cut {Cs}) p a = transp-∼' {{make∑i {_} {{isSetoid:Cut}}}} (preserves-∼ p) a
+    -- isSubsetoid'.transp-∼' (isSubsetoid':lower-Cut {Cs}) p a = transp-∼' {{make∑i {_} {{isSetoid:Cut}}}} (preserves-∼ p) a
 
   join-Cut : Cut ′ Cut X 𝑖 ′ 𝑖 -> Cut X 𝑖
   ⩘ (join-Cut (⩘x , ⩗x)) = ′ lower-Cut ⟨ ⩘x ⟩ ′

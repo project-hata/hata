@@ -68,10 +68,10 @@ module _ {Ω : Setoid 𝑖} where
       Vᵘ a = ∣ ¬ (a ∈ U) ∣
 
       P : ∀{a b : ⟨ Ω ⟩} -> a ∼ b -> a ∈ Vᵘ -> b ∈ Vᵘ
-      P a∼b a∈V = λ b∈U → a∈V (transp-Subsetoid (sym a∼b) b∈U)
+      P a∼b a∈V = λ b∈U → a∈V (transp-∼ (sym a∼b) b∈U)
 
       isSubsetoid:Vᵘ : isSubsetoid Vᵘ
-      isSubsetoid:Vᵘ = record { transp-Subsetoid = P }
+      isSubsetoid:Vᵘ = record { transp-∼ = P }
 
   map-ᶜ : ∀{U V : 𝒫 Ω} -> (V ⟶ U) -> U ᶜ ⟶ V ᶜ
   map-ᶜ f = incl (λ x∉U x∈V → x∉U (⟨ f ⟩ x∈V))
@@ -106,10 +106,10 @@ module _ {Ω : Setoid 𝑖} where
   --     Bᵘ a = ∣ (∑ λ n -> a ∈ As n) ∣
 
   --     P : ∀{a b : ⟨ Ω ⟩} -> a ∼ b -> a ∈ Bᵘ -> b ∈ Bᵘ
-  --     P {a} {b} a∼b (n , a∈Asn) = n , transp-Subsetoid {{_}} {{of As n}} a∼b a∈Asn
+  --     P {a} {b} a∼b (n , a∈Asn) = n , transp-∼ {{_}} {{of As n}} a∼b a∈Asn
 
   --     isSubsetoid:Bᵘ : isSubsetoid Bᵘ
-  --     isSubsetoid:Bᵘ = record { transp-Subsetoid = P }
+  --     isSubsetoid:Bᵘ = record { transp-∼ = P }
 
   -- set-union2 : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
   -- set-union2 X = ⨆ᵢ X
