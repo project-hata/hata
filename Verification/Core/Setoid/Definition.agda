@@ -88,8 +88,11 @@ SetoidHom : (A : Setoid 𝑖) (B : Setoid 𝑗) -> 𝒰 _
 SetoidHom A B = (⟨ A ⟩ -> ⟨ B ⟩) :& isSetoidHom A B
 
 module _ {A : Setoid 𝑖} {B : Setoid 𝑗} where
-  congOf : (f : SetoidHom A B) -> ∀{a b : ⟨ A ⟩} -> a ∼ b -> ⟨ f ⟩ a ∼ ⟨ f ⟩ b
-  congOf f = cong-∼
+  congOf-∼ : (f : SetoidHom A B) -> ∀{a b : ⟨ A ⟩} -> a ∼ b -> ⟨ f ⟩ a ∼ ⟨ f ⟩ b
+  congOf-∼ f = cong-∼
+
+  infixl 200 _-cong-∼_
+  _-cong-∼_ = congOf-∼
 
 
 module _ {A : Setoid 𝑖} {B : Setoid 𝑗} where

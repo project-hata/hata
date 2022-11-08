@@ -4,6 +4,7 @@ module Verification.Classical.Space.Measure.Definition where
 open import Verification.Conventions
 open import Verification.Core.Setoid.Definition
 
+{-
 open import Verification.Workspace.Structure.Example.Algebra.Monoid.Definition
 open import Verification.Workspace.Structure.Example.Algebra.Group.Definition
 open import Verification.Workspace.Structure.Example.Algebra.Abelian.Definition
@@ -12,6 +13,8 @@ open import Verification.Workspace.Structure.Example.Algebra.Ring.Ordered
 open import Verification.Core.Order.Linearorder
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Totalorder
+open import Verification.Workspace.Structure.Definition2
+-}
 
 open import Verification.Core.Data.Prop.Definition
 open import Verification.Core.Data.Sum.Definition
@@ -23,29 +26,24 @@ open import Verification.Core.Category.Std.Category.Opposite
 open import Verification.Core.Category.Std.Functor.Definition
 open import Verification.Core.Category.Std.Morphism.Iso.Definition
 open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Definition
+open import Verification.Core.Category.Std.Limit.Specific.Product.Definition
+
 open import Verification.Core.Setoid.Definition
 open import Verification.Core.Setoid.Instance.Category
 open import Verification.Core.Setoid.Codiscrete
 open import Verification.Core.Setoid.Power.Definition
-
 open import Verification.Core.Setoid.Power.Instance.Category
 open import Verification.Core.Setoid.Power.Instance.HasCoproducts
 open import Verification.Core.Setoid.Power.Instance.HasProducts
-open import Verification.Core.Category.Std.Limit.Specific.Coproduct.Definition
-open import Verification.Core.Category.Std.Limit.Specific.Product.Definition
 open import Verification.Core.Setoid.Power.Union
 open import Verification.Core.Setoid.Power.Intersection
-
-open import Verification.Core.Setoid.Power.Instance.HasCoproducts
-open import Verification.Core.Setoid.Power.Instance.HasProducts
 open import Verification.Core.Setoid.Construction.Product
 
-open import Verification.Workspace.Structure.Definition2
-
-
+{-
 open import Verification.Core.Category.Std.Groupoid.As.Setoid
 open import Verification.Core.Category.Std.Groupoid.Definition
 open import Verification.Core.Category.Std.Category.Construction.Core
+-}
 
 open import Verification.Core.Set.Contradiction
 
@@ -126,7 +124,7 @@ record isSigmaAlgebra {𝑗 : 𝔏} {𝑖} (Ω : Setoid 𝑖) : 𝒰 (𝑖 ⁺ �
 
   field eval-⊥-σ : ⟦ ⊥-σ ⟧ ≅ ⊥
   field eval-ᶜ-σ : ∀{m : Measurable} -> ⟦ m ᶜ-σ ⟧ ≅ (⟦ m ⟧ ᶜ)
-  field eval-⨆-σ : ∀{As} -> ⟦ ⨆-σ As ⟧ ≅ ⨆[ i ] ⟦ As i ⟧
+  field eval-⨆-σ : ∀{A} -> ⟦ ⨆-σ A ⟧ ≅ ⨆[ i ] ⟦ A i ⟧
 
 open isSigmaAlgebra using (Measurable) public
 open isSigmaAlgebra {{...}} hiding (Measurable) public
@@ -134,6 +132,7 @@ open isSigmaAlgebra {{...}} hiding (Measurable) public
 module _ (𝑗 : 𝔏 ^ 3) where
   SigmaAlgebra = Setoid (𝑗 ⌄ 0 ⋯ 1) :& isSigmaAlgebra {𝑗 ⌄ 2}
 
+  macro 𝐌𝐞𝐚𝐬 = #structureOn SigmaAlgebra
 
 
 module SigmaAlgebraProofs (Ω : SigmaAlgebra 𝑖) where
@@ -145,5 +144,8 @@ module SigmaAlgebraProofs (Ω : SigmaAlgebra 𝑖) where
           ⟦ ⊥-σ ⟧ ᶜ     ⟨ cong-ᶜ eval-⊥-σ ⟩-≅
           ⊥ ᶜ           ⟨ complement-of-⊥ ⟩-≅
           ⊤             ∎-≅
+
+
+
 
 
