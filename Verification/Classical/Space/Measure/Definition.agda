@@ -98,6 +98,13 @@ module _ {Ω : Setoid 𝑖} where
       g = incl (λ _ x → impossible x)
 
 
+  -- | De Morgan duality
+  complement-of-⨆ : ∀{choice} → (⨆ᵢ choice)ᶜ ≅ ⨅ᵢ (_ᶜ ∘ choice)
+  complement-of-⨆ {choice} = f since {!!}
+    where
+      f : (⨆ᵢ choice)ᶜ ⟶ ⨅ᵢ (_ᶜ ∘ choice)
+      f = incl {!!}
+
   -- -- TODO: actu⊤-σy use generic set colimit
   -- set-union : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
   -- set-union As = Bᵘ since isSubsetoid:Bᵘ
@@ -122,8 +129,11 @@ record isSigmaAlgebra {𝑗 : 𝔏} {𝑖} (Ω : Setoid 𝑖) : 𝒰 (𝑖 ⁺ �
   field _ᶜ-σ : Measurable -> Measurable
   field ⨆-σ : (ℕ -> Measurable) -> Measurable
 
+  -- | a σ-Algebra contains ∅
   field eval-⊥-σ : ⟦ ⊥-σ ⟧ ≅ ⊥
+  -- | a σ-Algebra is closed under complement
   field eval-ᶜ-σ : ∀{m : Measurable} -> ⟦ m ᶜ-σ ⟧ ≅ (⟦ m ⟧ ᶜ)
+  -- | a σ-Algebra is closed under countable union
   field eval-⨆-σ : ∀{A} -> ⟦ ⨆-σ A ⟧ ≅ ⨆[ i ] ⟦ A i ⟧
 
 open isSigmaAlgebra using (Measurable) public
@@ -139,13 +149,20 @@ module SigmaAlgebraProofs (Ω : SigmaAlgebra 𝑖) where
   ⊤-σ : Measurable (of Ω)
   ⊤-σ = ⊥-σ ᶜ-σ
 
+  -- | a σ-Algebra contains Ω
   lem-1 : ⟦ ⊤-σ ⟧ ≅ ⊤
   lem-1 = ⟦ ⊥-σ ᶜ-σ ⟧   ⟨ eval-ᶜ-σ ⟩-≅
           ⟦ ⊥-σ ⟧ ᶜ     ⟨ cong-ᶜ eval-⊥-σ ⟩-≅
           ⊥ ᶜ           ⟨ complement-of-⊥ ⟩-≅
           ⊤             ∎-≅
 
+  ⨅-σ : (ℕ -> Measurable (of Ω)) -> Measurable (of Ω)
+  ⨅-σ choice = (⨆-σ (_ᶜ-σ ∘ choice) )ᶜ-σ
 
-
-
-
+  -- | a σ-Algebra is closed under countable intersections
+  eval-⨅-σ : ∀{choice} -> ⟦ ⨅-σ choice ⟧ ≅ ⨅[ i ] ⟦ choice i ⟧
+  eval-⨅-σ {choice} =
+    ⟦ (⨆-σ (_ᶜ-σ ∘ choice) )ᶜ-σ ⟧    ⟨ eval-ᶜ-σ ⟩-≅
+    ⟦ ⨆-σ (_ᶜ-σ ∘ choice) ⟧ ᶜ        ⟨ {!!} ⟩-≅
+    (⨆ᵢ (⟦_⟧ ∘ _ᶜ-σ ∘ choice)) ᶜ     ⟨ {!!} ⟩-≅
+    ⨅[ i ] ⟦ choice i ⟧              ∎-≅

@@ -21,7 +21,7 @@ module _ {A : 𝒰 𝑖} {B : 𝒰 𝑗} {C : 𝒰 𝑘} where
   macro
     _∘_ : (B -> C) [ 𝑖₁ ]→ (A -> B) [ 𝑖₂ ]→ SomeStructure
     _∘_ = λstr g ↦ λstr f ↦ #structureOn (f ◆-𝒰 g)
-
+  infixl 40 _∘_
 
 macro
   𝐓𝐲𝐩𝐞 : ∀(𝑖 : 𝔏) -> SomeStructure
