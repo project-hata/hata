@@ -267,7 +267,7 @@ macro
   #openstruct name-Inst hole =
     do
       type-Inst <- getType name-Inst
-      type-Inst <- withReconstructed (return type-Inst)
+      type-Inst <- withReconstructed false (return type-Inst)
       type-Inst <- normalise type-Inst
       let (i , mtel , mte , res-Type) = readTele type-Inst
       let mtel = makeVisibleAll (hidden) mtel
@@ -371,7 +371,7 @@ module TestInstancing where
      `tt` <- quoteTC {A = 𝟙-𝒰} tt
 
      type-IStructure <- (getType name-IStructure)
-     type-IStructure <- withReconstructed (return type-IStructure)
+     type-IStructure <- withReconstructed true (return type-IStructure)
      type-IStructure <- normalise type-IStructure
 
      let (i , mtel , mte , mainPos , lastSort) = buildStruct mainArg type-IStructure
@@ -495,16 +495,19 @@ module TestInstancing where
 
 
 
--- open import Verification.Conventions.Category.Base
 
 private
   record IFunctor (X : 𝒰 𝑖) (Y : 𝒰 𝑗) (F : X -> Y) : 𝒰 (𝑖 ､ 𝑗) where
   module _ (A : 𝒰 𝑖) (B : 𝒰 𝑗) (C : 𝒰 𝑖) where
-    -- record IMap (f : A -> B) : 𝒰₀ where
-    -- unquoteDecl Map map = #struct "?" (quote IMap) "f" Map map
 
+  {-
+  -- NOTE 2023-01-18: The following does not longer work after updating
+  --                  Agda to current master. Some reflection changes
+  --                  took place, but detailed reason for error was not investigated.
+  --                  -- MxU
     record IMapi (f : A -> B) (g : A -> B) (p : f ≡ g) : 𝒰₀ where
     unquoteDecl Mapi mapi = #struct "?" (quote IMapi) "p" Mapi mapi
+  -}
 
 -- Good tests:
   unquoteDecl Functor functor = #struct "?" (quote IFunctor) "F" Functor functor

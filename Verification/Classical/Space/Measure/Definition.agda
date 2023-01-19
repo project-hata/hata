@@ -49,6 +49,7 @@ open import Verification.Core.Set.Contradiction
 
 
 
+
 module _ {Ω : Setoid 𝑖} where
   -- Setoid structure on subsetoid
   -- instance
@@ -120,6 +121,8 @@ module _ {Ω : Setoid 𝑖} where
 
   -- set-union2 : ∀{I : 𝒰₀} -> (I -> 𝒫 Ω) -> 𝒫 Ω
   -- set-union2 X = ⨆ᵢ X
+
+
 
 
 record isSigmaAlgebra {𝑗 : 𝔏} {𝑖} (Ω : Setoid 𝑖) : 𝒰 (𝑖 ⁺ ､ 𝑗 ⁺) where
