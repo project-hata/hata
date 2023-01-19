@@ -5,6 +5,7 @@ open import Verification.Conventions
 
 open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Universe.Definition
+open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Universe.Instance.Category using (isSetoid:𝒰) public
 
 
@@ -47,6 +48,28 @@ private
 --     (id-𝒰 since lem-10)
 --     (λ f -> inverse-𝒰 since lem-20 {f = f})
 --     (λ f g -> ⟨ f ⟩ ◆-𝒰 ⟨ g ⟩ since lem-30 {f = f} {g = g})
+
+
+--------------------------------------------------
+-- We allow for coercion when types are isomorphic
+
+record isCoercible (A : 𝒰 𝑖) (B : 𝒰 𝑗) : 𝒰 (𝑖 ⊔ 𝑗) where
+  constructor introCoercible
+  field coeIso : A ≅-𝒰 B
+
+
+open isCoercible public
+
+module _ {A : 𝒰 𝑖} {B : 𝒰 𝑗} where
+  coe : {{isCoercible A B}} -> A -> B
+  coe {{P}} = ⟨ coeIso P ⟩
+
+module _ (A : 𝒰 𝑖) (B : 𝒰 𝑗) where
+  Bicoercible = isCoercible A B ×-AgdaInstance isCoercible B A
+
+module _ {A : 𝒰 𝑖} {B : 𝒰 𝑗} where
+  introBicoercible : (A ≅-𝒰 B) -> Bicoercible A B
+  introBicoercible ϕ = intro-×-AgdaInstance {{introCoercible ϕ}} {{introCoercible (inverse-𝒰 {{of ϕ}} since lem-20 {f = ϕ})}}
 
 
 

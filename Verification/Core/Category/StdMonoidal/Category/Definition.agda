@@ -5,6 +5,7 @@ open import Verification.Conventions
 open import Verification.Core.Setoid.Definition
 open import Verification.Core.Data.Product.Definition
 open import Verification.Core.Data.Lift.Definition
+open import Verification.Core.Data.Universe.Instance.Setoid
 open import Verification.Core.Category.Std.Category.Definition
 open import Verification.Core.Category.Std.Category.Instance.Category
 open import Verification.Core.Category.Std.Category.Instance.FiniteProductCategory
@@ -24,20 +25,26 @@ open import Verification.Core.Category.Std.Category.Structured.FiniteProduct.Def
 open import Verification.Core.Category.Std.Limit.Specific.Product.Properties.Monoidal
 
 
+
+
+
 module _ {a b c : 𝐂𝐚𝐭 𝑖} where
   α-𝐂𝐚𝐭 : ((a × b) ×-𝐂𝐚𝐭 c) ⟶ (a × (b × c))
   α-𝐂𝐚𝐭 = ⟨ assoc-l-⊓ ⟩
 
 record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
 
-  -- field ⊗[_] : Functor (𝒞 ×-𝐂𝐚𝐭 𝒞) 𝒞
+  field ⊗[_] : Functor (𝒞 ×-𝐂𝐚𝐭 𝒞) 𝒞
   -- field Ident : Functor (⊤-𝐂𝐚𝐭 {𝑖}) 𝒞
 
-  -- field assoc-l-⊗ : (⊗[_] ⇃⊓⇂ id-𝐂𝐚𝐭) ◆-𝐂𝐚𝐭 ⊗[_] ≅ (α-𝐂𝐚𝐭 ◆ (id-𝐂𝐚𝐭 ⇃⊓⇂ ⊗[_]) ◆ ⊗[_])
+  -- field assoc-l-⊗ : ((⊗[_] ⇃⊓⇂ id-𝐂𝐚𝐭) ◆-𝐂𝐚𝐭 ⊗[_]) ≅ (α-𝐂𝐚𝐭 ◆ (id-𝐂𝐚𝐭 ⇃⊓⇂ ⊗[_]) ◆ ⊗[_])
   -- field unit-r-⊗ : ⧼ id-𝐂𝐚𝐭 , (intro-⊤ ◆ Ident) ⧽-𝐂𝐚𝐭 ◆-𝐂𝐚𝐭 ⊗[_] ≅ id
   -- field unit-l-⊗ : ⧼ intro-⊤ ◆ Ident , id-𝐂𝐚𝐭 ⧽-𝐂𝐚𝐭 ◆-𝐂𝐚𝐭 ⊗[_] ≅ id
 
-  field _⊗_ : ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩
+  -- field _⊗_ : ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩
+  _⊗_ : ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩ -> ⟨ 𝒞 ⟩
+  A ⊗ B = ⟨ ⊗[_] ⟩ (A , B)
+
   field ident : ⟨ 𝒞 ⟩
 
   field _⇃⊗⇂_ : ∀{a b c d : ⟨ 𝒞 ⟩} -> (f : a ⟶ c) -> (g : b ⟶ d) -> a ⊗ b ⟶ c ⊗ d
@@ -48,7 +55,9 @@ record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
 
 
   field iα : ∀{a b c : ⟨ 𝒞 ⟩} -> (a ⊗ b) ⊗ c ≅ a ⊗ (b ⊗ c)
-  -- iα a b c = ⟨ ⟨ assoc-l-⊗ ⟩ ⟩ ((a , b) , c)
+  -- iα : ∀{a b c : ⟨ 𝒞 ⟩} -> (a ⊗ b) ⊗ c ≅ a ⊗ (b ⊗ c)
+  -- iα {a} {b} {c} = {!!} -- ⟨ ⟨ Iso≅NaturalIso ⟩ assoc-l-⊗ ⟩
+  -- iα {a} {b} {c} = ⟨ ⟨ assoc-l-⊗ ⟩ ⟩ ((a , b) , c)
 
   field iρ : ∀{a : ⟨ 𝒞 ⟩} -> a ⊗ ident ≅ a
   -- iρ a = ⟨ ⟨ unit-r-⊗ ⟩ ⟩ a
@@ -58,6 +67,7 @@ record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
 
   fα : ∀{a b c : ⟨ 𝒞 ⟩} -> (a ⊗ b) ⊗ c ⟶ a ⊗ (b ⊗ c)
   fα = ⟨ iα ⟩
+  -- fα = ⟨ ⟨ assoc-l-⊗ ⟩ ⟩ _
 
   fρ : ∀{a : ⟨ 𝒞 ⟩} -> a ⊗ ident ⟶ a
   fρ = ⟨ iρ ⟩
@@ -66,6 +76,7 @@ record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
   fλ = ⟨ iλ ⟩
 
   bα : ∀{a b c : ⟨ 𝒞 ⟩} -> a ⊗ (b ⊗ c) ⟶ (a ⊗ b) ⊗ c
+  -- bα = ⟨ ⟨ assoc-l-⊗ ⟩⁻¹ ⟩ _
   bα = ⟨ iα ⟩⁻¹
 
   bρ : ∀{a : ⟨ 𝒞 ⟩} -> a ⟶ a ⊗ ident
@@ -73,6 +84,9 @@ record isMonoidal (𝒞 : Category 𝑖) : 𝒰 𝑖 where
 
   bλ : ∀{a : ⟨ 𝒞 ⟩} -> a ⟶ ident ⊗ a
   bλ = ⟨ iλ ⟩⁻¹
+
+  -- iα : ∀{a b c : ⟨ 𝒞 ⟩} -> (a ⊗ b) ⊗ c ≅ a ⊗ (b ⊗ c)
+  -- iα = fα since record { inverse-◆ = bα ; inv-r-◆ = {!!} ; inv-l-◆ = {!!} }
 
   field triangle : ∀{A B : ⟨ 𝒞 ⟩} -> (fρ {A} ⇃⊗⇂ id {a = B}) ∼ (fα {A} {ident} {B} ◆ (id ⇃⊗⇂ fλ {B}))
 

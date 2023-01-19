@@ -11,6 +11,7 @@ open import Verification.Core.Category.StdMonoidal.Category.Definition
 
 
 
+
 module _ (𝒞 : Monoidal 𝑖) where
 
   record Mon : 𝒰 𝑖 where

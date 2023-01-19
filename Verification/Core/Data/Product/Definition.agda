@@ -22,6 +22,15 @@ record _×~_ (A : 𝒰 𝑖) (B : 𝒰 𝑗) : 𝒰 (𝑖 ､ 𝑗) where
 -- {-# FOREIGN GHC makeProduct a b = (a,b) #-}
 {-# COMPILE GHC _×~_ = data AgdaProduct ((,)) #-}
 
+--------------------------------------------------------------
+-- The Instance Product
+
+record _×-AgdaInstance_ (A : 𝒰 𝑖) (B : 𝒰 𝑗) : 𝒰 (𝑖 ､ 𝑗) where
+  constructor intro-×-AgdaInstance
+  field {{fst-×-AgdaInstance}} : A
+  field {{snd-×-AgdaInstance}} : B
+
+open _×-AgdaInstance_ {{...}} public
 
 
 --------------------------------------------------------------
