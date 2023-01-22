@@ -1,6 +1,7 @@
 
 module Verification.Core.Data.Fin.Definition where
 
+{-
 open import Verification.Core.Conventions
 open import Verification.Core.Data.Int.Definition
 open import Verification.Core.Data.Prop.Subset
@@ -9,6 +10,7 @@ open import Verification.Core.Set.Discrete
 -- open import Verification.Core.Set.Finite.Definition
 open import Verification.Core.Order.Preorder
 open import Verification.Core.Order.Totalorder
+-}
 
 -- open import Cubical.Data.Fin.Base renaming (elim to elim-Fin ; toℕ to toℕ-Fin) public
 
