@@ -69,6 +69,7 @@ HataSystemInterface = (::  /  "Common" / hsproj "HataSystemInterface" )
 _ = #mreflect (Message ∷ EchoType ∷ BuildResult ∷ [])
               (generateHs HataSystemInterface (:: / "HataSystemInterface" / "HataDaemon" / "Message"))
 
+-- _ = #echo "hello!"
 
 -- open import Hata.Program.HataCmd.Common
 -- _ = #temp abc

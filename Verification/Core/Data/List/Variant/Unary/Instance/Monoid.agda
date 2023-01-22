@@ -3,7 +3,7 @@ module Verification.Core.Data.List.Variant.Unary.Instance.Monoid where
 
 open import Verification.Conventions
 
-open import Verification.Core.Setoid
+open import Verification.Core.Setoid.Definition
 open import Verification.Core.Set.Contradiction
 open import Verification.Core.Set.Decidable
 open import Verification.Core.Set.Discrete

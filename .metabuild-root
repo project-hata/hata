@@ -31,7 +31,7 @@ agdaProjects:
     agdaBin_RelFile: hata-edittime
     haskellStackTemplateRelDir: Template/Edittime
     agdaAutobuild: false
-    libraryDefinitions_Filename: hata.agda-lib
+    libraryDefinitions_Filename: Hata.agda-lib
     agdaDependencySibling_RelDirs:
       - ../../Common/HataSystemInterface
       - ../../Common/HataGeneratedModules

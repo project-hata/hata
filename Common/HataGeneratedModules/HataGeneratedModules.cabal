@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.7.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      HataGeneratedModules.Types.Hata.Program.MetaBuilder.Configuration.Project
       HataGeneratedModules.Types.Verification.Impure.Program.MetaBuilder.Configuration.Project
   other-modules:
       Paths_HataGeneratedModules

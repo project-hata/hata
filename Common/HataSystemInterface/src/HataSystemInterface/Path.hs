@@ -3,7 +3,7 @@ module HataSystemInterface.Path
   (
     findProjectRootFile
   , findProjectRootDir
-  -- , path_HataGeneratedModules_src
+  , path_HataGeneratedModules_src
   )
   where
 
@@ -42,9 +42,9 @@ findProjectRootDir = takeDirectory <$> findProjectRootFile
 -- ---------------------------------------------------------------
 -- -- path constants
 
--- path_HataGeneratedModules_src :: IO FilePath
--- path_HataGeneratedModules_src = do
---   root <- findProjectRootDir
---   return (root </> "Common" </> "HataGeneratedModules" </> "src")
+path_HataGeneratedModules_src :: IO FilePath
+path_HataGeneratedModules_src = do
+  root <- findProjectRootDir
+  return (root </> "Common" </> "HataGeneratedModules" </> "src")
 
 
