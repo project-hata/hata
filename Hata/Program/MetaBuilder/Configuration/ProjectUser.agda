@@ -21,7 +21,7 @@ myfun = do
   putStrLn (toJSON-RustProjectConfig myconfig)
   putStrLn "hello"
 
--- _ = #echo "bla"
+_ = #echo "bla"
 
 
 

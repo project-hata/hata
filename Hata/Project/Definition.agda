@@ -4,6 +4,14 @@ module Hata.Project.Definition where
 open import Hata.Conventions
 open import Hata.Reflection.Definition
 open import Hata.Abstract.Path.Definition
+open import Hata.Program.HataCmd.Common
+
+------------------------------------------
+-- Treesitter projects
+
+record TreesitterCargo : 𝒰₀ where
+  field languageName : Text
+
 
 
 

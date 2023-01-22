@@ -157,12 +157,12 @@ open import Hata.Abstract.Path.Definition renaming (Abs to AAbs)
 sln-root : TC ((AAbs , Dir)-Path)
 sln-root = return (:: / "hello")
 
-macro
-  # : ∀{A : 𝒰 𝑖} -> TC A -> Term -> TC 𝟙-𝒰
-  # f hole = do
-    res <- f
-    res-quoted <- quoteTC res
-    unify hole res-quoted
+-- macro
+--   # : ∀{A : 𝒰 𝑖} -> TC A -> Term -> TC 𝟙-𝒰
+--   # f hole = do
+--     res <- f
+--     res-quoted <- quoteTC res
+--     unify hole res-quoted
 
 ------------------------------------------
 -- projects

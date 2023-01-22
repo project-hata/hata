@@ -5,6 +5,7 @@ module Lib
 import Options.Applicative
 
 import Utility.Echo
+import Utility.File
 import Edittime.Commands.Function
 import Data.Text as T
 import qualified Data.Text.IO as TIO
@@ -20,6 +21,7 @@ data Command =
   | Command_ET_updateAgdaDatatypeSourceFile String String String
   | Command_HSI_getNameFromFQ String
   | Command_HSI_getModuleFromFQ String
+  | Command_UTIL_writeFile String String
 
 pCmd :: Parser Command
 pCmd = subparser
@@ -65,6 +67,17 @@ pCmd = subparser
     (info (Command_HSI_getModuleFromFQ
            <$> strOption (long "name"))
      (progDesc "get module name from fully qualified name"))
+
+  ----------------------
+  -- Utility commands
+
+ <> command "UTIL:writeGeneratedHaskellFile"
+    (info (Command_UTIL_writeFile
+           <$> strOption (long "file" <> help "filepath")
+           <*> strOption (long "content" <> help "file content")
+          )
+     (progDesc "write file"))
+
   )
 
 
@@ -86,6 +99,8 @@ execute (Command_ET_updateAgdaDatatypeSourceFile m rspart content) =
   updateAgdaDatatypeSourceFile (FQName (T.pack m)) (T.pack rspart) (T.pack content)
 execute (Command_HSI_getNameFromFQ name) = TIO.putStr $ getNameFromFQ $ FQName (T.pack name)
 execute (Command_HSI_getModuleFromFQ name) = TIO.putStr $ unFQName $ getModuleFromFQ $ FQName (T.pack name)
+execute (Command_UTIL_writeFile m content) =
+  writeFileCmd (T.pack m) (T.pack content)
 
 
 -- sample :: Parser Sample

@@ -2,7 +2,8 @@
 module Hata.Program.HataCmd.Common where
 
 
-open import Verification.Conventions
+-- open import Verification.Conventions
+open import Hata.Conventions
 open import Verification.Conventions.Meta.Term
 
 postulate
@@ -11,6 +12,12 @@ postulate
 
 {-# BUILTIN AGDATCMEXEC execTC #-}
 
+call-program : Text -> List Text -> TC Text
+call-program prog args = do
+    (exitCode , (stdOut , stdErr)) ← execTC prog args ""
+    if exitCode ≟ 0
+      then (return stdOut)
+      else (typeError (strErr "Got error: " ∷ strErr stdErr ∷ []))
 
 call-echo : Text -> TC 𝟙-𝒰
 call-echo mytext = do
@@ -20,11 +27,7 @@ call-echo mytext = do
       else (typeError (strErr "Got error: " ∷ strErr stdErr ∷ []))
 
 call-hatacmd : List Text -> TC Text
-call-hatacmd args = do
-    (exitCode , (stdOut , stdErr)) ← execTC "hata-cmd" args ""
-    if exitCode ≟ 0
-      then (return stdOut)
-      else (typeError (strErr "Got error: " ∷ strErr stdErr ∷ []))
+call-hatacmd = call-program "hata-cmd"
 
 
 macro
@@ -48,6 +51,16 @@ macro
     unify hole (lit (string "text"))
   #execute-function _ _ = typeError (strErr "this is not a name." ∷ [])
 
+
+echo : Text -> TC ⊤
+echo txt = call-program "hata-cmd" ("echo" ∷ "--text" ∷ txt ∷ []) >> return tt
+
+macro
+  # : ∀{A : 𝒰 𝑖} -> TC A -> Term -> TC 𝟙-𝒰
+  # f hole = do
+    res <- f
+    res-quoted <- quoteTC res
+    unify hole res-quoted
 
 macro
   #echo : Text → Term → TC 𝟙-𝒰

@@ -76,6 +76,15 @@ module _ {R N : 𝒰₀} {{_ : isLeafType N}} where
     _/_ : ∀{p x y} -> (p , x)-Path -> (y)-Name -> {{_ : x switchTo y}} -> (p , y)-Path
 
 
+concat : ∀{x : FSLeaf} -> (Abs , Dir)-Path -> (Rel , x)-Path -> (Abs , x)-Path
+concat root :: = root
+concat root (next / x) = concat root next / x
+
+toFilePath : ∀{x : FSLeaf} -> (Abs , x)-Path -> Text
+toFilePath :: = ""
+toFilePath {Dir} (p / next) = toFilePath p <> "/" <> next
+toFilePath {File} (p / x ∶ ty) = toFilePath p <> "/" <> x <> "." <> ty
+toFilePath {HsProj} (p / hsproj next) = toFilePath p <> "/" <> next
 
 
 mypath : (Rel , File)-Path
